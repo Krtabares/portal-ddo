@@ -1249,7 +1249,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.errorValidaArticulo = false
-        $scope.addArtPedido = function(){
+        $scope.addArtPedido = function(gotosearch=false){
             if(Object.keys($scope.articulo).length === 0)
               return
 
