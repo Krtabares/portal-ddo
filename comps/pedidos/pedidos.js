@@ -1270,6 +1270,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               if(!validacionesArticulo($scope.articulo)){
 
                 $scope.addDetalleProducto($scope.articulo)
+                
+                if (gotosearch)
+                  angular.element('#busquedaProd').focus();
 
                 return
 
