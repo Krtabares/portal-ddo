@@ -1,0 +1,44 @@
+
+<div id="wrapper">
+
+
+<div class="container">
+	<div class="row">
+    <div style="margin: auto;">
+      
+      <div class="card card-min" style=" margin-top: 60px; padding: 20px;" >
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <img src="img/logoddo.png" style="width:100%;height:100%" alt="">
+              <h2 class="text-center">¿Se te olvidó tu contraseña?</h2>
+              <p>Puede restablecer su contraseña aquí.</p>
+              <div class="panel-body">
+
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                      <!-- <input id="email" name="email" ng-model="user.username" placeholder="email o username" class="form-control"  type="email"> -->
+                      <input type="text" ng-model="user.username"   class="form-control" placeholder="Nombre de usuario">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <!-- <input name="recover" class="btn btn-lg btn-primary btn-block" ng-click="resetPass(user)"   type="button"> -->
+                    <button class="btn btn-lg btn-primary btn-block"  ng-click="resetPass(user)" >
+                       <!-- <i class="fa fa-clock"></i> -->
+                       RESTABLECER CONTRASEÑA</button>
+                  </div>
+
+                  <a href="#!/">Volver</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+	</div>
+</div>
+
+</div>
+      <my-footer></my-footer>

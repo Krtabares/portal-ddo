@@ -1,0 +1,130 @@
+
+<div ng-include="'comps/common/topbar.html'">
+
+</div>
+
+<div class="modal fade" id="modalPsw">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Cambiar contraseña</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+      </div>
+      <div class="modal-body">
+
+        <div class="container">
+
+          <div class="row">
+            <div class="col-sm-12 ">
+              <p class="text-justify">Utilice el siguiente formulario para cambiar su contraseña</p>
+              <form method="post" id="passwordForm">
+                <input type="password" class="input-lg form-control" ng-model="newPass" name="password1" id="password1" placeholder="Contraseña nueva" autocomplete="off">
+                <div class="row">
+                <div class="col-sm-6">
+                <span id="8char" class="fa fa-times" style="color:#FF0004;"></span> 8 caracteres de largo<br>
+                <span id="ucase" class="fa fa-times" style="color:#FF0004;"></span> Una letra mayúscula
+                </div>
+                <div class="col-sm-6">
+                <span id="lcase" class="fa fa-times" style="color:#FF0004;"></span> Una letra minúscula<br>
+                <span id="num" class="fa fa-times" style="color:#FF0004;"></span> Un número
+                </div>
+                </div>
+                <input type="password"
+                class="input-lg form-control"
+                ng-model="user.passwordConfirm"
+                ng-keyup="errorPass()"
+                name="password2" id="password2" placeholder="Repetir contraseña" autocomplete="off">
+                <div class="row">
+                <div class="col-sm-12">
+                <span id="pwmatch" class="fa fa-times" style="color:#FF0004;"></span> Las contraseñas coinciden
+                </div>
+                </div>
+                <!-- <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg"  value="Change Password"> -->
+              </form>
+            </div><!--/col-sm-6-->
+          </div><!--/row-->
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Regresar</button>
+        <button type="button" class="btn btn-danger" ng-click="updUserPass()" ng-disabled="!passwordIsValid"  data-dismiss="modal" data-loading-text="Changing Password...">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="wrapper" class="toggled">
+  <my-sidebar></my-sidebar>
+  <div id="page-content-wrapper" class="container-fluid">
+
+
+    <div class="col-md-12 col-sm-12">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><a class="text-success" >Droguería del Oeste.com</a></li>
+          <li class="breadcrumb-item"><a class="text-info" href="#!/home">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Perfil</li>
+        </ol>
+      </nav>
+
+      <header-client></header-client>
+
+
+      <div class="col-md-6 mt-10 mb-10">
+      <div class="card " >
+          <div class="card-info-header">
+            Información de usuario
+          </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+
+              <!-- <button class="btn btn-primary" style="font-weight: bold;margin-bottom: 1rem;" data-toggle="modal" ng-click="createUser()" data-target="#addUserModal"> <i class="fas fa-pencil"></i> CREAR USUARIO <i class="fas fa-1x fa-user"></i></button> -->
+
+              <div class="row">
+                <div class="col-md-12">
+
+                  <div class="tab-pane active in" id="home">
+
+                    <form>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Nombre de usuario</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" ng-model="user.username" ng-disabled="typeview == 'view'"  placeholder="Enter email">
+
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Nombre</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" ng-model="user.name" ng-disabled="typeview == 'view'" placeholder="Nombre">
+                      </div>
+
+                      <button class="btn btn-primary" ng-if="typeview == 'view'" data-toggle="modal" data-target="#modalPsw" >CAMBIAR CONTRASEÑA</button>
+                    </form>
+                  </div>
+
+
+
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        </div>
+      </div>
+
+
+      </div>
+
+  </div>
+  </div>
+</div>
+
+<my-footer></my-footer>
