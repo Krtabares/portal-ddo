@@ -5,26 +5,18 @@
   <div class="modal fade" id="addPedidoModal" tabindex="-1" role="dialog" aria-labelledby="addPedidoModalLabel" aria-hidden="true">
     <div class="modal-dialog  mw-100  modal-90 modal-100-ht" role="document">
       <div class="modal-content">
-        <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold;">
+        <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold; padding: 7px !important;, margin-bottom: 10px;">
           <h5 class="modal-title" id="addPedidoModalLabel">CREAR PEDIDO <i class="fas fa-1x fa-list-alt"></i></h5>
 
           <button type="button" class="close" ng-click="closeModalOrder()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="card-header mb-3 " >
 
-            <span class="float-right">
-
-              <!-- <div ng-if="true" idle-countdown="countdown">
-              cierre de sesión en {{countdown}} seconds.
-            </div> -->
-          </span>
-        </div>
         <div class="modal-body">
 
 
-          <ul class="nav nav-tabs mb-4">
+          <ul class="nav nav-tabs mb-2 mt-2 " style="margin-bottom:0px !important" > 
               <li class="nav-item" ng-show="1 == 2" >
                 <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Información Cliente </a>
               </li>
@@ -32,6 +24,42 @@
                 <a class="nav-link" ng-class="{ active : tabsIndex == 1, disabled: !clienteValido  }" ng-disabled=" !clienteValido" ng-click="goToTab(1)" >Detalle de pedido </a>
               </li>
           </ul>
+
+          <div class="controlAction" ng-show="tabsIndex == 1" >
+
+            <div class="col-md-8 row" style="padding-left: 0px;" >
+
+              <div class="col-md-3">
+                <button type="button" style="width: 100%;" class="btn btn-primary"  ng-show="ID != null" ng-click="openModalProducts()" >Agregar productos</button>
+              </div>
+
+              <div class="col-md-3">
+                <button type="button" style="width: 100%;" class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
+              </div>
+
+              <div class="col-md-6 dropdown"  ng-show="!clienteEmpleado && ID != null">
+                <button class="btn btn-info dropdown-toggle" style="
+                background-color: #72797f;
+                color: #fff;
+                border: gray;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Tipo de pedido
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" ng-click="pickUpAvailable='1'" >Pedido normal</a>
+                  <a class="dropdown-item" ng-click="pickUpAvailable='2'" >Pedido Pick-Up</a>
+                </div>
+                <div class="inputTIPO" style="display: inline-block;">
+
+                  <input type="text" style="width: 74%;
+                  height: 37px;
+                  padding: 1px 3px 3px;" class="form-control" placeholder="Text input" disabled value="{{(pickUpAvailable=='1')? 'Pedido normal':'Pedido Pick-Up' }}">
+                </div>
+                
+
+              </div>
+
+            </div>
+          </div>
 
 
           <div class="modal-body-he">
@@ -81,64 +109,38 @@
               <div class="col-sm-12 col-md-12 col-lg-12" ng-show="tabsIndex == 1" >
 
 
-                <div class="row mt-3 mb-5" >
+                
 
-                  <div class="col-md-4 col-sm-12">
-                    <label></label>
-                    <!-- <button type="button" class="btn btn-info" ng-click="addPedidoV2()" ng-show="ID == null"  >Abrir Pedido</button> -->
-                    <button type="button" class="btn btn-info"  ng-show="ID != null" ng-click="openModalProducts()" >Agregar productos</button>
-                  </div>
 
-                  <div class="col-md-4 col-sm-12">
-                    <label></label>
-                    <button type="button"  class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
-                  </div>
+                <div class="row" >
 
-                  <div class="col-md-4 col-sm-12">
-                    <div ng-show="!clienteEmpleado && ID != null" >
-                      <label>Tipo de pedido</label>
-                        <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
-                        <select class="form-control form-control-sm"  ng-model="pickUpAvailable">
+                  <div class="col-md-6 col-sm-12 " ></div>
 
-                          <option  value="1"  >
-                            Pedido normal
-                          </option>
-                          <option  value="2">
-                            Pedido Pick-Up
-                          </option>
+                  <div class="col-md-6 col-sm-12 row" style="font-size: 12px;" >
 
-                        </select>
+                    <div class="col-md-4 col-sm-12">
+                      <label>Crédito disponible</label><br>
+                      <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</span>
+                      <br>
+                      <span >{{formato(3,(creditoClient.disp_usd_format)? (creditoClient.disp_usd_format - totales.UsdConIva):0)}}</span>
+
                     </div>
-                  </div>
-                </div>
 
+                    <div class="col-md-4 col-sm-12" ng-show="pickUpAvailable == '2'">
+                      <label>Monto mínimo pick - up</label><br>
+                      <span >{{formato(2,client.monto_min_pick)? formato(2, client.monto_min_pick):0}}</span>
+  
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                      <label>Monto mínimo pedido</label><br>
+                      <span >{{formato(2,client.monto_minimo)? formato(2, client.monto_minimo):0}}</span>
+  
+                    </div>
 
-                <div class="row mt-3 mb-3" >
-
-
-
-                  <div class="col-md-3 col-sm-12">
-                    <label>Monto mínimo pedido</label><br>
-                    <span >{{formato(2,client.monto_minimo)? formato(2, client.monto_minimo):0}}</span>
-
-                  </div>
-                  <div class="col-md-3 col-sm-12">
-                    <label>Monto mínimo pick - up</label><br>
-                    <span >{{formato(2,client.monto_min_pick)? formato(2, client.monto_min_pick):0}}</span>
 
                   </div>
 
-                  <div class="col-md-3 col-sm-12">
-                    <label>Crédito disponible Bs.S</label><br>
-                    <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</span>
 
-                  </div>
-
-                  <div class="col-md-3 col-sm-12">
-                    <label>Crédito disponible USD</label><br>
-                    <span >{{formato(3,(creditoClient.disp_usd_format)? (creditoClient.disp_usd_format - totales.UsdConIva):0)}}</span>
-
-                  </div>
 
 
 
@@ -269,8 +271,6 @@
         <div class="modal-footer" style="display: block;margin: 0 auto;">
           <button type="button" class="btn btn-info"  ng-click="closeModalOrder()">Regresar</button>
           <button type="button"  class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
-
-
         </div>
       </div>
     </div>
@@ -299,7 +299,7 @@
             </span>
             <span class="float-right"> <strong>Estatus:</strong> {{pedido.estatus}}</span>
             </div>
-            <ul class="nav nav-tabs mb-4">
+            <ul class="nav nav-tabs mb-2">
                 <li class="nav-item" ng-show="1 == 2" >
                   <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Información Cliente </a>
                 </li>
@@ -672,7 +672,7 @@
                     <label for="tipoBusqueda">Tipo de búsqueda</label>
                     <div class="input-group mb-3 ">
                       <div class="form-group">
-                        <select class="form-control" ng-model="tipoBusqueda" id="tipoBusqueda" >
+                        <select class="form-control " ng-model="tipoBusqueda" id="tipoBusqueda" data-live-search="true" >
                           <option  value="1" >
                             Por producto
                           </option>
@@ -687,11 +687,12 @@
                   <div class="col-md-3">
                     <label for="clientes">Búsqueda </label>
                     <div class="input-group mb-3 ">
-                      <input type="text" class="form-control" id="busquedaProd"
+                      <input type="text" class="form-control"
                       ng-model="busqueda_prod"
                       ng-keydown="$event.keyCode === 13 && getProdNew(true)"
                       placeholder="Búsqueda del producto"
                       aria-label="Búsqueda del producto"
+                      id="busquedaProd"
                       aria-describedby="basic-addon2">
                       <div class="input-group-append">
                         <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
@@ -699,12 +700,39 @@
                     </div>
                   </div>
 
+                  <div class="col-md-6 dropdown" >
+                    <label for="proveedor">Filtrar por proveedor</label>
+                    <button class="btn btn-info dropdown-toggle" style="
+                    background-color: #72797f;
+                    color: #fff;
+                    border: gray;" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Seleccione un proveedor
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <div class="form-group ">
+                        <input type="text" class="form-control" id="provFilter"  ng-keyup="filterArray(listProveedores,'nombre_proveedor', $event.target.value,'listProveedoresFiltrada' )" >
+                      </div>
+                      <a class="dropdown-item" ng-click="proveedor.cod_proveedor = null;" >TODOS</a>
+                      <a class="dropdown-item " ng-class="{ active : x.cod_proveedor == proveedor.cod_proveedor }" 
+                      ng-repeat="x in listProveedoresFiltrada" 
+                      ng-click="proveedor = x " >{{x.nombre_proveedor}}</a>
+                    </div>
+                    <div class="inputTIPO" style="display: inline-block;">
+    
+                      <input type="text" style="width: 74%;
+                      height: 37px;
+                      padding: 1px 3px 3px;" class="form-control" disabled value="{{x.nombre_proveedor }}">
+                    </div>
+                    
+    
+                  </div>
+                  
                   <div class="col-md-3">
                     <label for="proveedor">Filtrar por proveedor</label>
                     <div class="input-group mb-3 ">
                       <div class="form-group">
                         <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                        <select class="form-control" ng-model="proveedor.cod_proveedor" id="proveedor" >
+                        <select class="form-control  " ng-model="proveedor.cod_proveedor" id="proveedor" data-live-search="true">
                           <option value="null" >Todos</option>
                           <option ng-repeat="x in listProveedores" value="{{x.cod_proveedor}}">{{x.nombre_proveedor}}</option>
                           <option value="" disabled selected>Seleccione un proveedor</option>
@@ -718,7 +746,7 @@
                     <div class="input-group mb-3 ">
                       <div class="form-group">
                         <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                        <select class="form-control" ng-model="categoria.CODIGO" id="proveedor" >
+                        <select class="form-control   " ng-model="categoria.CODIGO" id="proveedor" data-live-search="true" >
                           <!-- <option value="null" >Todos</option> -->
                           <option ng-repeat="x in listCategorias" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
                           <option value="" disabled selected>Seleccione una categoría</option>
@@ -761,7 +789,7 @@
                             <td ><i class="fa fa-eye" style="cursor: pointer;"  ng-click="selectProduct($index)" ></i></td>
                             <td ng-click="selectProduct($index,true)" >
                               <div ng-if="x.dir_imagen != ''" style="cursor: pointer;" ng-click="zoomImg('/'+x.dir_imagen, x.nombre_producto )"   >
-                                <img id="img_{{$index}}" ng-src="/assets/imagen/{{ x.dir_imagen }}" alt="no image" on-error="/assets/nopic.png"  style="width: 120px;">
+                                <!-- <img id="img_{{$index}}" ng-src="/assets/imagen/{{ x.dir_imagen }}" alt="no image" on-error="/assets/nopic.png"  style="width: 120px;"> -->
                               </div>
                             </td>
                             <td ng-click="selectProduct($index,true)" ><p class="text-left">{{ x.nombre_producto }}</p></td>

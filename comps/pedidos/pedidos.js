@@ -22,6 +22,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.onTimeout()
 
       });
+      $(function(){
+        $('select').selectpicker();
+      })
 
 
         $scope.srcServer = IP_SRC_IMAGE
@@ -132,6 +135,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                     $("#addPedidoModal").modal("hide");
                     $("#showPedidoModal").modal("hide");
                     $('.modal-backdrop').remove();
+                    $('#myHtml').css('overflow','')
                   })
                 }else{
 
@@ -163,6 +167,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   $("#addPedidoModal").modal("hide");
                   $("#showPedidoModal").modal("hide");
                   $('.modal-backdrop').remove();
+                  $('#myHtml').css('overflow','')
                 })
 
                 break;
@@ -181,6 +186,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $("#addPedidoModal").modal("hide");
                 $("#showPedidoModal").modal("hide");
                 $('.modal-backdrop').remove();
+                $('#myHtml').css('overflow','')
               })
 
               break;
@@ -608,7 +614,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $("#modalInfoProduct").modal("hide");
                 $("#modalConfirmDynamic").modal("hide");
                 $("#modalImg").modal("hide");
-
+                $('#myHtml').css('overflow','')
 
                 $('.modal-backdrop').remove();
               })
@@ -702,7 +708,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.listProveedores=[]
-        $scope.proveedor = {"cod_proveedor":null}
+        $scope.proveedor = {"cod_proveedor":null, "name":null}
         function proveedores() {
           $scope.loading = true
 
@@ -907,11 +913,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                     backdrop: 'static',
                     keyboard: false
                 });
+                $('#myHtml').css('overflow','hidden')
               })
 
             }else{
               $(function(){
                 $("#addPedidoModal").modal("hide");
+                $('#myHtml').css('overflow','')
               })
               notify({ message:'¡No se pudo abrir un pedido nuevo!', position:'left', duration:10000, classes:'   alert-danger'});
             }
@@ -940,6 +948,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $("#addPedidoModal").modal("hide");
                 $("#modalproduct").modal("hide");
                 $("#modalInfoProduct").modal("hide");
+                $('#myHtml').css('overflow','')
               })
 
               window.location.href = "#!/";
@@ -1046,6 +1055,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   $("#addPedidoModal").modal("hide");
                   $("#showPedidoModal").modal("hide");
                   $('.modal-backdrop').remove();
+                  $('#myHtml').css('overflow','')
                 })
                 $scope.getPedidos_filteringV2();
       			}
@@ -1083,6 +1093,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   $("#addPedidoModal").modal("hide");
                   $("#showPedidoModal").modal("hide");
                   $('.modal-backdrop').remove();
+                  $('#myHtml').css('overflow','')
                 })
                 $scope.getPedidos_filteringV2();
             }
@@ -1166,6 +1177,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   $("#addPedidoModal").modal("hide");
                   $("#showPedidoModal").modal("hide");
                   $('.modal-backdrop').remove();
+                  $('#myHtml').css('overflow','')
                 })
                 $scope.getPedidos_filteringV2();
             }
@@ -1430,6 +1442,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   $("#addPedidoModal").modal("hide");
                   $("#showPedidoModal").modal("hide");
                   $('.modal-backdrop').remove();
+                  $('#myHtml').css('overflow','')
                 })
             }else{
               //console.log("openModalDyn");
@@ -1441,6 +1454,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $("#addPedidoModal").modal("hide");
                 $("#showPedidoModal").modal("hide");
                 $('.modal-backdrop').remove();
+                $('#myHtml').css('overflow','')
               })
 
           }
@@ -1750,6 +1764,26 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             $timeout.cancel($scope.mytimeoutOrdCancel);
             $scope.liveTimeOrd = null;
+        }
+        $scope.listProveedoresFiltrada=[]
+        $scope.filterArray = function(list = [], key, value, filterlistkey ){
+          var aux = []
+
+          console.log($scope[filterlistkey]);
+          const filterItems = query => {
+            return list.filter((el) =>
+              el[key].toLowerCase().indexOf(query.toLowerCase()) > -1
+            );
+          }
+          $scope.listProveedoresFiltrada = filterItems(value)
+          // console.log(filterItems(event.target.value));
+          // list.forEach(element => {
+          //   if( element[key].includes(event.target.value) ){
+          //     aux.push(element)
+          //   }
+          // });
+          // list = aux
+
         }
 
 
