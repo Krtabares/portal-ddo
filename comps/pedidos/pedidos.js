@@ -441,7 +441,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             if(!existe){
 
-              $scope.articulo.CANTIDAD = 0
+              // $scope.articulo.CANTIDAD = 0
 
             }else{
               $scope.articulo.CANTIDAD = cantidadAux
@@ -1270,7 +1270,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               if(!validacionesArticulo($scope.articulo)){
 
                 $scope.addDetalleProducto($scope.articulo)
-                
+
                 if (gotosearch)
                   angular.element('#busquedaProd').focus();
 
