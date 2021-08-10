@@ -84,11 +84,11 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 			// console.log(response)
       $scope.myLoadingVar = false
 			if(response.status == 403){
-				ngNotify.set('¡Credenciales erróneas!','error')
+				ngNotify.set(response.data.msg,'error')
 			}else if(response.status == 430){
 				ngNotify.set('¡Usuario inactivo!','error')
 			}
-      else ngNotify.set(response.data,'error')
+      else ngNotify.set(response.data.msg,'error')
 
 		  });
     }

@@ -124,15 +124,25 @@ angular.module('app', [
 
          responseError: function(response) {
          // Unauthorized
-            if ((--numLoadings) === 0) {
-              // Hide loader
-              $rootScope.$broadcast("loader_hide");
+         console.log($('body'))
+          if ((--numLoadings) === 0) {
+            $rootScope.$broadcast("loader_hide");
           }
-           if(response.status==401){
-             $location.path('/');
-           }else
+          if(response.status==401){
+            $location.path('/');
+          }else if(response.status == -1){
+            
+            // ngNotify.set('¡No existe conexion con el servidor por favor intente mas tarde!'  ,'error')
+            $('body').append('<div id="notify" class="ngn ng-scope ngn-error ngn-bottom" style="display: block; opacity: 1;"><span  class="ngn-message ng-binding ng-scope">¡No existe conexion con el servidor por favor intente mas tarde!</span><span  class="ngn-dismiss ng-hide">×</span></div>')
+            
+            $location.path('/');
+            setTimeout(function () {
+              $('#notify').remove()
+            },3000)
+          }
             $rootScope.$broadcast("overlay_show");
-           return $q.reject(response);
+
+          return $q.reject(response);
          }
        };
      })

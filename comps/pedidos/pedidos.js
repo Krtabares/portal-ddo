@@ -22,9 +22,27 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.onTimeout()
 
       });
-      $(function(){
-        $('select').selectpicker();
-      })
+
+
+      
+      function siteModalFooter() {
+
+        $(function(){
+          var modal_body_he = $('.modal-body-he');
+  
+          var modalBody = $(window);
+
+          var modalBodyHeight = modalBody.height();
+  
+          modal_body_he.css({
+            "height" : modalBodyHeight - 300 //+'!important' 
+          });
+        })
+
+
+      };
+
+      
 
 
         $scope.srcServer = IP_SRC_IMAGE
@@ -410,7 +428,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           if(cantidad != null && cantidad > 0  ){
             $scope.auxCantidadBlur = cantidad
-            $scope.addArtPedido(true)
+            // $scope.addArtPedido(true)
           }else{
             cantidad = null
             $scope.auxCantidadBlur = null
@@ -909,13 +927,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.pedido.estatus ='PEDIDO CREADO'
               $(function(){
+
                 $("#addPedidoModal").modal({
                     backdrop: 'static',
                     keyboard: false
                 });
-                $('#myHtml').css('overflow','hidden')
-              })
 
+                siteModalFooter()
+                $('#myHtml').css('overflow','hidden')
+                
+              })
+              
             }else{
               $(function(){
                 $("#addPedidoModal").modal("hide");
@@ -1048,6 +1070,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             notify({ message:'¡Producto agregado al pedido!', position:'left', duration:10000, classes:'   alert-success'});
           }, function errorCallback(response) {
+
+            articulo.CANTIDAD = null
 
             if(response.status == 410){
       				  notify({ message:response.data.msg, position:'left', duration:20000, classes:'   alert-danger'});
@@ -1526,6 +1550,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.totalesDdo = formatoTotales(response.data.obj[0].totales)
 
             $scope.loading = false
+            siteModalFooter()
 
           }, function errorCallback(response) {
 
