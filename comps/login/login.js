@@ -27,15 +27,9 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         $('.modal-backdrop').remove();
         $('#modalConfirmSidebar').modal("hide");
       })
-      if (localstorage.get('logged')) {
-        var body= {}
-        body.token = localstorage.get('token')
-        request.post(ip+'/logout', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
-          .then(function successCallback(response) {
 
-         });
-        localstorage.clear()
-      }
+      localstorage.clear()
+      
     }
     init()
 
