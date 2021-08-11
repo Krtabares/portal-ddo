@@ -23,7 +23,7 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
         body.token=localstorage.get('token')
         request.post(ip+'/logout', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
-
+            localstorage.clear()
             window.location.href = "/";
          });
       }
