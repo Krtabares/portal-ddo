@@ -1637,6 +1637,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           'UsdConIva':0,
           'empMisc':0,
           'empMed':0,
+          'totalUnidades':0
         }
         $scope.tipoPedido = "N"
         function calcularTotales(editIndex = null) {
@@ -1649,6 +1650,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.totales.UsdConIva = 0
             $scope.totales.empMisc = 0
             $scope.totales.empMed = 0
+            $scope.totales.totalUnidades = 0
 
             $scope.pedido.pedido.forEach((element, i )=> {
 
@@ -1664,6 +1666,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA) + (parseFloat(element.iva_bs) * element.CANTIDAD)
 
               $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA) + (parseFloat(element.iva_usd) * element.CANTIDAD)
+
+              $scope.totales.totalUnidades = $scope.totales.totalUnidades + element.CANTIDAD
 
               if( $scope.clienteEmpleado == true ){
                 if(element.tipo_prod_emp == "MISCELANEO"){

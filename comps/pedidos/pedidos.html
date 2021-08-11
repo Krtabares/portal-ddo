@@ -223,6 +223,12 @@
                         <div class="col-lg-6 col-sm-6 ml-auto">
                             <table class="table table-clear">
                                 <tbody>
+                                      <tr>
+                                        <td class="right">
+                                            <strong class="text-dark">TOT. Unidades :</strong> </td>
+
+                                            <td class="right">{{totales.totalUnidades}} </td>
+                                    </tr>
                                         <tr>
                                           <td class="right">
                                               <strong class="text-dark">TOT. DESC. PP1. 5.00% :</strong> </td>
@@ -501,42 +507,6 @@
                           </tbody>
                           </table>
                 </div>
-                <div class="row" ng-if="1==2" >
-                  <div class="col-lg-2 col-sm-5">
-                    </div>
-                      <div class="col-lg-6 col-sm-6 ml-auto">
-                          <table class="table table-clear">
-                              <tbody>
-                                
-                                  <tr>
-                                      <td class="left">
-                                          <strong class="text-dark">Total (no incluye iva)</strong>
-                                      </td>
-                                      <td class="right">{{formato(2,totales.bolivares)}}</td>
-                                  </tr>
-                                  <tr>
-                                      <td class="left">
-                                          <strong class="text-dark">Total (con iva)</strong>
-                                      </td>
-                                      <td class="right">{{formato(2,totales.bsConIva)}}</td>
-                                  </tr>
-                                  <tr>
-                                      <td class="left">
-                                          <strong class="text-dark">TOTAL USD  (no incluye iva)</strong>
-                                      </td>
-                                      <td class="right">{{formato(3,totales.USD)}}</td>
-                                  </tr>
-                                  <tr>
-                                      <td class="left">
-                                          <strong class="text-dark">TOTAL USD  (con iva)</strong> </td>
-                                      <td class="right">
-                                          <strong class="text-dark">{{formato(3,totales.UsdConIva)}}</strong>
-                                      </td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
 
                   <div class="row">
                     <div class="col-lg-2 col-sm-5">
@@ -574,6 +544,12 @@
 
                                             <td class="right">{{formato(2,totalesDdo.desc_dpp)}} </td>
                                     </tr> -->
+                                    <tr>
+                                      <td class="right">
+                                          <strong class="text-dark">TOT. Unidades :</strong> </td>
+
+                                          <td class="right">{{totales.totalUnidades}} </td>
+                                  </tr>
                                     <tr>
                                       <td class="right">
                                           <strong class="text-dark">TOT. DESC. PP1. 5.00% :</strong> </td>
