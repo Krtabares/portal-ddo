@@ -275,7 +275,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             return formatterVeDECIMAL.format(valor)
           }
           if(tipo==2){
-            return formatterVe.format(valor)
+            // return formatterVe.format(valor)
+            return "Bs "+formatterVeDECIMAL.format(valor)
           }
           if(tipo==3){
             return formatterUSD.format(valor)
