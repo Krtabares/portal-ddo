@@ -221,7 +221,7 @@
                     <div class="col-lg-2 col-sm-5">
                       </div>
                         <div class="col-lg-6 col-sm-6 ml-auto">
-                            <table class="table table-clear">
+                            <table class="table table-clear tablaTotales">
                                 <tbody>
                                       <tr>
                                         <td class="right">
@@ -229,19 +229,24 @@
 
                                             <td class="right">{{totales.totalUnidades}} </td>
                                     </tr>
-                                        <tr>
+                                        <tr ng-if=" totalesDdo.desc_volumen > 0">
                                           <td class="right">
                                               <strong class="text-dark">TOT. DESC. PP1. {{totalesDdo.porcVol}} :</strong> </td>
 
                                               <td class="right">{{formato(2,totalesDdo.desc_volumen)}} </td>
                                       </tr>
-                                      <tr>
+                                      <tr ng-if=" totalesDdo.desc_dpp > 0">
                                         <td class="right">
                                             <strong class="text-dark">TOT. DESC. PP2. {{totalesDdo.porcPP}}:</strong> </td>
 
                                             <td class="right">{{formato(2,totalesDdo.desc_dpp)}} </td>
                                     </tr>
+                                    <tr ng-if=" totalesDdo.descPreEmpaque > 0">
+                                      <td class="right">
+                                          <strong class="text-dark">TOT. DESC. PREEMP. :</strong> </td>
 
+                                          <td class="right">{{formato(2,totalesDdo.descPreEmpaque)}} </td>
+                                  </tr>
                                     <tr>
                                         <td class="right">
                                             <strong class="text-dark">SUB.T. (E):</strong> </td>
@@ -512,7 +517,7 @@
                     <div class="col-lg-2 col-sm-5">
                       </div>
                         <div class="col-lg-6 col-sm-6 ml-auto">
-                            <table class="table table-clear">
+                            <table class="table table-clear tablaTotales" >
                                 <tbody>
                                     <!-- <tr>
                                         <td class="right">
@@ -550,18 +555,24 @@
 
                                           <td class="right">{{totales.totalUnidades}} </td>
                                   </tr>
-                                      <tr>
+                                      <tr ng-if=" totalesDdo.desc_volumen > 0">
                                         <td class="right">
-                                            <strong class="text-dark">TOT. DESC. PP1. {{totalesDdo.porcVol}} % :</strong> </td>
+                                            <strong class="text-dark">TOT. DESC. PP1. {{totalesDdo.porcVol}} :</strong> </td>
 
                                             <td class="right">{{formato(2,totalesDdo.desc_volumen)}} </td>
                                     </tr>
-                                    <tr>
+                                    <tr ng-if=" totalesDdo.desc_dpp > 0">
                                       <td class="right">
-                                          <strong class="text-dark">TOT. DESC. PP2. {{totalesDdo.porcPP}} %:</strong> </td>
+                                          <strong class="text-dark">TOT. DESC. PP2. {{totalesDdo.porcPP}}:</strong> </td>
 
                                           <td class="right">{{formato(2,totalesDdo.desc_dpp)}} </td>
                                   </tr>
+                                  <tr ng-if=" totalesDdo.descPreEmpaque > 0">
+                                    <td class="right">
+                                        <strong class="text-dark">TOT. DESC. PREEMP. :</strong> </td>
+
+                                        <td class="right">{{formato(2,totalesDdo.descPreEmpaque)}} </td>
+                                </tr>
                                     <tr>
                                       <td class="right">
                                           <strong class="text-dark">SUB.T. (E):</strong> </td>
