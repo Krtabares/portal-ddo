@@ -337,7 +337,7 @@ body {
 	white-space: nowrap !important;
 }
 
-.tablaTotales .td  {
+.tablaTotales td  {
 	padding-bottom: 1px !important;
   padding-top: 1px !important;
 	white-space: nowrap !important;
