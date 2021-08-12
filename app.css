@@ -336,6 +336,12 @@ body {
   padding-top: 5px !important;
 	white-space: nowrap !important;
 }
+
+.tablaTotales  {
+	padding-bottom: 1px !important;
+  padding-top: 1px !important;
+	white-space: nowrap !important;
+}
 #infoPsico {
 	display: none;
 	padding: 5px
