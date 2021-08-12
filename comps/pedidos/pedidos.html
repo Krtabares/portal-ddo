@@ -225,21 +225,21 @@
                                 <tbody>
                                       <tr>
                                         <td class="right">
-                                            <strong class="text-dark">TOT. Unidades :</strong> </td>
+                                            <strong class="text-dark">TOT. UNID. PEDIDO :</strong> </td>
 
                                             <td class="right">{{totales.totalUnidades}} </td>
                                     </tr>
                                         <tr>
                                           <td class="right">
-                                              <strong class="text-dark">TOT. DESC. PP1. 5.00% :</strong> </td>
+                                              <strong class="text-dark">TOT. DESC. PP1. {{totalesDdo.porcVol}} :</strong> </td>
 
-                                              <td class="right">{{formato(2,totalesDdo.procVol)}} </td>
+                                              <td class="right">{{formato(2,totalesDdo.desc_volumen)}} </td>
                                       </tr>
                                       <tr>
                                         <td class="right">
-                                            <strong class="text-dark">TOT. DESC. PP2. 3.00%:</strong> </td>
+                                            <strong class="text-dark">TOT. DESC. PP2. {{totalesDdo.porcPP}}:</strong> </td>
 
-                                            <td class="right">{{formato(2,totalesDdo.procPP)}} </td>
+                                            <td class="right">{{formato(2,totalesDdo.desc_dpp)}} </td>
                                     </tr>
 
                                     <tr>
@@ -546,22 +546,22 @@
                                     </tr> -->
                                     <tr>
                                       <td class="right">
-                                          <strong class="text-dark">TOT. Unidades :</strong> </td>
+                                          <strong class="text-dark">TOT. UNID. PEDIDO :</strong> </td>
 
                                           <td class="right">{{totales.totalUnidades}} </td>
                                   </tr>
+                                      <tr>
+                                        <td class="right">
+                                            <strong class="text-dark">TOT. DESC. PP1. {{totalesDdo.porcVol}} :</strong> </td>
+
+                                            <td class="right">{{formato(2,totalesDdo.desc_volumen)}} </td>
+                                    </tr>
                                     <tr>
                                       <td class="right">
-                                          <strong class="text-dark">TOT. DESC. PP1. 5.00% :</strong> </td>
+                                          <strong class="text-dark">TOT. DESC. PP2. {{totalesDdo.porcPP}}:</strong> </td>
 
-                                          <td class="right">{{formato(2,totalesDdo.procVol)}} </td>
+                                          <td class="right">{{formato(2,totalesDdo.desc_dpp)}} </td>
                                   </tr>
-                                  <tr>
-                                    <td class="right">
-                                        <strong class="text-dark">TOT. DESC. PP2. 3.00%:</strong> </td>
-
-                                        <td class="right">{{formato(2,totalesDdo.procPP)}} </td>
-                                </tr>
                                     <tr>
                                       <td class="right">
                                           <strong class="text-dark">SUB.T. (E):</strong> </td>
