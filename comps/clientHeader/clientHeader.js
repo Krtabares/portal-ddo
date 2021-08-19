@@ -78,8 +78,12 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
             var client_info = localStorage.getItem('client_info')
             $scope.creditoClient = localStorage.getItem('creditoClient')
 
+            var client_obj = JSON.parse(client)
+            
 
-             if ( client=='{}' ){
+
+            //  if ( client=='{}' ){
+              if(client_obj.COD_CIA == null){
                 $scope.hasUserClient = false;
 
                 if($scope.inputClient){

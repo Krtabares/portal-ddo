@@ -1394,18 +1394,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
 
 
-            //console.log("articulo.tipo_prod_emp", articulo.tipo_prod_emp);
-            if(articulo.tipo_prod_emp == "MEDICINA"){
-              //console.log("$scope.totales.empMed + articulo.CANTIDAD ", $scope.totales.empMed + articulo.CANTIDAD);
-              //console.log("$scope.client.unid_disp_med_emp", $scope.client.unid_disp_med_emp);
+            // console.log("articulo.tipo_prod_emp", articulo.tipo_prod_emp);
+            if(articulo.tipo_prod_emp == "MEDICINAS"){
+              // console.log("$scope.totales.empMed + articulo.CANTIDAD ", $scope.totales.empMed + articulo.CANTIDAD);
+              // console.log("$scope.client.unid_disp_med_emp", $scope.client.unid_disp_med_emp);
               if( ($scope.totales.empMed + articulo.CANTIDAD) > $scope.client.unid_disp_med_emp){
                 notify({ message:'¡Excede cantidad disponible en medicinas!', position:'left', duration:10000, classes:'   alert-danger'});
                 // notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+(  $scope.client.unid_disp_med_emp - $scope.totales.empMed)+') para medicinas!', position:'left', duration:10000, classes:'   alert-danger'});
                return  true;
               }
-            }else if(articulo.tipo_prod_emp == "MISCELANEO"){
-              //console.log("$scope.totales.empMisc + articulo.CANTIDAD", $scope.totales.empMisc + articulo.CANTIDAD);
-              //console.log("$scope.client.unid_disp_misc_emp", $scope.client.unid_disp_misc_emp);
+            }else if(articulo.tipo_prod_emp == "MISCELANEOS"){
+              // console.log("$scope.totales.empMisc + articulo.CANTIDAD", $scope.totales.empMisc + articulo.CANTIDAD);
+              // console.log("$scope.client.unid_disp_misc_emp", $scope.client.unid_disp_misc_emp);
               if( ($scope.totales.empMisc + articulo.CANTIDAD) > $scope.client.unid_disp_misc_emp){
 
                 notify({ message:'¡Excede cantidad disponible en misceláneos!', position:'left', duration:10000, classes:'   alert-danger'});
@@ -1502,6 +1502,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.UsdConIva = 0
           $scope.totales.empMisc = 0
           $scope.totales.empMed = 0
+          $scope.totales.totalUnidades = 0
           $scope.busqueda_prod = null
           $scope.productIndex = -1
 

@@ -8,43 +8,43 @@
         <li>
             <a href="#!/home"><i class="fa fa-fw fa-home"></i> Inicio</a>
         </li>
-        <li ng-if="permisos.estadisticas.ver" >
+        <li ng-if="permisos.estadisticas.ver || user.role == 'root'  >
           <a href="#!/estadisticas"><i class="fa fa-fw fa-chart-pie"></i> Estadísticas</a>
       </li>
-        <li ng-if="permisos.deuda.ver" >
+        <li ng-if="permisos.deuda.ver || user.role == 'root'" >
           <a href="#!/deuda" class=""><i class="fa fa-fw  fas fa-receipt" ></i>Deuda</a>
         </li>
-        <li ng-if="permisos.perfil.ver" >
+        <li ng-if="permisos.perfil.ver || user.role == 'root'" >
           <a href="#!/perfil" class="">
             <i class="fa fa-fw fas fa-user" ></i>
             Perfil
           </a>
         </li>
-        <li ng-if="permisos.usuario.ver" >
+        <li ng-if="permisos.usuario.ver || user.role == 'root'" >
           <a href="#!/usuarios" class="">
             <i class="fa fa-fw fas fa-users" ></i>
             Usuarios
           </a>
         </li>
-        <li ng-if="permisos.cliente.ver" >
+        <li ng-if="permisos.cliente.ver || user.role == 'root'" >
           <a href="#!/clientes" class="">
             <i class=" fa fa-fw fas fa-briefcase" ></i>
             Clientes
           </a>
         </li>
-        <li ng-if="permisos.producto.ver" >
+        <li ng-if="permisos.producto.ver || user.role == 'root'" >
           <a  href="#!/saldo" class="">
             <i class=" fa fa-fw fas fa-shopping-cart" ></i>
           Productos
         </a>
       </li>
-      <li ng-if="permisos.pedido.ver">
+      <li ng-if="permisos.pedido.ver || user.role == 'root'">
         <a href="#!/pedidos" class="">
           <i class=" fa fa-fw fas fa-list-ul" ></i>
           Pedidos
         </a>
       </li>
-      <li ng-if="permisos.factura.ver">
+      <li ng-if="permisos.factura.ver || user.role == 'root'">
         <a href="#!/facturado" class="">
           <i class=" fa fa-fw fas fa-list-alt" ></i>
           Facturas

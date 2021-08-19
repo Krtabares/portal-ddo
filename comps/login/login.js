@@ -28,7 +28,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         $('#modalConfirmSidebar').modal("hide");
       })
 
-      
+      localstorage.clear()
       
     }
     init()

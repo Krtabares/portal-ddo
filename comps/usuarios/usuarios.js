@@ -140,23 +140,27 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
         $scope.username = username
       }
 
-      verificClient()
-
       function verificClient(){
 
-       var client = localStorage.getItem('client')
-       var client_info = localStorage.getItem('client_info')
-       console.log(client)
-        if ( Object.keys(JSON.parse(client)).length === 0 ){
-         $scope.hasUserClient = false;
-       }else{
-         $scope.hasUserClient = true;
-         $scope.client_info = JSON.parse(client_info);
-         $scope.client = JSON.parse(client);
-       }
-       $scope.getUsers()
-       console.log($scope.client)
-     }
+        var client = localStorage.getItem('client')
+        var client_info = localStorage.getItem('client_info')
+        var client_obj = JSON.parse(client)
+        console.log(client_obj.COD_CIA)
+        //  if ( Object.keys(JSON.parse(client)).length === 0 ){
+        if(client_obj.COD_CIA == null){
+          $scope.hasUserClient = false;
+        }else{
+          $scope.hasUserClient = true;
+          $scope.client_info = JSON.parse(client_info);
+          $scope.client = JSON.parse(client);
+        }
+        $scope.getUsers()
+        console.log($scope.client)
+      }
+
+      verificClient()
+
+     
 
      $scope.selectCLient = function(){
 
@@ -188,6 +192,11 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
        if(filter){
          body.pNombre = $scope.nombre_cliente
        }
+
+       body.pNoCia = "01";
+
+       body.pNoGrupo = "01";
+
        request.post(ip+'/procedure_clientes', body,{})
        .then(function successCallback(response) {
          console.log(response)
