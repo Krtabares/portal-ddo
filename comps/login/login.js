@@ -22,6 +22,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
     $scope.myLoadingVar = false
     $scope.user = {};
     function init() {
+      console.log("estA ACTUALIZANDO otra vez");
       $(function(){
         $(document).ready(function() {document.title = 'Droguería del Oeste - Gestión de Órdenes'; });
         $('.modal-backdrop').remove();
@@ -35,6 +36,8 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 
     $scope.creditoClient = {}
 
+    $scope.user = {};
+    $scope.permisos = {}
 
 	  $scope.login = function(){
       $scope.myLoadingVar=true
@@ -69,8 +72,17 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
           $scope.creditoClient.disp_usd_format = (isNaN(parseFloat(response.data.disponible_cliente.disp_usd)))? 0 : parseFloat(response.data.disponible_cliente.disp_usd)
           localstorage.set('creditoClient',  JSON.stringify($scope.creditoClient.disp_bs_format));
           localstorage.set('client_info',  JSON.stringify(response.data.cliente[0]));
+          $scope.permisos = response.data.user.permisos  ;
+          
+
           ngNotify.set('¡Bienvenido! '+response.data.cliente[0].nombre_cliente ,'success')
-          window.location.href = "#!/pedidos";
+
+          if (response.data.user.permisos.pedido.ver) {
+            window.location.href = "#!/pedidos";
+          }else{
+            window.location.href = "#!/home";
+          }
+          
         }
 
 

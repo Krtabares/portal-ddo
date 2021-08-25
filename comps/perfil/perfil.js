@@ -51,6 +51,14 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
         console.log($scope.user);
       }
 
+      $scope.openModal = function () {
+        $scope.passwordConfirm = null
+        $scope.alertConfirm = null
+        $scope.passwordIsValid = false
+        $scope.newPass = null
+        $scope.user.passwordConfirm = null
+      }
+
 
         $scope.updUserPass = function(){
           console.log($scope.user)

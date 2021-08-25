@@ -13,7 +13,9 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="manifest" href="manifest.json">
-
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="google" content="notranslate" />
@@ -165,6 +167,37 @@
   <script src="comps/version/interpolate-filter.js"></script>
 
   <script type="text/javascript">
+      var scripts =  document.getElementsByTagName('script');
+      var torefreshs = [
+      "app.js",
+      "constants.js",
+      "login.js",
+      "sidebar.js",
+      "footer.js",
+      "loading.js",
+      "clientHeader.js",
+      "home.js",
+      "olvidoPass.js",
+      "perfil.js",
+      "deuda.js",
+      "usuarios.js",
+      "pedidos.js",
+      "facturado.js",
+      "saldo.js",
+      "clientes.js",
+      "estadisticas.js",
+      "errorPage.js",
+      "errorOverlay.js"
+      ] ; // list of js to be refresh
+      var key = "1.0.0"; // change this key every time you want force a refresh
+      for(var i=0;i<scripts.length;i++){ 
+        for(var j=0;j<torefreshs.length;j++){ 
+            if(scripts[i].src && (scripts[i].src.indexOf(torefreshs[j]) > -1)){
+              new_src = scripts[i].src.replace(torefreshs[j],torefreshs[j] + '?k=' + key );
+              scripts[i].src = new_src; // change src in order to refresh js
+            } 
+        }
+      }
     // navigator.serviceWorker.register('service-worker.js', {
     //     scope: ''
     //   })

@@ -385,7 +385,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
          var client = localStorage.getItem('client')
          var client_info = localStorage.getItem('client_info')
 
-          if ( client=='{}' ){
+         var client_obj = JSON.parse(client)
+            
+
+
+         //  if ( client=='{}' ){
+           if(client_obj.COD_CIA == null){
            $scope.hasUserClient = false;
          }else{
            $scope.hasUserClient = true;

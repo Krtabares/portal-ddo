@@ -50,7 +50,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-info" data-dismiss="modal">Regresar</button>
-        <button type="button" class="btn btn-danger" ng-click="updUserPass()" ng-disabled="!passwordIsValid"  data-dismiss="modal" data-loading-text="Changing Password...">Aceptar</button>
+        <button type="button" class="btn btn-success" ng-click="updUserPass()" ng-disabled="!passwordIsValid"  data-dismiss="modal" data-loading-text="Changing Password...">Aceptar</button>
       </div>
     </div>
   </div>
@@ -102,7 +102,7 @@
                         <input type="text" class="form-control" id="exampleInputPassword1" ng-model="user.name" ng-disabled="typeview == 'view'" placeholder="Nombre">
                       </div>
 
-                      <button class="btn btn-primary" ng-if="typeview == 'view'" data-toggle="modal" data-target="#modalPsw" >CAMBIAR CONTRASEÑA</button>
+                      <button class="btn btn-primary" ng-if="typeview == 'view'" ng-click="openModal()" data-toggle="modal" data-target="#modalPsw" >CAMBIAR CONTRASEÑA</button>
                     </form>
                   </div>
 

@@ -31,7 +31,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
       ];
       var ip = IP_SERVER_PYTHON;
-
+      $scope.tipoBusquedaCliente = 0
       $scope.nombre_cliente = null;
       $scope.client = {};
       $scope.typeview = ''
@@ -195,7 +195,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
        body.pNoCia = "01";
 
-       body.pNoGrupo = "01";
+       body.pNoGrupo = ($scope.tipoBusquedaCliente != 0)? "02": "01";
 
        request.post(ip+'/procedure_clientes', body,{})
        .then(function successCallback(response) {
@@ -276,7 +276,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
             user.COD_CIA = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
             user.GRUPO_CLIENTE = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
             user.COD_CLIENTE = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
-            user.permisos = $scope.permisos
+            user.permisos = JSON.stringify( $scope.permisos )
             //
             console.log(user);
             request.post(ip+'/add/user', user,{'Authorization': 'Bearer ' + localstorage.get('token')})
@@ -308,7 +308,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
               user.COD_CIA = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
               user.GRUPO_CLIENTE = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
               user.COD_CLIENTE = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
-              user.permisos = $scope.permisos
+              user.permisos = JSON.stringify( $scope.permisos )
               //
               console.log(user);
               request.post(ip+'/upd/user', user,{'Authorization': 'Bearer ' + localstorage.get('token')})
