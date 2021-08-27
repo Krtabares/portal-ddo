@@ -117,6 +117,7 @@ angular.module('app', [
               $rootScope.$broadcast("loader_hide");
           }
 
+          // console.log(response);
           return response || $q.when(response);
 
       },

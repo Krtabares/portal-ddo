@@ -160,6 +160,7 @@
   <script type="text/javascript" src="comps/estadisticas/estadisticas.js"></script>
   <script type="text/javascript" src="comps/errorPage/errorPage.js"></script>
   <script type="text/javascript" src="comps/errorOverlay/errorOverlay.js"></script>
+  <script type="text/javascript" src="comps/config/config.js"></script>
 
   <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
   <script src="comps/version/version.js"></script>
@@ -187,9 +188,10 @@
       "clientes.js",
       "estadisticas.js",
       "errorPage.js",
-      "errorOverlay.js"
+      "errorOverlay.js",
+      "config.js"
       ] ; // list of js to be refresh
-      var key = "1.0.0"; // change this key every time you want force a refresh
+      var key = "1.0.2"; // change this key every time you want force a refresh
       for(var i=0;i<scripts.length;i++){ 
         for(var j=0;j<torefreshs.length;j++){ 
             if(scripts[i].src && (scripts[i].src.indexOf(torefreshs[j]) > -1)){

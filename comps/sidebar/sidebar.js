@@ -106,10 +106,11 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
         $scope.hasUserClient = false;
         $scope.user = {};
         $scope.permisos = {}
+        $scope.env = null
         init()
         function init() {
           var user = localStorage.getItem('user','')
-
+          $scope.env = localstorage.get('env')
           if(user != null){
             $scope.user = JSON.parse(user);
             $scope.permisos = $scope.user.permisos  ;

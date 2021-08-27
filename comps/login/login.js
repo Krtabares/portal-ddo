@@ -22,7 +22,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
     $scope.myLoadingVar = false
     $scope.user = {};
     function init() {
-      console.log("estA ACTUALIZANDO otra vez");
+      // console.log("estA ACTUALIZANDO otra vez");
       $(function(){
         $(document).ready(function() {document.title = 'Droguería del Oeste - Gestión de Órdenes'; });
         $('.modal-backdrop').remove();
@@ -54,6 +54,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         localstorage.set('user', JSON.stringify(response.data.user));
         localstorage.set('token', response.data.access_token);
         localstorage.set('logged', 1);
+        localstorage.set('env',  response.data.env);
         var client = {}
         client.COD_CIA = response.data.user.COD_CIA
         client.GRUPO_CLIENTE = response.data.user.GRUPO_CLIENTE

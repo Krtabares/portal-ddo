@@ -74,9 +74,23 @@
               <div class="card " >
                 <div class="card-body">
                   <h5 class="card-title">Búsqueda por cliente </h5>
+    
+                  <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusquedaCliente" id="exampleRadios1" ng-value="0" selected >
+                    <label class="form-check-label" for="exampleRadios1">
+                      Búsqueda por cliente
+                    </label>
+                  </div>
+                  <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusquedaCliente" id="exampleRadios2" ng-value="1" >
+                    <label class="form-check-label" for="exampleRadios2">
+                      Búsqueda por empleado
+                    </label>
+                  </div>
+    
                   <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6">
-                      <!-- <label for="clientes">Búsqueda por cliente</label> -->
+                      <!-- <label for="clientes">Busqueda por cliente</label> -->
                       <div class="input-group mb-3">
                         <input type="text" id="clientes"
                         class="form-control"
@@ -99,25 +113,25 @@
                         </select>
                       </div>
                     </div>
-
+    
                   </div>
-
+    
                 </div>
               </div>
             </div>
-
+    
           </div>
-
+    
           <div ng-if="clientIndex != null">
             <header-client cliente="client" ></header-client>
           </div>
-
-
-
+    
+    
+    
         </div>
 
 
-      <div class="col-md-12 mt-10 mb-10">
+      <div class="col-md-12 mt-10 mb-10"  ng-show="tieneReg">  
         <div class="card " >
           <div class="card-body">
             <div class="row">
@@ -126,7 +140,7 @@
               </div>
               <div class="col-md-12">
 
-                <div class="" ng-show="tieneReg">
+                <div class="">
                   <div ng-if="!aplica_corte">
 
                     <ul class="nav nav-tabs mb-4">

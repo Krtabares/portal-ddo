@@ -23,6 +23,13 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
 
       var ip = IP_SERVER_PYTHON;
 
+      var logged = localStorage.getItem('logged','')
+      if (logged) {
+        window.location.href = "#!/home";
+      }else{
+        window.location.href = "#!/";
+      }
+
       $scope.token_valid = false
       // validate_token()
       function validate_token() {
@@ -45,6 +52,8 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
 
       function verificClient(){
         // notify({ message:'My message', position:'right', duration:100000, classes:'   alert-danger'});
+        
+
         var client = localStorage.getItem('client')
         var client_info = localStorage.getItem('client_info')
         console.log(client)

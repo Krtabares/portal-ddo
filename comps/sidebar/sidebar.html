@@ -2,14 +2,19 @@
     <ul class="nav sidebar-nav">
         <li class="sidebar-brand">
             <a href="#">
-               Menú
+               Menú <small style="color: crimson;" >{{ env }}</small>
             </a>
+            <br>
+            
         </li>
         <li>
             <a href="#!/home"><i class="fa fa-fw fa-home"></i> Inicio</a>
         </li>
-        <li ng-if="permisos.estadisticas.ver || user.role == 'root'  >
+        <li ng-if="permisos.estadisticas.ver || user.role == 'root'"  >
           <a href="#!/estadisticas"><i class="fa fa-fw fa-chart-pie"></i> Estadísticas</a>
+      </li>
+        <li ng-if="permisos.config.ver || user.role == 'root'"  >
+          <a href="#!/config"><i class="fa fa-fw fa-cog"></i> configuracion</a>
       </li>
         <li ng-if="permisos.deuda.ver || user.role == 'root'" >
           <a href="#!/deuda" class=""><i class="fa fa-fw  fas fa-receipt" ></i>Deuda</a>

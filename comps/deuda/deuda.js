@@ -38,7 +38,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
 
       }
       $scope.vencimiento = []
-      $scope.tieneReg = true
+      $scope.tieneReg = false
       $scope.getDeudas = function(){
         $scope.loading = true
         var body = {}
@@ -53,7 +53,10 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
             // console.log(response)
             if(response.data.obj.length > 0 ){
               $scope.tieneReg = true
+            }else{
+              $scope.tieneReg = false
             }
+
             response.data.obj.forEach((item, i) => {
 
               if(item.aplica_corte=="S"){
@@ -127,7 +130,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
 
 
       }
-
+      $scope.tipoBusquedaCliente = 0
       $scope.getClientNew = function (filter = false) {
         $scope.loading = true
         console.log("getClientNew");
@@ -135,13 +138,18 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
         if(filter){
           body.pNombre = $scope.nombre_cliente
         }
+ 
+        body.pNoCia = "01";
+ 
+        body.pNoGrupo = ($scope.tipoBusquedaCliente != 0)? "02": "01";
+ 
         request.post(ip+'/procedure_clientes', body,{})
         .then(function successCallback(response) {
           console.log(response)
-
+ 
           $scope.clientes = response.data.obj
           $scope.loading = false
-
+ 
         }, function errorCallback(response) {
           console.log(response)
           $scope.loading = false
@@ -167,15 +175,20 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
           // selectCLientCAP( $scope.client)
 
       }
-
+      
       verificClient()
 
       function verificClient(){
 
        var client = localStorage.getItem('client')
        var client_info = localStorage.getItem('client_info')
-       console.log(client)
-        if ( client=='{}' ){
+       var client_obj = JSON.parse(client)
+            
+
+
+            //  if ( client=='{}' ){
+      console.log(client_obj)
+      if(client_obj.COD_CIA == null){
          $scope.hasUserClient = false;
        }else{
          $scope.hasUserClient = true;
