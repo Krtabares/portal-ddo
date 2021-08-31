@@ -805,7 +805,7 @@
                                  ng-keydown="$event.keyCode === 13 && addArtPedido(true)"
                                  ng-blur="validaBlur(articulo.CANTIDAD)"
                                 class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
-                                <button type="button"  class="btn btn-success"   ng-click="addArtPedido(true)" ><i class="fas fa-plus"  ></i> </button>
+                                <button type="button"  class="btn btn-success"   ng-click="addArtPedido(true)" ><i class="fas fa-check"  ></i> </button>
 
                               </div>
                               <div ng-if="$index != productIndex" >
