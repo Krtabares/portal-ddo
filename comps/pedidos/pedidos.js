@@ -72,7 +72,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.pickUpAvailable = '1';
         $scope.clienteEmpleado = false;
         $scope.editProduct = false;
-
+        $scope.filtroExistencia = "0"
         var userLog = localStorage.getItem('user')
         $scope.userLogged = JSON.parse(userLog)
 
@@ -377,9 +377,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
         }
-
+        $scope.naturalLimits = null
         verificClient()
-        $scope.naturalLimits = true
+        
         function verificClient(){
 
          var client = localStorage.getItem('client')
@@ -405,17 +405,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.client.unid_fact_misc_emp =  $scope.client_info.unid_fact_misc_emp
            $scope.client.unid_disp_med_emp =  $scope.client_info.unid_disp_med_emp
            $scope.client.unid_disp_misc_emp =  $scope.client_info.unid_disp_misc_emp
-
+            console.log($scope.client_info);
            if($scope.client_info.grupo_cliente == "02" ){
 
              $scope.clienteEmpleado = true
 
-             if($scope.client_info.ind_emp_nolim=='S'){
+             if($scope.client_info.ind_emp_nolim != 'S'){
                 $scope.naturalLimits = false
               }else {
                 $scope.naturalLimits = true
               }
-
+              
+              console.log($scope.naturalLimits);
            }else{
               $scope.clienteEmpleado = false
            }
@@ -783,6 +784,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
             body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
             body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
+            body.pExistencia = ($scope.filtroExistencia == "0")? null : 1  
             if(articulo){
               body.pArticulo = $scope.pArticulo
             }else{
@@ -810,9 +812,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               }
 
-              if (body.pCodProveedor != null || body.pFiltroCategoria  )  {
-                body.pExistencia = 1
-              }
+              // if (body.pCodProveedor != null || body.pFiltroCategoria  )  {
+              //   body.pExistencia = 1
+              // }
 
             }
 
@@ -1384,7 +1386,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           if( $scope.clienteEmpleado == true){
             //console.log("entro en validacion de empleado");
 
-            if( $scope.naturalLimits ){
+            if( $scope.client_info.ind_emp_nolim != 'S' ){
 
               if(  articulo.CANTIDAD > 1  ){
                  notify({ message:'¡Solo puede solicitar una unidad por producto!', position:'left', duration:10000, classes:'   alert-danger'});
@@ -1510,7 +1512,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.totalUnidades = 0
           $scope.busqueda_prod = null
           $scope.productIndex = -1
-
+          $scope.filtroExistencia = "0"
           $scope.proveedor.cod_proveedor = null
           $scope.categoria.CODIGO = null
 

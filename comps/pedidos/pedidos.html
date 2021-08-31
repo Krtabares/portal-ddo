@@ -643,7 +643,7 @@
 
           <div class="row">
 
-            <div class="col-md-3">
+            <div class="col-md-2">
             <label for="tipoBusqueda">Tipo de búsqueda</label>
             <div class="input-group mb-3 ">
               <div class="form-group">
@@ -688,7 +688,7 @@
 
           </div> -->
           
-          <div class="col-md-3">
+          <div class="col-md-2">
             <label for="proveedor">Filtrar por proveedor</label>
             <div class="input-group mb-3 ">
               <div class="form-group">
@@ -702,7 +702,7 @@
             </div>
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-2">
             <label for="filtro">Filtrar por categoría</label>
             <div class="input-group mb-3 ">
               <div class="form-group">
@@ -711,6 +711,24 @@
                   <!-- <option value="null" >Todos</option> -->
                   <option ng-repeat="x in listCategorias" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
                   <option value="" disabled selected>Seleccione una categoría</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-2">
+            <label for="filtro">Filtrar por existencia</label>
+            <div class="input-group mb-3 ">
+              <div class="form-group">
+                <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                <select class="form-control   " ng-model="filtroExistencia" id="proveedor" data-live-search="true" >
+                  <!-- <option value="null" >Todos</option> -->
+                  <option  value="0" selected>
+                    Todos
+                  </option>
+                  <option  value="2">
+                    Solo con stock disponible
+                  </option>
                 </select>
               </div>
             </div>
@@ -783,10 +801,12 @@
                             <td ng-click="selectProduct($index,true)" ><p class="text-right">{{ x.existencia }}</p></td>
                             <td ng-click="selectProduct($index,true)"  >
                               <div ng-if="$index == productIndex">
-                                <input id="cantidad_{{$index}}" type="number" min="0" max="{{x.existencia}}" style=" width: 90px !important;"  ng-model="articulo.CANTIDAD"
+                                <input id="cantidad_{{$index}}" type="number" min="0" max="{{x.existencia}}" style=" width: 90px !important; display: inline-block !important;"  ng-model="articulo.CANTIDAD"
                                  ng-keydown="$event.keyCode === 13 && addArtPedido(true)"
                                  ng-blur="validaBlur(articulo.CANTIDAD)"
                                 class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                                <button type="button"  class="btn btn-success"   ng-click="addArtPedido(true)" ><i class="fas fa-plus"  ></i> </button>
+
                               </div>
                               <div ng-if="$index != productIndex" >
                                 <input type="text" class="form-control" ng-click="selectProduct($index,true)" style=" width: 90px !important;" ng-disabled="true" >
