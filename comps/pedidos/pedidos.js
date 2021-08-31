@@ -705,7 +705,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.creditoClient = response.data.obj
             $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
             $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
-            localstorage.set('creditoClient',  JSON.stringify($scope.creditoClient.disp_bs_format));
+            localstorage.set('creditoClient',  JSON.stringify($scope.creditoClient));
             $scope.loading = false
 
           }, function errorCallback(response) {
@@ -1706,7 +1706,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             }
 
-            // //console.log(  $scope.totales);
+            $scope.creditoClient = JSON.parse(localstorage.get('creditoClient'))
+
+          console.log(  $scope.totales);
+          console.log( localstorage.get('creditoClient') );
         }
 
         function validaCreditoContraProducto(valor) {

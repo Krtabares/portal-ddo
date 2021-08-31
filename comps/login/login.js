@@ -96,7 +96,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
           $scope.creditoClient = response.data.disponible_cliente
           $scope.creditoClient.disp_bs_format = (isNaN(parseFloat(response.data.disponible_cliente.disp_bs)))? 0:parseFloat(response.data.disponible_cliente.disp_bs)
           $scope.creditoClient.disp_usd_format = (isNaN(parseFloat(response.data.disponible_cliente.disp_usd)))? 0 : parseFloat(response.data.disponible_cliente.disp_usd)
-          localstorage.set('creditoClient',  JSON.stringify($scope.creditoClient.disp_bs_format));
+          localstorage.set('creditoClient',  JSON.stringify($scope.creditoClient));
           localstorage.set('client_info',  JSON.stringify(response.data.cliente[0]));
           $scope.permisos = response.data.user.permisos  ;
           
