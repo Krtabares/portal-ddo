@@ -405,7 +405,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.client.unid_fact_misc_emp =  $scope.client_info.unid_fact_misc_emp
            $scope.client.unid_disp_med_emp =  $scope.client_info.unid_disp_med_emp
            $scope.client.unid_disp_misc_emp =  $scope.client_info.unid_disp_misc_emp
-            console.log($scope.client_info);
+            // console.log($scope.client_info);
            if($scope.client_info.grupo_cliente == "02" ){
 
              $scope.clienteEmpleado = true
@@ -416,7 +416,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $scope.naturalLimits = true
               }
               
-              console.log($scope.naturalLimits);
+              // console.log($scope.naturalLimits);
            }else{
               $scope.clienteEmpleado = false
            }
@@ -1374,8 +1374,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
              return  true;
           }
 
-
-          if( !validaCreditoContraProducto(parseFloat(articulo.precio_neto_bs) * articulo.CANTIDAD)  ){
+          // console.log(articulo)
+          if( !validaCreditoContraProducto(parseFloat(articulo.precio_neto_bs + articulo.iva_bs) * articulo.CANTIDAD)  ){
 
             notify({ message:'¡El precio excede el crédito disponible!', position:'left', duration:10000, classes:'   alert-danger'});
 
@@ -1708,8 +1708,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             $scope.creditoClient = JSON.parse(localstorage.get('creditoClient'))
 
-          console.log(  $scope.totales);
-          console.log( localstorage.get('creditoClient') );
+          // console.log(  $scope.totales);
+          // console.log( localstorage.get('creditoClient') );
         }
 
         function validaCreditoContraProducto(valor) {
@@ -1810,7 +1810,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.filterArray = function(list = [], key, value, filterlistkey ){
           var aux = []
 
-          console.log($scope[filterlistkey]);
+          // console.log($scope[filterlistkey]);
           const filterItems = query => {
             return list.filter((el) =>
               el[key].toLowerCase().indexOf(query.toLowerCase()) > -1
