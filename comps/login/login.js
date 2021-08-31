@@ -21,6 +21,26 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 	  var ip = IP_SERVER_PYTHON;
     $scope.myLoadingVar = false
     $scope.user = {};
+
+    $scope.validaSession  = function(){
+      var body = {}
+      request.post(ip+'/validaSession', body, {})
+        .then(function successCallback(response) {
+
+          var user = localStorage.getItem('user','')
+          // console.log(user)
+          user = JSON.parse(user);
+          if (user.permisos.pedido.ver ) {
+            window.location.href = "#!/pedidos";
+          }else{
+            window.location.href = "#!/home";
+          }
+       }, function errorCallback(response) {
+        // console.log(response)
+        localstorage.clear()
+  
+        });
+    }
     function init() {
       // console.log("estA ACTUALIZANDO otra vez");
       $(function(){
@@ -28,11 +48,16 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         $('.modal-backdrop').remove();
         $('#modalConfirmSidebar').modal("hide");
       })
-
-      localstorage.clear()
+      if( localstorage.get('logged') ){
+        $scope.validaSession()
+      }
+      // localstorage.clear()
       
     }
     init()
+
+
+
 
     $scope.creditoClient = {}
 

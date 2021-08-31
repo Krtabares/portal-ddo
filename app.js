@@ -140,6 +140,13 @@ angular.module('app', [
             setTimeout(function () {
               $('#notify').remove()
             },5000)
+          }else if(response.status==500){
+            $('body').append('<div id="notify" class="ngn ng-scope ngn-error ngn-bottom animated fadeOut" style="display: block; opacity: 1;"><span  class="ngn-message ng-binding ng-scope">¡Estamos presentando problemas con el servidor por favor intente mas tarde!</span><span  class="ngn-dismiss ng-hide">×</span></div>')
+            
+            $location.path('/');
+            setTimeout(function () {
+              $('#notify').remove()
+            },5000)
           }
             $rootScope.$broadcast("overlay_show");
 

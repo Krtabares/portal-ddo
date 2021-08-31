@@ -267,7 +267,12 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
       $scope.addUser = function(user){
             $scope.loading = true
-            user.password = "52400ede39b6a2098dc0ffb5aad536e6";
+            if ($scope.client.GRUPO_CLIENTE == "01"){
+              user.password = "52400ede39b6a2098dc0ffb5aad536e6";
+            }else{
+              user.password = CryptoJS.MD5(user.password).toString()
+            }
+            
             if ( $scope.validaUsuario(user)) {
                 $scope.loading = false
                return

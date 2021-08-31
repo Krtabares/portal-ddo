@@ -139,7 +139,7 @@
                   </div>
                   </div>
 
-                  <div class="col-md-6 col-sm-12 row" style="font-size: 12px;" >
+                  <div class="col-md-6 col-sm-12 " style="font-size: 12px;" >
 
                     <div class="col-md-4 col-sm-12" >
                       <div ng-show="pickUpAvailable == '2'" >
@@ -436,7 +436,7 @@
                         </div>
                     </div>
   
-                    <div class="col-md-6 col-sm-12 row" style="font-size: 12px;" >
+                    <div class="col-md-6 col-sm-12 " style="font-size: 12px;" >
                       <div ng-show="editView " class="row">
                         <div class="col-md-4 col-sm-12" >
                           <div ng-show="pickUpAvailable == '2'" >
@@ -659,21 +659,7 @@
             </div>
           </div>
 
-          <div class="col-md-3">
-            <label for="clientes">Búsqueda </label>
-            <div class="input-group mb-3 ">
-              <input type="text" class="form-control"
-              ng-model="busqueda_prod"
-              ng-keydown="$event.keyCode === 13 && getProdNew(true)"
-              placeholder="Búsqueda del producto"
-              aria-label="Búsqueda del producto"
-              id="busquedaProd"
-              aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
-              </div>
-            </div>
-          </div>
+
 
           <!-- <div class="col-md-6 dropdown" >
             <label for="proveedor">Filtrar por proveedor</label>
@@ -729,6 +715,22 @@
               </div>
             </div>
 
+          </div>
+
+          <div class="col-md-3">
+            <label for="clientes">Búsqueda </label>
+            <div class="input-group mb-3 ">
+              <input type="text" class="form-control"
+              ng-model="busqueda_prod"
+              ng-keydown="$event.keyCode === 13 && getProdNew(true)"
+              placeholder="Búsqueda del producto"
+              aria-label="Búsqueda del producto"
+              id="busquedaProd"
+              aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
+              </div>
+            </div>
           </div>
 
         </div>

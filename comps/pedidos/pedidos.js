@@ -1677,10 +1677,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.totales.totalUnidades = $scope.totales.totalUnidades + element.CANTIDAD
 
               if( $scope.clienteEmpleado == true ){
-                if(element.tipo_prod_emp == "MISCELANEO"){
+                if(element.tipo_prod_emp == "MISCELANEOS"){
                   $scope.totales.empMisc += parseInt(element.CANTIDAD)
                 }
-                if(element.tipo_prod_emp == "MEDICINA"){
+                if(element.tipo_prod_emp == "MEDICINAS"){
                   $scope.totales.empMed += parseInt(element.CANTIDAD)
                 }
               }
