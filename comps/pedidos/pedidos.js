@@ -75,8 +75,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.filtroExistencia = "0"
         var userLog = localStorage.getItem('user')
         $scope.userLogged = JSON.parse(userLog)
-
-
+        $scope.mostrarImagenges = true;
 
         var ip = IP_SERVER_PYTHON;
 
@@ -161,6 +160,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo )+"!", position:'left', duration:10000, classes:'   alert-warning'});
                 }
               break;
+
+              case 2:
+                $scope.delPedido()
+                $(function(){
+                  $("#addPedidoModal").modal("hide");
+                  $("#showPedidoModal").modal("hide");
+                  $('.modal-backdrop').remove();
+                })
+                break;
 
               case 3:
                 $scope.removeDetalleProducto($scope.modalDynContextId);
@@ -1463,8 +1471,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           return body
         }
 
-        $scope.closeModalOrder =  function () {
+        $scope.closeModalOrder =  function (borrar=false) {
           //console.log($scope.pedido);
+
+          if(borrar){
+            $scope.openModalDyn(2, null);
+            return
+          }
+          
           if($scope.pedido.estatus =='PEDIDO EN CONSTRUCCION' || $scope.pedido.estatus =='PEDIDO CREADO' || $scope.pedido.estatus == 'POR PROCESAR' || $scope.pedido.estatus == 'PEDIDO EN EDICION'){
 
             if($scope.pedido.pedido.length < 1){
@@ -1850,6 +1864,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.dtOrderDetalil = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')
             .withOption('responsive', true)
+            .withOption('bFilter', false)
             .withDOM('frtip').withPaginationType('full_numbers')
             .withLanguage(DATATABLE_LANGUAGE_ES)
             .withDisplayLength(20)

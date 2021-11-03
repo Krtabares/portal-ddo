@@ -164,6 +164,12 @@
 
                   </div>
 
+                  <div class="col-md-12">
+                    <div class="col-md-2 float-right">
+                      <button type="button" style="width: 100%;" class="btn btn-primary"  ng-show="ID != null" ng-click="closeModalOrder(true)" ><i class="fas fa-trash"  ></i> <span>Eliminar Pedido</span> </button>
+                    </div>
+                  </div>
+
                 </div>
 
 
@@ -461,9 +467,14 @@
   
   
                     </div>
+
+                    <div class="col-md-12">
+                      <div class="col-md-2 float-right">
+                        <button type="button" style="width: 100%;" class="btn btn-primary"  ng-show="ID != null" ng-click="closeModalOrder(true)" ><i class="fas fa-trash"  ></i> <span>Eliminar Pedido</span> </button>
+                      </div>
+                    </div>
   
                   </div>
-
 
                 <div class="form-group">
 
@@ -636,6 +647,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Agregar productos</h4>
+         
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModalProducts()" >&times;</button>
 
         </div>
@@ -750,6 +762,20 @@
               </div>
             </div>
           </div>
+          <div class="col-md-1" >
+            <div ng-show="pedido.pedido.length > 0 || 1 == 1 "   >
+              <label>Ver carrito</label>
+              <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#shoppingCart"  ><i class="fas fa-shopping-cart"  ></i></button>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="form-check">
+              
+              <input type="checkbox" class="form-check-input" id="exampleCheck1"  ng-model="mostrarImagenges" >
+              <label class="form-check-label" for="exampleCheck1">Mostar imagenes</label>
+            </div>
+          </div>
 
         </div>
 
@@ -770,7 +796,7 @@
                     <thead>
                         <tr>
                         <th scope="col"><p class="text-center">#</p></th>
-                        <th scope="col"><p class="text-center">Imagen</p></th>
+                        <th scope="col" ng-show="mostrarImagenges " ><p class="text-center">Imagen</p></th>
                         <th scope="col"><p class="text-center">Nombre producto</p></th>
                         <th scope="col"><p class="text-center">Categoría</p></th>
                         <th scope="col"><p class="text-center">Existencia</p></th>
@@ -791,7 +817,7 @@
 
                             <td ng-click="selectProduct($index,true)" ><p class="text-left">{{ $index + 1 }}</p></td>
                             
-                            <td ng-click="selectProduct($index,true)" >
+                            <td ng-show="mostrarImagenges " ng-click="selectProduct($index,true)" >
                               <div ng-if="x.dir_imagen != ''" style="cursor: pointer;" ng-click="zoomImg('/'+x.dir_imagen, x.nombre_producto )"   >
                                 <img id="img_{{$index}}" ng-src="/assets/imagen/{{ x.dir_imagen }}" alt="no image" on-error="/assets/nopic.png"  style="width: 120px;">
                               </div>
@@ -1009,6 +1035,54 @@
     </div>
   </div>
 
+  <div class="modal fade" id="shoppingCart">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Carrito</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+        </div>
+        <div class="animated fadeIn  container  p-3 rounded cart" style="height: 500px;overflow-x: hidden;">
+          <div class="row no-gutters">
+              <div class="col-md-12">
+                  <div class="product-details mr-2">
+                    
+                      <div class="d-flex justify-content-between"><span>Usted tiene {{totales.totalUnidades}} items en su carrito</span>
+                          <!-- <div class="d-flex flex-row align-items-center"><span class="text-black-50">Sort by:</span>
+                              <div class="price ml-2"><span class="mr-1">price</span><i class="fa fa-angle-down"></i></div>
+                          </div> -->
+                      </div>
+
+
+                      <div ng-repeat="x in pedido.pedido" class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                        <div class="d-flex flex-row">
+                          <!-- <img class="rounded" src="/assets/nopic.png" width="40"> -->
+                            <div class="ml-2"><span class="font-weight-bold d-block">{{ x.nombre_producto }}&nbsp;</span></div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center">
+                          <span class="d-block">{{ x.CANTIDAD }}</span>
+                          <span class="d-block ml-5 font-weight-bold">{{ formato(2,(x.precio_neto_usd * x.CANTIDAD)) }}</span>
+                          <i class="fa fa-trash-o ml-3 text-black-50"></i></div>
+                    </div>
+
+                  </div>
+              </div>
+
+          </div>
+      </div>
+      <div class="modal-footer">
+        <div class="d-flex justify-content-between"><span>Usted tiene {{totales.totalUnidades}} items en su carrito</span>
+          <!-- <div class="d-flex flex-row align-items-center"><span class="text-black-50">Sort by:</span>
+              <div class="price ml-2"><span class="mr-1">price</span><i class="fa fa-angle-down"></i></div>
+          </div> -->
+      </div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"  >cerrar</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
   <div id="wrapper" class="toggled">
 
     <my-sidebar></my-sidebar>
@@ -1105,6 +1179,8 @@
 
                       <div class="alert alert-info alert-dismissible fade show" ng-show="infoPsico" role="alert">
                         <div>
+                          
+                            <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">Los pedidos de Psicotrópicos se canalizan directamente en DDO,suministrando la información solicitada a Regencia.</span></strong></span></span></p>
                             <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">Enviar al siguiente correo <a href="mailto:regencia@del-oeste.com" style="color: rgb(17, 85, 204);" target="_blank">regencia@del-oeste.com</a>. :</span></strong></span></span></p>
                             <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">C&eacute;dula de identidad del regente.</span></strong></span></span></p>
                             <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">T&iacute;tulo del Farmac&eacute;utico.</span></strong></span></span></p>
@@ -1118,9 +1194,9 @@
                         </button>
                       </div>
                     </div>
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-12" >
 
-                      <button class="btn btn-naranja" style="float: left; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="infoPsico = true;" ng-show="!infoPsico"  > <i class="fa fa-info-circle"></i> Requisitos para psicotrópico</button>
+                      <button class="btn btn-naranja"  ng-show="!clienteEmpleado" style="float: left; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="infoPsico = true;" ng-show="!infoPsico"  > <i class="fa fa-info-circle"></i> Requisitos para psicotrópico</button>
                     </div>
 
                     <div class="col-md-6 col-sm-12" ng-show="showProductTable || hasUserClient"  >
