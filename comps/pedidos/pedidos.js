@@ -69,6 +69,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.infoPsico = false;
         $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0","totalExento":"0","totalGravado":"0", "descImpuesto":null, "totalNetoUSD":"0", "procVol":0, "procPP":0 }
         $scope.tipoBusqueda = '1'
+        $scope.tipoPedidoSearch = '01'
         $scope.pickUpAvailable = '1';
         $scope.clienteEmpleado = false;
         $scope.editProduct = false;
@@ -284,7 +285,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
           if(tipo==2){
             // return formatterVe.format(valor)
-            return "Bs "+formatterVeDECIMAL.format(valor)
+            return "Bs."+formatterVeDECIMAL.format(valor)
           }
           if(tipo==3){
             return formatterUSD.format(valor)
@@ -1527,6 +1528,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.busqueda_prod = null
           $scope.productIndex = -1
           $scope.filtroExistencia = "0"
+          $scope.tipoPedidoSearch = '01'
           $scope.proveedor.cod_proveedor = null
           $scope.categoria.CODIGO = null
 
