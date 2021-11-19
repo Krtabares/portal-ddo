@@ -1052,7 +1052,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           body.pedido = articulo
           body.ID = $scope.ID
           body.username = $scope.userLogged.username
-          body.pbodega = $scope.tipoPedidoSearch
+          body.pBodega = $scope.tipoPedidoSearch
           request.post(ip+'/add/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
