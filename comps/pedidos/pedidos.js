@@ -794,6 +794,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
             body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
             body.pExistencia = ($scope.filtroExistencia == "0")? null : 1  
+            body.pbodega = $scope.tipoPedidoSearch
             if(articulo){
               body.pArticulo = $scope.pArticulo
             }else{

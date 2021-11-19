@@ -58,6 +58,25 @@
 
               </div>
 
+              <div class="col-md-6"  ng-show="clienteEmpleado && ID != null">
+                <label for="filtro">Tipo de pedido</label>
+                <div class="input-group mb-3 ">
+                  <div class="form-group">
+                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                    <select class="form-control" ng-disabled="pedido.pedido.length > 0" ng-model="tipoPedidoSearch" id="tipoPedidoSearch"  data-live-search="true" >
+                      <!-- <option value="null" >Todos</option> -->
+                      <option  value="01" selected>
+                        Pedido Regular 
+                      </option>
+                      <option  value="96">
+                        Mini Farmacia
+                      </option>
+                    </select>
+                  </div>
+                </div>
+    
+              </div>
+
             </div>
           </div>
 
@@ -362,6 +381,25 @@
                     </div>
                     
     
+                  </div>
+
+                  <div class="col-md-6"  ng-show="editView && clienteEmpleado" >
+                    <label for="filtro">Tipo de pedido</label>
+                    <div class="input-group mb-3 ">
+                      <div class="form-group">
+                        <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                        <select class="form-control"  ng-disabled="pedido.pedido.length > 0" ng-model="tipoPedidoSearch" id="tipoPedidoSearch" data-live-search="true" >
+                          <!-- <option value="null" >Todos</option> -->
+                          <option  value="01" selected>
+                            Pedido Regular 
+                          </option>
+                          <option  value="96">
+                            Mini Farmacia
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+        
                   </div>
     
                 </div>
@@ -706,14 +744,15 @@
             </div>
           </div>
           <div class="col-md-1" >
-            <div ng-show="pedido.pedido.length > 0  "   >
+            <div ng-show="pedido.pedido.length > 0 "   >
               <label></label>
               <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#shoppingCart"  style="width: 100%;" ><i class="fas fa-shopping-cart"  ></i></button>
             </div>
           </div>
-
+          </div>
+          <div class="row">
           <div class="col-md-2">
-            <div class="form-check" style=" padding-top: 51px;">
+            <div class="form-check" style=" padding-bottom: 25px;">
               
               <input type="checkbox" class="form-check-input" id="exampleCheck1"  ng-model="mostrarImagenges" >
               <label class="form-check-label" for="exampleCheck1">Mostar imagenes</label>
@@ -721,9 +760,6 @@
           </div>
 
           <div class="col-md-3">
-            <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
-              Busqueda avanzada
-            </button> -->
 
             <div class="form-check" style="padding-bottom: 25px;">
               
@@ -765,24 +801,7 @@
     
               </div>
 
-              <div class="col-md-2">
-                <label for="filtro">Tipo de pedido</label>
-                <div class="input-group mb-3 ">
-                  <div class="form-group">
-                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                    <select class="form-control   " ng-model="tipoPedidoSearch" id="tipoPedidoSearch" data-live-search="true" >
-                      <!-- <option value="null" >Todos</option> -->
-                      <option  value="01" selected>
-                        Pedido Regular 
-                      </option>
-                      <option  value="96">
-                        Mini Farmacia
-                      </option>
-                    </select>
-                  </div>
-                </div>
-    
-              </div>
+
     
             </div>
           </div>
@@ -1102,6 +1121,72 @@
 
                         </div>
                     </div>
+                    <div ng-if="ID != null" class="row mt-5">
+                      <div class="col-lg-2 col-sm-5">
+                        </div>
+                          <div class="col-lg-6 col-sm-6 ml-auto">
+                              <table class="table table-clear tablaTotales">
+                                  <tbody>
+                                        <tr>
+                                          <td class="right">
+                                              <strong class="text-dark">TOT. UNID. PEDIDO :</strong> </td>
+  
+                                              <td class="right">{{totales.totalUnidades}} </td>
+                                      </tr>
+                                          <tr ng-if=" totalesDdo.desc_volumen > 0">
+                                            <td class="right">
+                                                <strong class="text-dark">TOT. DESC. PP1. {{totalesDdo.porcVol}} %:</strong> </td>
+  
+                                                <td class="right">{{formato(2,totalesDdo.desc_volumen)}} </td>
+                                        </tr>
+                                        <tr ng-if=" totalesDdo.desc_dpp > 0">
+                                          <td class="right">
+                                              <strong class="text-dark">TOT. DESC. PP2. {{totalesDdo.porcPP}} %:</strong> </td>
+  
+                                              <td class="right">{{formato(2,totalesDdo.desc_dpp)}} </td>
+                                      </tr>
+                                      <tr ng-if=" totalesDdo.descPreEmpaque > 0">
+                                        <td class="right">
+                                            <strong class="text-dark">TOT. DESC. PREEMP. :</strong> </td>
+  
+                                            <td class="right">{{formato(2,totalesDdo.descPreEmpaque)}} </td>
+                                    </tr>
+                                      <tr>
+                                          <td class="right">
+                                              <strong class="text-dark">SUB.T. (E):</strong> </td>
+  
+                                              <td class="right">{{formato(2,totalesDdo.totalExento)}} </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="right">
+                                            <strong class="text-dark">SUB.T. (G):</strong> </td>
+  
+                                            <td class="right">{{formato(2,totalesDdo.totalGravado)}} </td>
+                                      </tr>
+                                      <tr ng-if="totalesDdo.descImpuesto != null || totalesDdo.impuesto > 0">
+                                          <td class="right">
+                                            
+                                              <strong class="text-dark">{{totalesDdo.descImpuesto }} </strong> </td>
+  
+                                              <!-- <td class="right">% {{totalesDdo.impuesto }} {{formato(2,totalesDdo.descImpuesto)}} </td> -->
+                                              <td class="right"> {{formato(2,totalesDdo.impuesto) }} </td>
+                                      </tr>
+                                      <tr>
+                                          <td class="right">
+                                              <strong class="text-dark">TOTAL Bs.:</strong> </td>
+  
+                                              <td class="right"> {{formato(2,totalesDdo.total)}} </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="right">
+                                            <strong class="text-dark">TOTAL USD:</strong> </td>
+  
+                                            <td class="right"> {{ formato(3,totalesDdo.totalNetoUSD) }}  </td>
+                                    </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
 
                   </div>
               </div>
