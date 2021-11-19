@@ -54,7 +54,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       return formatterVeDECIMAL.format(valor)
     }
     if(tipo==2){
-      return formatterVe.format(valor)
+      return "Bs."+formatterVeDECIMAL.format(valor)
     }
     if(tipo==3){
       return formatterUSD.format(valor)
@@ -110,7 +110,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         return formatterVeDECIMAL.format(valor)
       }
       if(tipo==2){
-        return formatterVe.format(valor)
+        return "Bs."+formatterVeDECIMAL.format(valor)
       }
     }
     $scope.getNumber = function(num) {
