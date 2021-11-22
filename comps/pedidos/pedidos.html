@@ -723,7 +723,7 @@
     <div class="modal-dialog mw-100  modal-90 modal-100-ht">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Agregar productos {{(tipoPedidoSearch=='01' && clienteEmpleado)? '- Pedido Regular':'- Mini Farmacia' }}</h4>
+          <h4 class="modal-title">Agregar productos <span ng-show="clienteEmpleado">{{(tipoPedidoSearch=='01' )? '- Pedido Regular':'- Mini Farmacia' }}</span> </h4>
          
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModalProducts()" >&times;</button>
 
