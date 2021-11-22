@@ -29,14 +29,6 @@
 
             <div class="col-md-8 row" style="padding-left: 0px;" >
 
-              <div class="col-md-3">
-                <button type="button" style="width: 100%;" class="btn btn-primary"  ng-show="ID != null" ng-click="openModalProducts()" ><i class="fas fa-plus"  ></i> <span>Agregar productos</span> </button>
-              </div>
-
-              <div class="col-md-3">
-                <button type="button" style="width: 100%;" class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" ><i class="fas fa-check"  ></i > <span> Finalizar pedido</span></button>
-              </div>
-
               <div class="col-md-6 dropdown"  ng-show="!clienteEmpleado && ID != null">
                 <button class="btn btn-info dropdown-toggle" style="
                 background-color: #72797f;
@@ -59,12 +51,30 @@
               </div>
 
               <div class="col-md-6"  ng-show="clienteEmpleado && ID != null">
-                <label for="filtro">Tipo de pedido</label>
+
+                <button class="btn btn-info dropdown-toggle" ng-disabled="pedido.pedido.length > 0" style="
+                background-color: #72797f;
+                color: #fff;
+                
+                border: gray;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Tipo de pedido
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" ng-click="tipoPedidoSearch='01'" >Pedido Regular </a>
+                  <a class="dropdown-item" ng-click="tipoPedidoSearch='96'" >Mini Farmacia</a>
+                </div>
+                <div class="inputTIPO" style="display: inline-block;">
+
+                  <input type="text" style="width: 74%;
+                  height: 37px;
+                  padding: 1px 3px 3px;" class="form-control" placeholder="Text input" disabled value="{{(tipoPedidoSearch=='01')? 'Pedido Regular':'Mini Farmacia' }}">
+                </div>
+
+                <!-- <label for="filtro">Tipo de pedido</label>
                 <div class="input-group mb-3 ">
                   <div class="form-group">
-                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
                     <select class="form-control" ng-disabled="pedido.pedido.length > 0" ng-model="tipoPedidoSearch" id="tipoPedidoSearch"  data-live-search="true" >
-                      <!-- <option value="null" >Todos</option> -->
+                      
                       <option  value="01" selected>
                         Pedido Regular 
                       </option>
@@ -73,9 +83,19 @@
                       </option>
                     </select>
                   </div>
-                </div>
+                </div> -->
     
               </div>
+
+              <div class="col-md-3">
+                <button type="button" style="width: 100%;" class="btn btn-primary"  ng-show="ID != null" ng-click="openModalProducts()" ><i class="fas fa-plus"  ></i> <span>Agregar productos</span> </button>
+              </div>
+
+              <div class="col-md-3">
+                <button type="button" style="width: 100%;" class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" ><i class="fas fa-check"  ></i > <span> Finalizar pedido</span></button>
+              </div>
+
+
 
             </div>
           </div>
@@ -133,7 +153,7 @@
 
                 <div class="row" >
 
-                  <div class="col-md-6 col-sm-12 " >
+                  <div class="col-md-6 col-sm-12 " ng-show=" clienteEmpleado"  style="font-size: 12px;" >
                     <div ng-show=" clienteEmpleado" class="row">
                       <div class="col-md-3 col-sm-12">
                           <label>Máx. unidades medicina</label><br>
@@ -353,15 +373,7 @@
             <div class="controlAction" ng-show="tabsIndex == 1 && editView"  >
 
                 <div class="col-md-8 row" style="padding-left: 0px;" >
-    
-                  <div class="col-md-3">
-                    <button type="button" style="width: 100%;" class="btn btn-primary"  ng-show="ID != null" ng-click="openModalProducts()" >Agregar productos</button>
-                  </div>
-    
-                  <div class="col-md-3">
-                    <button type="button" style="width: 100%;" class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
-                  </div>
-    
+
                   <div class="col-md-6 dropdown"  ng-show="editView && !clienteEmpleado" >
                     <button class="btn btn-info dropdown-toggle" style="
                     background-color: #72797f;
@@ -384,12 +396,29 @@
                   </div>
 
                   <div class="col-md-6"  ng-show="editView && clienteEmpleado" >
-                    <label for="filtro">Tipo de pedido</label>
+
+                    <button class="btn btn-info dropdown-toggle" ng-disabled="pedido.pedido.length > 0" style="
+                      background-color: #72797f;
+                      color: #fff;
+                      
+                      border: gray;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tipo de pedido
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" ng-click="tipoPedidoSearch='01'" >Pedido Regular </a>
+                        <a class="dropdown-item" ng-click="tipoPedidoSearch='96'" >Mini Farmacia</a>
+                      </div>
+                      <div class="inputTIPO" style="display: inline-block;">
+
+                        <input type="text" style="width: 74%;
+                        height: 37px;
+                        padding: 1px 3px 3px;" class="form-control" placeholder="Text input" disabled value="{{(tipoPedidoSearch=='01')? 'Pedido Regular':'Mini Farmacia' }}">
+                      </div>
+                    <!-- <label for="filtro">Tipo de pedido</label>
                     <div class="input-group mb-3 ">
                       <div class="form-group">
-                        <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
                         <select class="form-control"  ng-disabled="pedido.pedido.length > 0" ng-model="tipoPedidoSearch" id="tipoPedidoSearch" data-live-search="true" >
-                          <!-- <option value="null" >Todos</option> -->
+                         
                           <option  value="01" selected>
                             Pedido Regular 
                           </option>
@@ -398,9 +427,19 @@
                           </option>
                         </select>
                       </div>
-                    </div>
+                    </div> -->
         
                   </div>
+    
+                  <div class="col-md-3">
+                    <button type="button" style="width: 100%;" class="btn btn-primary"  ng-show="ID != null" ng-click="openModalProducts()" >Agregar productos</button>
+                  </div>
+    
+                  <div class="col-md-3">
+                    <button type="button" style="width: 100%;" class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
+                  </div>
+    
+
     
                 </div>
               </div>
@@ -455,7 +494,7 @@
 
                 <div class="row" >
 
-                    <div class="col-md-6 col-sm-12 row" >
+                    <div class="col-md-6 col-sm-12 row"  ng-show="editView && clienteEmpleado"  style="font-size: 12px;" >
                         <div ng-show="editView && clienteEmpleado" class="row">
                             <div class="col-md-3 col-sm-12">
                                 <label>Máx. unidades medicina</label><br>
@@ -684,7 +723,7 @@
     <div class="modal-dialog mw-100  modal-90 modal-100-ht">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Agregar productos</h4>
+          <h4 class="modal-title">Agregar productos - {{(tipoPedidoSearch=='01')? 'Pedido Regular':'Mini Farmacia' }}</h4>
          
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModalProducts()" >&times;</button>
 
@@ -755,7 +794,7 @@
             <div class="form-check" style=" padding-bottom: 25px;">
               
               <input type="checkbox" class="form-check-input" id="exampleCheck1"  ng-model="mostrarImagenges" >
-              <label class="form-check-label" for="exampleCheck1">Mostar imagenes</label>
+              <label class="form-check-label" for="exampleCheck1">Mostrar imagenes</label>
             </div>
           </div>
 
@@ -1058,7 +1097,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal"  >cerrar</button>
+          <button type="button" class="btn btn-primary data-dismiss="modal"  >cerrar</button>
         </div>
       </div>
     </div>
@@ -1113,7 +1152,7 @@
                             <span class="" style=" font-size: 12px;" >{{ x.CANTIDAD }}</span>
                           </div>
                           <div class="col-md-5" > 
-                            <span class="" style=" font-size: 12px; ">{{ formato(2,(x.precio_neto_bs * x.CANTIDAD)) }}</span>
+                            <span class="" style=" font-size: 12px; float: right;">{{ formato(2,(x.precio_neto_bs * x.CANTIDAD)) }}</span>
                           </div>
                           <div class="col-md-5" > 
                             <span class="" style=" font-size: 12px; float: right;" >{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</span>
@@ -1302,14 +1341,14 @@
                       <div class="alert alert-info alert-dismissible fade show" ng-show="infoPsico" role="alert">
                         <div>
                           
-                          <p><strong>Los pedidos de Psicotr&oacute;picos se canalizan directamente en DDO,suministrando la informaci&oacute;n solicitada a Regencia.</strong></p>
-                          <p><strong>Enviar al siguiente correo&nbsp;<a href="mailto:regencia@del-oeste.com" target="_blank" rel="noopener">regencia@del-oeste.com</a>. :</strong></p>
+                          <p><strong>Los pedidos de Psicotr&oacute;picos se canalizan directamente en DDO, suministrando la informaci&oacute;n solicitada a Regencia.</strong></p>
+                          <p><strong>Enviar al siguiente correo&nbsp;<a href="mailto:regencia@del-oeste.com" target="_blank" rel="noopener">regencia@del-oeste.com</a> :</strong></p>
                           <ul>
                             <li><p><strong>C&eacute;dula de identidad del regente.</strong></p></li>
                             <li><p><strong>T&iacute;tulo del Farmac&eacute;utico.</strong></p></li>
                             <li><p><strong>Permiso de Funcionamientos actualizado.</strong></p></li>
                             <li><p><strong>&Uacute;ltima Relaci&oacute;n de psicotr&oacute;picos firmada y sellada, si es enviada por correo, copia de env&iacute;o y acuse de haber sido recibida &nbsp;por parte de la Contralor&iacute;a Sanitaria.</strong></p></li>
-                            <li><p><strong><a href="http://localhost/assets/planilla.doc" target="_self" download="planilla.doc">Planilla de solicitud&nbsp;</a>de productos psicotr&oacute;picos firmada por el regente y sellada por la farmacia, con fecha actual, es exigido por Sanidad (ver anexo).</strong></p></li>
+                            <li><p><strong><a href="../../assets/planilla.doc" target="_self" download="planilla.doc">Planilla de solicitud&nbsp;</a>de productos psicotr&oacute;picos firmada por el regente y sellada por la farmacia, con fecha actual, es exigido por Sanidad (ver anexo).</strong></p></li>
                             <li><p><strong>Todos los documentos deben ser enviados en un mismo correo</strong></p></li>
                           </ul>
                           
