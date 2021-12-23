@@ -877,7 +877,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           }
 
-          if((body.pBusqueda != null && body.pBusqueda.length > 0 )||(body.pComponente != null && body.pComponente.length > 0 )|| body.pCodProveedor != null || body.pFiltroCategoria != null ){
+          if((body.pBusqueda != null && body.pBusqueda.length > 0 )||(body.pComponente != null && body.pComponente.length > 0 )|| body.pCodProveedor != null || body.pFiltroCategoria != null || body.pExistencia!=null){
             request.post(ip+'/procedure_productos', body,{})
             .then(function successCallback(response) {
 
@@ -1894,7 +1894,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.getdaysFind = function(start, end) {
-              for(var arr=[],dt=new Date(start); dt<=end; dt.setDate(dt.getDate()+1)){
+              for(var arr=[],dt=new Date(start); dt=end; dt.setDate(dt.getDate()+1)){
                   arr.push(formatDate(new Date(dt)));
               }
               return arr;
@@ -1919,7 +1919,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               daysArray= $scope.getdaysFind(new Date(s),new Date(e)) 
             }
           }
-          // console.log(daysArray)
+          console.log(daysArray)
           $scope.listaPedidosV2filter = []
           daysArray.forEach((weekday,i) => {
             $scope.listaPedidosV2.forEach((item)=>{
@@ -1928,6 +1928,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
             })
           });
+        }
+
+        $scope.seleccinaTipoPedido = function (tipo) {
+          if(tipo == '96'){
+            $scope.filtroExistencia = "2"
+            $scope.mostrarImagenges = true
+            $scope.tipoPedidoSearch = '96'
+          }else{
+            $scope.tipoPedidoSearch = '01'
+          }
         }
 
 

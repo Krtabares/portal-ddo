@@ -6,7 +6,9 @@
     <div class="modal-dialog  mw-100  modal-90 modal-100-ht" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold; padding: 7px !important;, margin-bottom: 10px;">
-          <h5 class="modal-title" id="addPedidoModalLabel">CREAR PEDIDO <i class="fas fa-check" style="color:#43ed6a" ></i></h5>
+          <h5 class="modal-title" id="addPedidoModalLabel">Crear Pedido 
+            <!-- <i class="fas fa-check" style="color:#8f9791" ></i> -->
+          </h5>
 
           <button type="button" class="close" ng-click="closeModalOrder()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -16,14 +18,14 @@
         <div class="modal-body" id="addPedidoModalBody">
 
 
-          <ul class="nav nav-tabs mb-2 mt-2 " style="margin-bottom:0px !important" > 
+          <!-- <ul class="nav nav-tabs mb-2 mt-2 " style="margin-bottom:0px !important" > 
               <li class="nav-item" ng-show="1 == 2" >
                 <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Información Cliente </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" ng-class="{ active : tabsIndex == 1, disabled: !clienteValido  }" ng-disabled=" !clienteValido" ng-click="goToTab(1)" >Detalle de pedido </a>
               </li>
-          </ul>
+          </ul> -->
 
           <div class="controlAction" ng-show="tabsIndex == 1" >
 
@@ -60,8 +62,8 @@
                   Tipo de pedido
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" ng-click="tipoPedidoSearch='01'" >Pedido Regular </a>
-                  <a class="dropdown-item" ng-click="tipoPedidoSearch='96'" >Pedido Especial</a>
+                  <a class="dropdown-item" ng-click="seleccinaTipoPedido('01')" >Pedido Regular </a>
+                  <a class="dropdown-item" ng-click="seleccinaTipoPedido('96')" >Pedido Especial</a>
                 </div>
                 <div class="inputTIPO" style="display: inline-block;">
 
@@ -88,7 +90,7 @@
               </div>
 
               <div class="col-md-3">
-                <button type="button" style="width: 100%;" class="btn btn-primary"  ng-show="ID != null" ng-click="openModalProducts()" ><i class="fas fa-plus"  ></i> <span>Agregar productos</span> </button>
+                <button type="button" style="width: 100%;" class="btn btn-info"  ng-show="ID != null" ng-click="openModalProducts()" ><i class="fas fa-plus"  ></i> <span>Agregar productos</span> </button>
               </div>
 
               <div class="col-md-3">
@@ -205,7 +207,7 @@
 
                   <div class="col-md-12">
                     <div class="col-md-2 float-right">
-                      <button type="button" style="width: 100%;" class="btn btn-primary"  ng-show="ID != null" ng-click="closeModalOrder(true)" ><i class="fas fa-trash"  ></i> <span>Eliminar Pedido</span> </button>
+                      <button type="button" style="width: 100%;" class="btn btn-info "  ng-show="ID != null" ng-click="closeModalOrder(true)" ><i class="fas fa-trash"  ></i> <span>Eliminar Pedido</span> </button>
                     </div>
                   </div>
 
@@ -358,7 +360,7 @@
             </span>
             <span class="float-right"> <strong>Estatus:</strong> {{pedido.estatus}}</span>
             </div> -->
-            <ul class="nav nav-tabs">
+            <!-- <ul class="nav nav-tabs">
                 <li class="nav-item" ng-show="1 == 2" >
                   <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Información Cliente </a>
                 </li>
@@ -368,7 +370,7 @@
                 <li class="nav-item" ng-show="pedido.errores.length > 0">
                   <a class="nav-link" ng-class="{ active : tabsIndex == 2 }" ng-disabled="!showProductTable || !clienteValido" ng-click="goToTab(2)" >Errores</a>
                 </li>
-            </ul>
+            </ul> -->
 
             <div class="controlAction" ng-show="tabsIndex == 1 && editView"  >
 
@@ -405,8 +407,8 @@
                         Tipo de pedido
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" ng-click="tipoPedidoSearch='01'" >Pedido Regular </a>
-                        <a class="dropdown-item" ng-click="tipoPedidoSearch='96'" >Pedido Especial</a>
+                        <a class="dropdown-item" ng-click="seleccinaTipoPedido('01')" >Pedido Regular </a>
+                        <a class="dropdown-item" ng-click="seleccinaTipoPedido('96')" >Pedido Especial</a>
                       </div>
                       <div class="inputTIPO" style="display: inline-block;">
 
@@ -432,7 +434,7 @@
                   </div>
     
                   <div class="col-md-3">
-                    <button type="button" style="width: 100%;" class="btn btn-primary"  ng-show="ID != null" ng-click="openModalProducts()" >Agregar productos</button>
+                    <button type="button" style="width: 100%;" class="btn btn-info "  ng-show="ID != null" ng-click="openModalProducts()" >Agregar productos</button>
                   </div>
     
                   <div class="col-md-3">
@@ -547,7 +549,7 @@
 
                     <div class="col-md-12">
                       <div class="col-md-2 float-right">
-                        <button type="button" style="width: 100%;" class="btn btn-primary"  ng-show="ID != null && editView" ng-click="closeModalOrder(true)" ><i class="fas fa-trash"  ></i> <span>Eliminar Pedido</span> </button>
+                        <button type="button" style="width: 100%;" class="btn btn-info "  ng-show="ID != null && editView" ng-click="closeModalOrder(true)" ><i class="fas fa-trash"  ></i> <span>Eliminar Pedido</span> </button>
                       </div>
                     </div>
   
@@ -753,7 +755,7 @@
             <div class="input-group mb-3 ">
               <div class="form-group">
                 <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                <select class="form-control   " ng-model="filtroExistencia" id="proveedor" data-live-search="true" >
+                <select class="form-control   " ng-disabled="tipoPedidoSearch=='96'" ng-model="filtroExistencia" id="proveedor" data-live-search="true" >
                   <!-- <option value="null" >Todos</option> -->
                   <option  value="0" selected>
                     Todos
@@ -793,7 +795,7 @@
           <div class="col-md-2">
             <div class="form-check" style=" padding-bottom: 25px;">
               
-              <input type="checkbox" class="form-check-input" id="exampleCheck1"  ng-model="mostrarImagenges" >
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" ng-disabled="tipoPedidoSearch=='96'"   ng-model="mostrarImagenges" >
               <label class="form-check-label" for="exampleCheck1">Mostrar imagenes</label>
             </div>
           </div>

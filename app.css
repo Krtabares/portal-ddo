@@ -992,7 +992,7 @@ td p {
   background: #399CDF;color: white; font-weight: bold;
 }
 .btn-success{
-  background: #d76f2c !important;
+  background: #d74d00 !important;
 }
 .btn-info{
   background: #2a9de0 !important;
@@ -1002,6 +1002,11 @@ td p {
   border-color: #d0d0d1 !important;
 }
 
+.btn-danger{
+  background: #c7c6c6 !important;
+  border-color: #c7c6c6 !important;
+  color: #000;
+}
 /* Style the Image Used to Trigger the Modal */
 #myImg {
   border-radius: 5px;
