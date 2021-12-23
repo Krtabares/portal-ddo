@@ -1,8 +1,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
-        <li class="sidebar-brand">
-            <a href="#">
-               Menú <small style="color: crimson;" >{{ env }}</small> <small style="color: #fff; font-size: 50%;">   v1.0.4</small>
+        <li class="sidebar-brand ">
+            <a href="#" class="no-before-hover">
+               Menú <small style="color: #c7c6c6;" >{{ env }}</small> <small style="color: #c7c6c6; font-size: 50%;">   v1.0.4</small>
             </a>
             <br>
             
@@ -60,8 +60,8 @@
           Salir
         </a>
       </li> -->
-      <li class="dropdown">
-        <a  class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer;">Salir <span class="caret"></span></a>
+      <li class="dropdown no-before">
+        <a  class="dropdown-toggle no-before-hover" data-toggle="dropdown" style="cursor: pointer;">Salir <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li class="dropdown-header" style="cursor: pointer;" >¿Desea cerrar la sesión?</li>
           <li style="cursor: pointer;" ><a ng-click="logOut()" >Si</a></li>

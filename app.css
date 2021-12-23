@@ -440,7 +440,7 @@ html, body {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
-  background: #1a1a1a;
+  background: #fff;
   height: 100%;
   left: 220px;
   margin-left: -220px;
@@ -449,6 +449,7 @@ html, body {
   transition: all 0.5s ease;
   width: 0;
   z-index: 1000;
+  box-shadow: 0 1px 3px 0 rgb(60 75 100 / 20%);
 }
 #sidebar-wrapper::-webkit-scrollbar {
   display: none;
@@ -472,7 +473,7 @@ html, body {
   width: 100%;
 }
 .sidebar-nav li:before {
-  background-color: #1c1c1c;
+  background-color: #007ccc;
   content: '';
   height: 100%;
   left: 0;
@@ -484,8 +485,9 @@ html, body {
   z-index: -1;
 }
 .sidebar-nav li:first-child a {
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: #fff;
+  color: #007ccc;
+  border-bottom: solid 1px #c7c6c6;
 }
 .sidebar-nav li:nth-child(2):before {
   background-color: #2a9de0;
@@ -520,7 +522,7 @@ html, body {
 box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
 }
 .sidebar-nav li a {
-  color: #dddddd;
+  color: #007ccc;
   display: block;
   padding: 10px 15px 10px 30px;
   text-decoration: none;
@@ -531,10 +533,10 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
   width: 100%;
 }
 .sidebar-nav .dropdown-menu {
-  background-color: #222222;
+  background-color: #c7c6c6;
   border-radius: 0;
   border: none;
-  box-shadow: none;
+  box-shadow: 1px 1px 4px;;
   margin: 0;
   padding: 0;
   position: relative;
@@ -779,7 +781,7 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
 	font-size: 12px !important;
 }
  #wrapper{
-	 background-color: #dcdcdd;
+	 background-color: #f7f6f6;
  }
 
 #page-content-wrapper{
@@ -788,8 +790,8 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
 }
 .breadcrumb{
 	padding-left: 55px;
-	background-color: #dcdcdd;
-    border: none;
+	background-color: #f7f6f6;
+  border: none;
 }
 td p {
     margin-top: 0;
@@ -1216,4 +1218,14 @@ label.radio input:checked+span {
 
 .spec {
   font-size: 11px
+}
+.text-success {
+  color: #ff4d00!important;
+}
+.dropdown-header:before, .sidebar-brand:before, .no-before:before {
+  display: none;
+}
+
+.no-before-hover:hover{
+  color: #000 !important;
 }

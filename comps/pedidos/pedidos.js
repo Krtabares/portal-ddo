@@ -23,7 +23,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
       });
 
-
+      $(function () {
+        // $('#dateStart').datepicker({ format: 'dd/mm/yyyy' });
+        // $('#dateEnd').datepicker({ format: 'dd/mm/yyyy' });
+        $('#dateStart').datepicker({ format: 'yyyy-mm-dd' });
+        $('#dateEnd').datepicker({
+           format: 'yyyy-mm-dd', 
+           onRender: function() {
+            let date=$scope.dateStart
+            return date.valueOf() < new Date().valueOf() ? 'disabled' : '';
+        }
+           });
+      })
       
       function siteModalFooter() {
 
@@ -43,8 +54,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       };
 
       
-
-
+        $scope.dateStart = null;
+        $scope.dateEnd = null;
+        $scope.listMode = 0
         $scope.srcServer = IP_SRC_IMAGE
         $scope.loading = true
         $scope.pedido = {
@@ -359,7 +371,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             validaClienteDDO(body)
 
         }
-
+        $scope.listaPedidosV2filter = []
         function listarPedidos(){
           $scope.loading = true
          var body = {}
@@ -380,12 +392,46 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   return 0;
                 });
 
+                $scope.datesWeek.forEach((weekday,i) => {
+                  $scope.listaPedidosV2.forEach((item)=>{
+                    if(item.fecha_creacion == weekday){
+                      $scope.listaPedidosV2filter.push(item)
+                    }
+                  })
+                });
+
                 $scope.oneOrder();
                 $scope.loading = false
              });
 
 
         }
+
+        function formatDate(date){
+          var dd = date.getDate();
+          var mm = date.getMonth()+1;
+          var yyyy = date.getFullYear();
+          if(dd<10) {dd='0'+dd}
+          if(mm<10) {mm='0'+mm}
+          date =dd+'/'+mm+'/'+yyyy;
+          return date
+       }
+      
+      
+      
+      function Last7Days() {
+          var result = [];
+          for (var i=0; i<7; i++) {
+              var d = new Date();
+              d.setDate(d.getDate() - i);
+              result.push( formatDate(d) )
+          }
+      
+          return(result);
+       }
+       $scope.datesWeek = Last7Days ()
+
+
         $scope.naturalLimits = null
         verificClient()
         
@@ -1609,6 +1655,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               return 0;
             });
 
+            $scope.filterList($scope.dateStart,$scope.dateEnd)
+
 
               $scope.oneOrder();
               $scope.loading = false
@@ -1845,10 +1893,48 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         }
 
+        $scope.getdaysFind = function(start, end) {
+              for(var arr=[],dt=new Date(start); dt<=end; dt.setDate(dt.getDate()+1)){
+                  arr.push(formatDate(new Date(dt)));
+              }
+              return arr;
+          };
+
+        $scope.filterList = function (s=null,e = null) {
+          let daysArray = []
+          if ($scope.listMode == 0) {
+            daysArray = Last7Days()
+          }else if ($scope.listMode == 1) {
+            s = new Date()
+            if (s != null) {
+              daysArray.push(formatDate(new Date(s)));
+
+            }else{
+              notify({ message:"No se pudo obtener esta informacion", position:'left', duration:10000, classes:'   alert-warning'});
+            }
+          }else if($scope.listMode == 2){
+            console.log(s,e)
+            if (s != null && e != null) {
+              // validar si la fecha final es mayor
+              daysArray= $scope.getdaysFind(new Date(s),new Date(e)) 
+            }
+          }
+          // console.log(daysArray)
+          $scope.listaPedidosV2filter = []
+          daysArray.forEach((weekday,i) => {
+            $scope.listaPedidosV2.forEach((item)=>{
+              if(item.fecha_creacion == weekday){
+                $scope.listaPedidosV2filter.push(item)
+              }
+            })
+          });
+        }
+
 
         $scope.dtOptions = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')
             .withOption('responsive', true)
+            .withOption('bFilter', false)
             .withDOM('frtip')
             .withPaginationType('full_numbers')
             .withLanguage(DATATABLE_LANGUAGE_ES)
