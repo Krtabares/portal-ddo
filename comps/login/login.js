@@ -12,6 +12,10 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 
   .controller('LoginCtrl', ['$scope', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'localstorage', 'request', 'NgMap','$localStorage',
     function($scope, $rootScope, $routeParams, $interval, $timeout, ngNotify, localstorage, request, NgMap, $localStorage) {
+      ngNotify.addTheme('newTheme', 'my-new-theme');
+      ngNotify.config({
+        theme: 'newTheme'
+    });
 
       $scope.url = [
         "../img/slider-n.jpg",

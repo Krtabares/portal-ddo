@@ -12,7 +12,11 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
   .controller('usuariosCtrl', ['$scope', 'localstorage', '$q', '$rootScope', 'DTOptionsBuilder', 'DTColumnBuilder', '$routeParams', '$interval', '$timeout', 'ngNotify','notify', 'request', 'NgMap','$localStorage',
     function($scope, localstorage, $q, $rootScope, DTOptionsBuilder, DTColumnBuilder, $routeParams, $interval, $timeout, ngNotify, notify, request, NgMap, $localStorage) {
-        $scope.loading = false
+      ngNotify.addTheme('newTheme', 'my-new-theme');
+      ngNotify.config({
+          theme: 'newTheme'
+      }); 
+      $scope.loading = false
         var userLog = localStorage.getItem('user')
         $scope.userLogged = JSON.parse(userLog)
       $scope.array_user = [];
@@ -251,15 +255,15 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
     $scope.validaUsuario = function (user) {
 
       if (!user.username || user.username == null || user.username == '' ) {
-        notify({ message:'¡Seleccione un nombre de usuario !', position:'left', duration:10000, classes:'   alert-warning'});
+        notify({ message:'¡Seleccione un nombre de usuario !', position:'center', duration:10000, classes:'   alert-warning'});
         return true
       }
       if (!user.email || user.email == null || user.email == '') {
-        notify({ message:'¡Seleccione un correo !', position:'left', duration:10000, classes:'   alert-warning'});
+        notify({ message:'¡Seleccione un correo !', position:'center', duration:10000, classes:'   alert-warning'});
         return true
       }
       if (!user.estatus || user.estatus == null || user.estatus == '') {
-        notify({ message:'¡Seleccione un estatus !', position:'left', duration:10000, classes:'   alert-warning'});
+        notify({ message:'¡Seleccione un estatus !', position:'center', duration:10000, classes:'   alert-warning'});
         return true
       }
       return false
@@ -299,7 +303,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                 }, function errorCallback(response) {
                   $scope.loading = false
                   if(response.status == 400){
-                    // notify({ message:response.data.msg, position:'left', duration:20000, classes:'   alert-danger'});
+                    // notify({ message:response.data.msg, position:'center', duration:20000, classes:'   alert-danger'});
                     ngNotify.set(response.data.msg,'danger')
                   }
                 });

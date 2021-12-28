@@ -750,24 +750,24 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
 }
 
 .alert-info{
-	color: #0c5460;
-    background-color: #d1ecf1ba;
-    border-color: #bee5eb;
+	color: #ffffff;
+    background-color: #399cdf;
+    border-color: #399cdf;
 }
 .alert-success {
-  background-color: #dff0d8b1;
-  border-color: #d0e9c6;
-  color: #3c763d;
+  background-color: #c7c6c6;
+  border-color: #c7c6c6;
+  color: #ffffff;
 }
 .alert-warning {
-  background-color: #fcf8e3b6;
-  border-color: #faf2cc;
-  color: #8a6d3b;
+  background-color: #ffffff;
+  border-color: #c7c6c6;
+  color: #000000;
 }
 .alert-danger {
-  background-color: #f2dedeb1;
-  border-color: #ebcccc;
-  color: #a94442;
+  background-color: #ff4d00;
+  border-color: #ff4d00;
+  color: #ffffff;
 }
 .card, .alert{
 	border: 0;
@@ -1233,4 +1233,20 @@ label.radio input:checked+span {
 
 .no-before-hover:hover{
   color: #000 !important;
+}
+
+.my-new-theme.ngn-info{
+    background-color: #399cdf
+}
+.my-new-theme.ngn-error{
+    background-color: #FF0000
+}
+.my-new-theme.ngn-success{
+    background-color: #c7c6c6
+}
+.my-new-theme.ngn-warn{
+    background-color: #FF9900
+}
+.my-new-theme.ngn-grimace{
+    background-color: #660099
 }

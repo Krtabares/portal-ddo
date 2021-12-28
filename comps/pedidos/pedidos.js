@@ -10,6 +10,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
   }])
   .controller('pedidosCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify','notify','Idle', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, notify, Idle, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
+      ngNotify.addTheme('newTheme', 'my-new-theme');
+      ngNotify.config({
+        theme: 'newTheme'
+    });
+
+      
       validaSession()
       function validaSession(params) {
         if (!localstorage.get('logged')) {
@@ -46,7 +52,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           var modalBodyHeight = modalBody.height();
   
           modal_body_he.css({
-            "height" : modalBodyHeight - 300 //+'!important' 
+            "height" : modalBodyHeight - 350 //+'!important' 
           });
         })
 
@@ -170,7 +176,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 }else{
 
 
-                  notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo )+"!", position:'left', duration:10000, classes:'   alert-warning'});
+                  notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo )+"!", position:'center', duration:1500, classes:'   alert-warning'});
                 }
               break;
 
@@ -196,7 +202,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                       $('.modal-backdrop').remove();
                     })
                   }else{
-                    notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'left', duration:10000, classes:'   alert-warning'});
+                    notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'center', duration:1500, classes:'   alert-warning'});
                   }
                 break;
 
@@ -308,7 +314,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           if($scope.pedido.estatus_id >= 3 && $scope.pedido.estatus_id != 6){
 
 
-            notify({ message:'¡Este pedido no puede ser editado!', position:'left', duration:10000, classes:'   alert-danger'});
+            notify({ message:'¡Este pedido no puede ser editado!', position:'center', duration:1500, classes:'   alert-danger'});
             return
           }else{
 
@@ -570,7 +576,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
             }else{
-              notify({ message:'¡No se encontraron resultados!', position:'left', duration:10000, classes:'   alert-warning'});
+              notify({ message:'¡No se encontraron resultados!', position:'center', duration:1500, classes:'   alert-warning'});
 
             }
 
@@ -593,7 +599,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.client = response.data.obj[0]
 
             }else{
-              notify({ message:'¡No se encontraron resultados!', position:'left', duration:10000, classes:'   alert-warning'});
+              notify({ message:'¡No se encontraron resultados!', position:'center', duration:1500, classes:'   alert-warning'});
             }
 
           }, function errorCallback(response) {
@@ -614,7 +620,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.loading = false;
               $scope.getPedidos_filteringV2();
-              notify({ message:'¡Pedido cerrado con éxito!', position:'left', duration:10000, classes:'   alert-success'});
+              notify({ message:'¡Pedido cerrado con éxito!', position:'center', duration:1500, classes:'   alert-success'});
               $scope.stopTimeoutOrdCancel();
 
           }, function errorCallback(response) {
@@ -637,7 +643,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.editView = true
               $scope.pedido.estatus = response.data.estatus
               $scope.pedido.estatus_id = 1
-              notify({ message:response.data.estatus, position:'left', duration:10000, classes:'   alert-success'});
+              notify({ message:response.data.estatus, position:'center', duration:1500, classes:'   alert-success'});
 
               if($scope.liveTimeOrd < 900000){
                 $scope.counter = $scope.liveTimeOrd
@@ -667,7 +673,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.getPedidos_filteringV2();
 
-              notify({ message:response.data.estatus, position:'left', duration:10000, classes:'   alert-success'});
+              notify({ message:response.data.estatus, position:'center', duration:1500, classes:'   alert-success'});
 
           }, function errorCallback(response) {
 
@@ -699,7 +705,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $('.modal-backdrop').remove();
               })
 
-              notify({ message:response.data.estatus, position:'left', duration:10000, classes:'   alert-success'});
+              notify({ message:response.data.estatus, position:'center', duration:1500, classes:'   alert-success'});
               $scope.msgOrdCancel = false
 
           }, function errorCallback(response) {
@@ -726,7 +732,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }, function errorCallback(response) {
             if(response.status == 450){
               $scope.clientInvalidoMsg = response.data.data[0]
-              notify({ message:$scope.clientInvalidoMsg, position:'left', duration:10000, classes:'   alert-warning'});
+              notify({ message:$scope.clientInvalidoMsg, position:'center', duration:1500, classes:'   alert-warning'});
               $scope.clienteValido = false
               $scope.tabsIndex = 0
             }
@@ -951,7 +957,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $scope.busqueda_prod = null;
 
               }else{
-                notify({ message:'¡No se encontraron resultados!', position:'left', duration:10000, classes:'   alert-warning'});
+                notify({ message:'¡No se encontraron resultados!', position:'center', duration:1500, classes:'   alert-warning'});
                 $scope.productos = []
               }
               $scope.loading = false
@@ -962,7 +968,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             });
           }else{
 
-              ngNotify.set('¡Coloque al menos 1 criterio de busqueda !', 'warn')
+              // ngNotify.set('¡Coloque al menos 1 criterio de busqueda !', 'warn')
+              notify({ message:'¡Coloque al menos 1 criterio de busqueda !', position:'center', duration:1500, classes:'   alert-danger'});
               $scope.loading = false
               return
 
@@ -1027,7 +1034,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.getPedidos_filteringV2();
 
-              // notify({ message:'¡Pedido generado con éxito!', position:'left', duration:10000, classes:'   alert-success'});
+              // notify({ message:'¡Pedido generado con éxito!', position:'center', duration:1500, classes:'   alert-success'});
 
             // alert("Guardado con éxito!")
           }, function errorCallback(response) {
@@ -1066,7 +1073,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $("#addPedidoModal").modal("hide");
                 $('#myHtml').css('overflow','')
               })
-              notify({ message:'¡No se pudo abrir un pedido nuevo!', position:'left', duration:10000, classes:'   alert-danger'});
+              notify({ message:'¡No se pudo abrir un pedido nuevo!', position:'center', duration:1500, classes:'   alert-danger'});
             }
 
 
@@ -1168,7 +1175,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               articulo.CANTIDAD = response.data.reserved
               articulo.alert = true
 
-              notify({ message:"¡Solo se pudieron reservar "+response.data.reserved+" unidades! verifique disponibilidad", position:'left', duration:10000, classes:'   alert-success'});
+              notify({ message:"¡Solo se pudieron reservar "+response.data.reserved+" unidades! verifique disponibilidad", position:'center', duration:1500, classes:'   alert-success'});
 
             }else{
               articulo.alert = false
@@ -1192,13 +1199,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $("#modalInfoProduct").modal('hide');
             })
 
-            notify({ message:'¡Producto agregado al pedido!', position:'left', duration:10000, classes:'   alert-success'});
+            notify({ message:'¡Producto agregado al pedido!', position:'center', duration:1500, classes:'   alert-success'});
           }, function errorCallback(response) {
 
             articulo.CANTIDAD = null
 
             if(response.status == 410){
-      				  notify({ message:response.data.msg, position:'left', duration:20000, classes:'   alert-danger'});
+      				  notify({ message:response.data.msg, position:'center', duration:15000, classes:'   alert-danger'});
                 $(function(){
                   $("#addPedidoModal").modal("hide");
                   $("#showPedidoModal").modal("hide");
@@ -1208,7 +1215,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $scope.getPedidos_filteringV2();
       			}
             if(response.status == 480){
-                notify({ message:response.data.msg, position:'left', duration:20000, classes:'   alert-danger'});
+                notify({ message:response.data.msg, position:'center', duration:15000, classes:'   alert-danger'});
 
             }
             $scope.loading = false
@@ -1236,7 +1243,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }, function errorCallback(response) {
 
             if(response.status == 410){
-                notify({ message:response.data.msg, position:'left', duration:20000, classes:'   alert-danger'});
+                notify({ message:response.data.msg, position:'center', duration:15000, classes:'   alert-danger'});
                 $(function(){
                   $("#addPedidoModal").modal("hide");
                   $("#showPedidoModal").modal("hide");
@@ -1263,7 +1270,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.getPedidos_filteringV2();
               $scope.ID = null;
-              notify({ message:'¡Pedido eliminado con éxito!', position:'left', duration:10000, classes:'   alert-success'});
+              notify({ message:'¡Pedido eliminado con éxito!', position:'center', duration:1500, classes:'   alert-success'});
               $scope.reset();
               $scope.oneOrder()
 
@@ -1315,12 +1322,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $(function(){
               $("#modalInfoProduct").modal('hide');
             })
-            notify({ message:'¡Linea actulizada con éxito!', position:'left', duration:10000, classes:'   alert-success'});
+            notify({ message:'¡Linea actulizada con éxito!', position:'center', duration:1500, classes:'   alert-success'});
 
           }, function errorCallback(response) {
 
             if(response.status == 410){
-                notify({ message:response.data.msg, position:'left', duration:20000, classes:'   alert-danger'});
+                notify({ message:response.data.msg, position:'center', duration:15000, classes:'   alert-danger'});
                 $(function(){
                   $("#addPedidoModal").modal("hide");
                   $("#showPedidoModal").modal("hide");
@@ -1331,7 +1338,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
 
             if(response.status == 480){
-              notify({ message:response.data.msg, position:'left', duration:20000, classes:'   alert-danger'});
+              notify({ message:response.data.msg, position:'center', duration:15000, classes:'   alert-danger'});
               $scope.pedido.pedido = listAux
             }
 
@@ -1397,7 +1404,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               })
 
             }else{
-              notify({ message:'¡No se encontraron resultados!', position:'left', duration:10000, classes:'   alert-warning'});
+              notify({ message:'¡No se encontraron resultados!', position:'center', duration:1500, classes:'   alert-warning'});
             }
 
           }, function errorCallback(response) {
@@ -1479,21 +1486,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
            if( isEmpty(articulo.CANTIDAD ) || articulo.CANTIDAD < 1 ){
 
-            notify({ message:'¡Por favor verifique la cantidad!', position:'left', duration:10000, classes:'   alert-danger'});
+            notify({ message:'¡Por favor verifique la cantidad!', position:'center', duration:1500, classes:'   alert-danger'});
             return  true;
           }
 
            if( articulo.CANTIDAD > parseInt(articulo.existencia)  ){
 
 
-              notify({ message:'¡La cantidad no puede ser mayor a la existencia!', position:'left', duration:10000, classes:'   alert-danger'});
+              notify({ message:'¡La cantidad no puede ser mayor a la existencia!', position:'center', duration:1500, classes:'   alert-danger'});
              return  true;
           }
 
           // console.log(articulo)
           if( !validaCreditoContraProducto(parseFloat(articulo.precio_neto_bs + articulo.iva_bs) * articulo.CANTIDAD)  ){
 
-            notify({ message:'¡El precio excede el crédito disponible!', position:'left', duration:10000, classes:'   alert-danger'});
+            notify({ message:'¡El precio excede el crédito disponible!', position:'center', duration:1500, classes:'   alert-danger'});
 
             return  true;
           }
@@ -1505,12 +1512,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if( $scope.client_info.ind_emp_nolim != 'S' ){
 
               if(  articulo.CANTIDAD > 3  ){
-                 notify({ message:'¡Solo puede solicitar un maximo de '+3+'unidades por producto!', position:'left', duration:10000, classes:'   alert-danger'});
+                 notify({ message:'¡Solo puede solicitar un maximo de '+3+'unidades por producto!', position:'center', duration:1500, classes:'   alert-danger'});
                 return  true;
               }
 
               if(articulo.disp_prod_emp == "N"){
-                notify({ message:'¡Este producto ya fue solicitado en un pediodo el dia de hoy!', position:'left', duration:10000, classes:'   alert-danger'});
+                notify({ message:'¡Este producto ya fue solicitado en un pediodo el dia de hoy!', position:'center', duration:1500, classes:'   alert-danger'});
                return  true;
               }
 
@@ -1522,8 +1529,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               // console.log("$scope.totales.empMed + articulo.CANTIDAD ", $scope.totales.empMed + articulo.CANTIDAD);
               // console.log("$scope.client.unid_disp_med_emp", $scope.client.unid_disp_med_emp);
               if( ($scope.totales.empMed + articulo.CANTIDAD) > $scope.client.unid_disp_med_emp){
-                notify({ message:'¡Excede cantidad disponible en medicinas!', position:'left', duration:10000, classes:'   alert-danger'});
-                // notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+(  $scope.client.unid_disp_med_emp - $scope.totales.empMed)+') para medicinas!', position:'left', duration:10000, classes:'   alert-danger'});
+                notify({ message:'¡Excede cantidad disponible en medicinas!', position:'center', duration:1500, classes:'   alert-danger'});
+                // notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+(  $scope.client.unid_disp_med_emp - $scope.totales.empMed)+') para medicinas!', position:'center', duration:1500, classes:'   alert-danger'});
                return  true;
               }
             }else if(articulo.tipo_prod_emp == "MISCELANEOS"){
@@ -1531,9 +1538,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               // console.log("$scope.client.unid_disp_misc_emp", $scope.client.unid_disp_misc_emp);
               if( ($scope.totales.empMisc + articulo.CANTIDAD) > $scope.client.unid_disp_misc_emp){
 
-                notify({ message:'¡Excede cantidad disponible en misceláneos!', position:'left', duration:10000, classes:'   alert-danger'});
+                notify({ message:'¡Excede cantidad disponible en misceláneos!', position:'center', duration:1500, classes:'   alert-danger'});
 
-              // notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+( $scope.client.unid_disp_misc_emp - $scope.totales.empMisc )+') para productos misceláneos!', position:'left', duration:10000, classes:'   alert-danger'});
+              // notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+( $scope.client.unid_disp_misc_emp - $scope.totales.empMisc )+') para productos misceláneos!', position:'center', duration:1500, classes:'   alert-danger'});
                return  true;
               }
             }
@@ -1879,7 +1886,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/tiempo_resta_pedido/articulo', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
-            // notify({ message:"Su pedido cuenta con "+ $scope.secondsToString(response.data.time) +"  para ser cancelado automáticamente por el sistema ", position:'left', duration:10000, classes:'   alert-info'});
+            // notify({ message:"Su pedido cuenta con "+ $scope.secondsToString(response.data.time) +"  para ser cancelado automáticamente por el sistema ", position:'center', duration:1500, classes:'   alert-info'});
             var tiempo =  parseInt(response.data.time )
             $scope.liveTimeOrd = tiempo
 
@@ -1899,7 +1906,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           }, function errorCallback(response) {
             if(response.status == 407){
-              notify({ message:"No se pudo obtener esta informacion, intente mas tarde", position:'left', duration:10000, classes:'   alert-warning'});
+              notify({ message:"No se pudo obtener esta informacion, intente mas tarde", position:'center', duration:1500, classes:'   alert-warning'});
             }
             $scope.loading = false
           });
@@ -1971,7 +1978,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               daysArray.push(formatDate(new Date(s)));
 
             }else{
-              notify({ message:"No se pudo obtener esta informacion", position:'left', duration:10000, classes:'   alert-warning'});
+              notify({ message:"No se pudo obtener esta informacion", position:'center', duration:1500, classes:'   alert-warning'});
             }
           }else if($scope.listMode == 2){
             if (s != null && e != null) {

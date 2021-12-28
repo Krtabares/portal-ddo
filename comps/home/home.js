@@ -15,7 +15,7 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
 
       // CARGA INICIAL DE CHART
 
-      // notify({ message:"¡Solo se pudieron reservar  unidades! verifique disponibilidad", position:'left', duration:10000, classes:'   alert-success '});
+      // notify({ message:"¡Solo se pudieron reservar  unidades! verifique disponibilidad", position:'center', duration:10000, classes:'   alert-success '});
 
       $scope.client = {};
       $scope.client_info = {};
