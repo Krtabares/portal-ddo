@@ -828,14 +828,14 @@
               </div>
     
               <div class="col-md-3">
-                <label for="filtro">Filtrar por Clasificacion</label>
+                <label for="filtro">Filtrar por tipo</label>
                 <div class="input-group mb-3 ">
                   <div class="form-group">
                     <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
                     <select class="form-control   " ng-model="clasificacion.CODIGO" id="proveedor" data-live-search="true" >
                       <!-- <option value="null" >Todos</option> -->
                       <option ng-repeat="x in listClasificaciones" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
-                      <option value="" disabled selected>Seleccione una Clasificacion</option>
+                      <option value="" disabled selected>Seleccione un tipo</option>
                     </select>
                   </div>
                 </div>
