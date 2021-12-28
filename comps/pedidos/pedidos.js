@@ -26,9 +26,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       $(function () {
         // $('#dateStart').datepicker({ format: 'dd/mm/yyyy' });
         // $('#dateEnd').datepicker({ format: 'dd/mm/yyyy' });
-        $('#dateStart').datepicker({ format: 'yyyy-mm-dd' });
+        $('#dateStart').datepicker({ format: 'yyyy/mm/dd' });
         $('#dateEnd').datepicker({
-           format: 'yyyy-mm-dd', 
+           format: 'yyyy/mm/dd', 
            onRender: function() {
             let date=$scope.dateStart
             return date.valueOf() < new Date().valueOf() ? 'disabled' : '';
@@ -807,6 +807,26 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
+        $scope.listClasificaciones=[]
+        $scope.clasificacion = {"CODIGO":null}
+        function getClasificacion() {
+          $scope.loading = true
+
+          request.post(ip+'/get/clasificacion_tipo', {},{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+
+
+            $scope.listClasificaciones = response.data.obj
+
+            $scope.loading = false
+
+          }, function errorCallback(response) {
+
+            $scope.loading = false
+
+          });
+        }
+
         $scope.listCategorias=[]
         $scope.categoria = {"CODIGO":null}
         function getCategorias() {
@@ -817,6 +837,29 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
             $scope.listCategorias = response.data.obj
+
+            $scope.loading = false
+
+          }, function errorCallback(response) {
+
+            $scope.loading = false
+
+          });
+        }
+
+        $scope.listSubCategorias=[]
+        $scope.subCategoria = {"CODIGO":null}
+        $scope.getSubCategorias = function () {
+          console.log("entro");
+          $scope.loading = true
+          let body = {}
+          console.log($scope.categoria);
+          body.codCategoria = $scope.categoria.CODIGO
+          request.post(ip+'/get/sub_categorias', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+
+
+            $scope.listSubCategorias = response.data.obj
 
             $scope.loading = false
 
@@ -863,12 +906,22 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               }
 
-              if($scope.categoria.CODIGO != null && $scope.categoria.CODIGO != "null" ){
-                body.pFiltroCategoria = $scope.categoria.CODIGO
+              if($scope.clasificacion.CODIGO != null && $scope.clasificacion.CODIGO != "null" ){
+                body.pFiltroTipo = $scope.clasificacion.CODIGO
 
               }
 
-              // if (body.pCodProveedor != null || body.pFiltroCategoria  )  {
+              if($scope.categoria.CODIGO != null && $scope.categoria.CODIGO != "null" ){
+                body.pCategoria = $scope.categoria.CODIGO
+
+              }
+              console.log($scope.subCategoria)
+              if($scope.subCategoria.CODIGO != null && $scope.subCategoria.CODIGO != "null" ){
+                body.pSubCategoria = $scope.subCategoria.CODIGO
+
+              }
+// TODO
+              // if (body.pCodProveedor != null || body.pFiltroTipo  )  {
               //   body.pExistencia = 1
               // }
 
@@ -877,7 +930,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           }
 
-          if((body.pBusqueda != null && body.pBusqueda.length > 0 )||(body.pComponente != null && body.pComponente.length > 0 )|| body.pCodProveedor != null || body.pFiltroCategoria != null || body.pExistencia!=null){
+          if((body.pBusqueda != null && body.pBusqueda.length > 0 )
+              ||(body.pComponente != null && body.pComponente.length > 0 )
+              || body.pCodProveedor != null 
+              || body.pFiltroTipo != null 
+              || body.pExistencia!=null
+              || body.pCategoria != null
+              || body.pSubCategoria != null){
             request.post(ip+'/procedure_productos', body,{})
             .then(function successCallback(response) {
 
@@ -1578,7 +1637,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.filtroExistencia = "0"
           $scope.tipoPedidoSearch = '01'
           $scope.proveedor.cod_proveedor = null
-          $scope.categoria.CODIGO = null
+          $scope.clasificacion.CODIGO = null
 
 
           $scope.productos = []
@@ -1894,7 +1953,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.getdaysFind = function(start, end) {
-              for(var arr=[],dt=new Date(start); dt=end; dt.setDate(dt.getDate()+1)){
+              let dt=new Date(start)
+              for(var arr=[]; dt<=end; dt.setDate(dt.getDate()+1)){
                   arr.push(formatDate(new Date(dt)));
               }
               return arr;
@@ -1902,6 +1962,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.filterList = function (s=null,e = null) {
           let daysArray = []
+          $scope.listaPedidosV2filter = []
           if ($scope.listMode == 0) {
             daysArray = Last7Days()
           }else if ($scope.listMode == 1) {
@@ -1913,14 +1974,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               notify({ message:"No se pudo obtener esta informacion", position:'left', duration:10000, classes:'   alert-warning'});
             }
           }else if($scope.listMode == 2){
-            console.log(s,e)
             if (s != null && e != null) {
               // validar si la fecha final es mayor
               daysArray= $scope.getdaysFind(new Date(s),new Date(e)) 
             }
           }
-          console.log(daysArray)
-          $scope.listaPedidosV2filter = []
+          
           daysArray.forEach((weekday,i) => {
             $scope.listaPedidosV2.forEach((item)=>{
               if(item.fecha_creacion == weekday){
@@ -2028,6 +2087,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         ]
 
         proveedores()
+        getClasificacion()
         getCategorias()
 
         $scope.timerRunning = false;

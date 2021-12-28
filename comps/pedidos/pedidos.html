@@ -804,8 +804,8 @@
 
             <div class="form-check" style="padding-bottom: 25px;">
               
-              <input type="checkbox" class="form-check-input" id="exampleCheck1" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch"  >
-              <label class="form-check-label" for="exampleCheck1">Busqueda avanzada</label>
+              <input type="checkbox" class="form-check-input" id="exampleCheck2" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch"  >
+              <label class="form-check-label" for="exampleCheck2">Busqueda avanzada</label>
             </div>
           </div>
 
@@ -813,7 +813,7 @@
 
 
             <div class="collapse row" id="collapseSearch">
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <label for="proveedor">Filtrar por proveedor</label>
                 <div class="input-group mb-3 ">
                   <div class="form-group">
@@ -827,15 +827,47 @@
                 </div>
               </div>
     
-              <div class="col-md-2">
+              <div class="col-md-3">
+                <label for="filtro">Filtrar por Clasificacion</label>
+                <div class="input-group mb-3 ">
+                  <div class="form-group">
+                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                    <select class="form-control   " ng-model="clasificacion.CODIGO" id="proveedor" data-live-search="true" >
+                      <!-- <option value="null" >Todos</option> -->
+                      <option ng-repeat="x in listClasificaciones" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
+                      <option value="" disabled selected>Seleccione una Clasificacion</option>
+                    </select>
+                  </div>
+                </div>
+    
+              </div>
+
+              <div class="col-md-3">
                 <label for="filtro">Filtrar por categoría</label>
                 <div class="input-group mb-3 ">
                   <div class="form-group">
                     <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                    <select class="form-control   " ng-model="categoria.CODIGO" id="proveedor" data-live-search="true" >
+                    <select class="form-control" ng-model="categoria" id="categoria"
+                    ng-options="option.NOMBRE for option in listCategorias track by option.CODIGO" 
+                    ng-change="getSubCategorias()" >
                       <!-- <option value="null" >Todos</option> -->
-                      <option ng-repeat="x in listCategorias" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
+                      <!-- <option ng-repeat="x in listCategorias"  ng-click="getSubCategorias(x)" value="{{x.CODIGO}}">{{x.NOMBRE}}</option> -->
                       <option value="" disabled selected>Seleccione una categoría</option>
+                    </select>
+                  </div>
+                </div>
+    
+              </div>
+
+              <div class="col-md-3">
+                <label for="filtro">Filtrar por sub-categoría</label>
+                <div class="input-group mb-3 ">
+                  <div class="form-group">
+                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                    <select class="form-control" ng-model="subCategoria.CODIGO" id="sub_categoria" data-live-search="true" ng-disabled="categoria.CODIGO==null|| categoria.CODIGO=='T'">
+                      <!-- <option value="null" >Todos</option> -->
+                      <option ng-repeat="x in listSubCategorias"  value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
+                      <option value="" disabled selected>Seleccione una sub categoría</option>
                     </select>
                   </div>
                 </div>
