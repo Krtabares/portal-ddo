@@ -755,13 +755,13 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
     border-color: #399cdf;
 }
 .alert-success {
-  background-color: #c7c6c6;
+  background-color: #c7c6c693;
   border-color: #c7c6c6;
   color: #ffffff;
 }
 .alert-warning {
   background-color: #ffffff;
-  border-color: #c7c6c6;
+  border-color: #c7c6c691;
   color: #000000;
 }
 .alert-danger {
@@ -1236,13 +1236,13 @@ label.radio input:checked+span {
 }
 
 .my-new-theme.ngn-info{
-    background-color: #399cdf
+    background-color: #007ccc
 }
 .my-new-theme.ngn-error{
     background-color: #FF0000
 }
 .my-new-theme.ngn-success{
-    background-color: #c7c6c6
+    background-color: #399cdf
 }
 .my-new-theme.ngn-warn{
     background-color: #FF9900

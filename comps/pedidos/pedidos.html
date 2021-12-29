@@ -1474,7 +1474,7 @@
 
                           <tr ng-repeat="x in listaPedidosV2filter" ng-show="x.estatus != 'PEDIDO CREADO'">
                             <th scope="row">{{ $index + 1 }}</th>
-                            <td><p class="text-left">ORD-{{ x.ID }}-WEB</p></td>
+                            <td><p class="text-left">ORD-{{ x.ID }}{{(x.origen_pedido=='WEB')? '-WEB':''}}</p></td>
                             <td><p class="text-left">{{  x.fecha_creacion }}</p></td>
                             <td ng-show="!hasUserClient" ><p class="text-left">{{ x.nombre_cliente }}</p></td>
                             <!-- <td><p class="text-left">{{ x.direccion_cliente }}</p></td> -->
@@ -1490,7 +1490,7 @@
 
                               <i class="fa fa-trash" style="cursor: pointer;"  ng-if="userLogged.permisos.pedido.eliminar" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
 
-                              <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
+                              <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID);" ng-show="x.origen_pedido=='WEB'" data-toggle="modal" data-target="#showPedidoModal"  ></i>
 
                               <!-- <i class="fa fa-clock" style="cursor: pointer;"   ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'"  ng-click="tiempoPedido(x.ID);"  ></i> -->
 

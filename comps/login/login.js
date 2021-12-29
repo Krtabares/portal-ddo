@@ -15,6 +15,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
       ngNotify.addTheme('newTheme', 'my-new-theme');
       ngNotify.config({
         theme: 'newTheme'
+        // duration: 100000
     });
 
       $scope.url = [
