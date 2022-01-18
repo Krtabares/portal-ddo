@@ -1372,19 +1372,20 @@
 
                     <div id="card__infoicon">
 
-                      <div class="alert alert-info alert-dismissible fade show" ng-show="infoPsico" role="alert">
+                      <div class="alert alert-psico alert-dismissible fade show" ng-show="infoPsico" role="alert">
                         <div>
                           
                           <p><strong>Los pedidos de Psicotr&oacute;picos se canalizan directamente en DDO, suministrando la informaci&oacute;n solicitada a Regencia.</strong></p>
-                          <p><strong>Enviar al siguiente correo&nbsp;<a href="mailto:regencia@del-oeste.com" target="_blank" rel="noopener">regencia@del-oeste.com</a> :</strong></p>
+                          <p><strong>Enviar la siguiente documentación legible al siguiente correo electrónico : <a href="mailto:regencia@del-oeste.com" target="_blank" rel="noopener" >regencia@del-oeste.com</a> :</strong></p>
                           <ul>
-                            <li><p><strong>C&eacute;dula de identidad del regente.</strong></p></li>
+                            <li><p><strong>C&eacute;dula de identidad del Regente.</strong></p></li>
                             <li><p><strong>T&iacute;tulo del Farmac&eacute;utico.</strong></p></li>
                             <li><p><strong>Permiso de Funcionamientos actualizado.</strong></p></li>
-                            <li><p><strong>&Uacute;ltima Relaci&oacute;n de psicotr&oacute;picos firmada y sellada, si es enviada por correo, copia de env&iacute;o y acuse de haber sido recibida &nbsp;por parte de la Contralor&iacute;a Sanitaria.</strong></p></li>
-                            <li><p><strong><a href="../../assets/planilla.doc" target="_self" download="planilla.doc">Planilla de solicitud&nbsp;</a>de productos psicotr&oacute;picos firmada por el regente y sellada por la farmacia, con fecha actual, es exigido por Sanidad (ver anexo).</strong></p></li>
-                            <li><p><strong>Todos los documentos deben ser enviados en un mismo correo</strong></p></li>
+                            <li><p><strong>Última Relación de Psicotrópicos firmada y sellada, si es enviada por correo electrónico, copia de envió y acuse de hacer sido recibida por parte del Servicio Autónomo de Controlaría Sanitaria.</strong></p></li>
+                            <li><p><strong><a href="../../assets/planilla.doc" target="_self" download="planilla.doc">Planilla de solicitud&nbsp;</a>de productos Psicotrópicos firmada por el Regente y sellada por la Farmacia, con la fecha actual, es exigido por el Servicio Autónomo de Controlaría Sanitaria (ver anexo).</strong></p></li>
                           </ul>
+                          <p><strong>Todos los documentos exigidos deben ser enviados al mismo correo electrónico del Regente.</strong></p>
+
                           
                         </div>
                         <button type="button" class="close"  ng-click="infoPsico = false" >
@@ -1394,7 +1395,7 @@
                     </div>
                     <div class="col-md-6 col-sm-12" >
 
-                      <button class="btn btn-naranja"  ng-show="!clienteEmpleado" style="float: left; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="infoPsico = true;" ng-show="!infoPsico"  > <i class="fa fa-info-circle"></i> Requisitos para psicotrópico</button>
+                      <button class="btn btn-naranja"  ng-show="!clienteEmpleado" style="float: left; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="infoPsico = true;" ng-show="!infoPsico"  > <i class="fa fa-info-circle"></i> Requisitos para Psicotrópico</button>
                     </div>
 
                     <div class="col-md-6 col-sm-12" ng-show="showProductTable || hasUserClient"  >

@@ -55,9 +55,20 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             "height" : modalBodyHeight - 350 //+'!important' 
           });
         })
-
-
       };
+
+      $scope.saveCurrentPageProduct = function () {
+        console.log("saveCurrentPageProduct")
+        var table = angular.element('#tableProd').DataTable()
+        console.log(table.page.info().page)
+        return table.page.info().page;
+      }
+
+      function setPageTableProd(page) {
+        console.log("setPageTableProd: "+page)
+        var table = angular.element('#tableProd').DataTable()
+        table.page( page ).draw( 'page' );
+      }
 
       
         $scope.dateStart = null;
@@ -877,7 +888,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.auxBusqueda = null
-        $scope.getProdNew = function (filter = false, articulo = false, refresh = false ) {
+        $scope.currentPage = null
+        $scope.getProdNew = function (filter = false, articulo = false, refresh = false, currentPage = 0 ) {
           $scope.loading = true
 
           var body = {};
@@ -926,10 +938,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 body.pSubCategoria = $scope.subCategoria.CODIGO
 
               }
-// TODO
-              // if (body.pCodProveedor != null || body.pFiltroTipo  )  {
-              //   body.pExistencia = 1
-              // }
 
             }
 
@@ -951,10 +959,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
                 $scope.productos = response.data.obj
-
+                
                 $scope.refreshProduct()
                 $scope.auxBusqueda = $scope.busqueda_prod
                 $scope.busqueda_prod = null;
+                
 
               }else{
                 notify({ message:'¡No se encontraron resultados!', position:'center', duration:1500, classes:'   alert-warning'});
@@ -974,7 +983,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               return
 
             }
-
+          
+            setPageTableProd(currentPage)
 
         }
 
@@ -989,7 +999,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           stop = $interval(function() {
               if (refreshCount <= 3) {
-                $scope.getProdNew(true, null, true)
+                let page = $scope.saveCurrentPageProduct()
+                $scope.getProdNew(true, null, true,page)
 
               } else {
                 $scope.stopFight();
@@ -1170,7 +1181,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
             // $scope.getPedidos_filteringV2();
-            $scope.getProdNew(true, null, true);
+            // let page = $scope.saveCurrentPageProduct()
+            // $scope.getProdNew(true, null, true,page );
             if(response.data.reserved < articulo.CANTIDAD){
               articulo.CANTIDAD = response.data.reserved
               articulo.alert = true
@@ -1235,7 +1247,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
             $scope.getPedidos_filteringV2();
-            $scope.getProdNew(true, null, true)
+            // TODO
+            // let page = $scope.saveCurrentPageProduct()
+            $scope.getProdNew(true, null, true,page)
             $scope.removeArt(i)
             $scope.loading = false
 

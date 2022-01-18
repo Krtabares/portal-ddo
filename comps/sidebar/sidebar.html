@@ -16,9 +16,6 @@
         <li ng-if="permisos.config.ver || user.role == 'root'"  >
           <a href="#!/config"><i class="fa fa-fw fa-cog"></i> configuracion</a>
       </li>
-        <li ng-if="permisos.deuda.ver || user.role == 'root'" >
-          <a href="#!/deuda" class=""><i class="fa fa-fw  fas fa-receipt" ></i>Deuda</a>
-        </li>
         <li ng-if="permisos.perfil.ver || user.role == 'root'" >
           <a href="#!/perfil" class="">
             <i class="fa fa-fw fas fa-user" ></i>
@@ -54,12 +51,11 @@
           <i class=" fa fa-fw fas fa-list-alt" ></i>
           Facturas
         </a>
-      <!-- <li >
-        <a data-toggle="modal" data-target="#modalConfirmSidebar" >
-          <i class=" fa fa-fw  fa-times" ></i>
-          Salir
-        </a>
-      </li> -->
+      </li>
+
+      <li ng-if="permisos.deuda.ver || user.role == 'root'" >
+        <a href="#!/deuda" class=""><i class="fa fa-fw  fas fa-receipt" ></i>Deuda</a>
+      </li>
       <li class="dropdown no-before">
         <a  class="dropdown-toggle no-before-hover" data-toggle="dropdown" style="cursor: pointer;">Salir <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">

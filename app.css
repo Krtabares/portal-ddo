@@ -748,6 +748,10 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
 .notifyPop{
   opacity: 0.85 !important;
 }
+.alert-psico{
+	color: #000;
+    background-color: #c7c6c6;
+}
 
 .alert-info{
 	color: #ffffff;
@@ -1242,7 +1246,7 @@ label.radio input:checked+span {
     background-color: #FF0000
 }
 .my-new-theme.ngn-success{
-    background-color: #399cdf
+    background-color: #ff4d009c
 }
 .my-new-theme.ngn-warn{
     background-color: #FF9900
