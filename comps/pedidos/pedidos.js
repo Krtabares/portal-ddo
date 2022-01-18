@@ -824,6 +824,25 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
+        $scope.listOfertas=[]
+        function getOfertas() {
+          $scope.loading = true
+
+          request.post(ip+'/get/ofertas', {},{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+
+
+            $scope.listOfertas = response.data.obj
+
+            $scope.loading = false
+
+          }, function errorCallback(response) {
+
+            $scope.loading = false
+
+          });
+        }
+
         $scope.listClasificaciones=[]
         $scope.clasificacion = {"CODIGO":null}
         function getClasificacion() {
@@ -2107,6 +2126,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
         ]
 
+        // getOfertas()
         proveedores()
         getClasificacion()
         getCategorias()
