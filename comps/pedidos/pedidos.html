@@ -921,7 +921,7 @@
                             
                             <td ng-show="mostrarImagenges " ng-click="selectProduct($index,true)" >
                               <div ng-if="x.dir_imagen != ''" style="cursor: pointer;" ng-click="zoomImg('/'+x.dir_imagen, x.nombre_producto )"   >
-                                <img id="img_{{$index}}" ng-src="/assets/imagen/{{ x.dir_imagen }}" alt="no image" on-error="/assets/nopic.png"  style="width: 120px;">
+                                <img id="img_{{$index}}" ng-src="app/assets/imagen/{{ x.dir_imagen }}" alt="no image" on-error="/assets/nopic.png"  style="width: 120px;">
                               </div>
                             </td>
                             <td ng-click="selectProduct($index,true)" style="	white-space: normal !important;"><p class="text-left">{{ x.nombre_producto }}</p></td>
@@ -993,7 +993,7 @@
             <div class="row" >
 
               <div class="col-md-5 col-sm-12">
-                <img src="/assets/imagen/{{ articulo.dir_imagen }}" alt="" style="width: 100%; " >
+                <img src="app/assets/imagen/{{ articulo.dir_imagen }}" alt="" style="width: 100%; " >
               </div>
               <div class="col-md-7 col-sm-12">
                 <div class="row" >
@@ -1125,7 +1125,7 @@
 
           <div class="container">
 
-            <img class="my-modal-content" id="img01" src="/assets/imagen/{{viewImg}}" >
+            <img class="my-modal-content" id="img01" src="app/assets/imagen/{{viewImg}}" >
 
           </div>
 
