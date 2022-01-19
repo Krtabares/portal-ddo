@@ -825,6 +825,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.listOfertas=[]
+        $scope.carouselOfertasIndex = 0
+        $scope.carouselOfertasLen = 0
         function getOfertas() {
           $scope.loading = true
 
@@ -833,7 +835,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
             $scope.listOfertas = response.data.obj
-
+            $scope.carouselOfertasLen = response.data.obj.length
             $scope.loading = false
 
           }, function errorCallback(response) {
@@ -841,6 +843,26 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.loading = false
 
           });
+        }
+
+        $scope.nextImgOferta = function () {
+
+          if( $scope.carouselOfertasIndex < $scope.carouselOfertasLen - 1 ){
+            $scope.carouselOfertasIndex++
+          }else{
+            $scope.carouselOfertasIndex = 0
+          }
+
+        }
+
+        $scope.prevImgOferta = function () {
+
+          if( $scope.carouselOfertasIndex > 0 ){
+            $scope.carouselOfertasIndex--
+          }else{
+            $scope.carouselOfertasIndex = ($scope.carouselOfertasLen - 1)
+          }
+
         }
 
         $scope.listClasificaciones=[]
@@ -2126,7 +2148,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
         ]
 
-        // getOfertas()
+        getOfertas()
         proveedores()
         getClasificacion()
         getCategorias()

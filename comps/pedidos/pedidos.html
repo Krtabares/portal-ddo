@@ -29,9 +29,9 @@
 
           <div class="controlAction" ng-show="tabsIndex == 1" >
 
-            <div class="col-md-8 row" style="padding-left: 0px;" >
+            <div class="col-md-12 row" style="padding-left: 0px;" >
 
-              <div class="col-md-6 dropdown"  ng-show="!clienteEmpleado && ID != null">
+              <div class="col-md-4 dropdown"  ng-show="!clienteEmpleado && ID != null">
                 <button class="btn btn-info dropdown-toggle" style="
                 background-color: #72797f;
                 color: #fff;
@@ -52,7 +52,7 @@
 
               </div>
 
-              <div class="col-md-6"  ng-show="clienteEmpleado && ID != null">
+              <div class="col-md-4"  ng-show="clienteEmpleado && ID != null">
 
                 <button class="btn btn-info dropdown-toggle" ng-disabled="pedido.pedido.length > 0" style="
                 background-color: #72797f;
@@ -89,14 +89,16 @@
     
               </div>
 
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <button type="button" style="width: 100%;" class="btn btn-info"  ng-show="ID != null" ng-click="openModalProducts()" ><i class="fas fa-plus"  ></i> <span>Agregar productos</span> </button>
               </div>
 
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <button type="button" style="width: 100%;" class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" ><i class="fas fa-check"  ></i > <span> Finalizar pedido</span></button>
               </div>
-
+              <div class="col-md-2">
+                <button type="button" style="width: 100%;" class="btn btn-info"  ng-show="ID != null && !clienteEmpleado" data-toggle="modal" data-target="#modalOferta" ><i class="fas fa-plus"  ></i> <span>Ver ofertas</span> </button>
+              </div>
 
 
             </div>
@@ -374,9 +376,9 @@
 
             <div class="controlAction" ng-show="tabsIndex == 1 && editView"  >
 
-                <div class="col-md-8 row" style="padding-left: 0px;" >
+                <div class="col-md-12 row" style="padding-left: 0px;" >
 
-                  <div class="col-md-6 dropdown"  ng-show="editView && !clienteEmpleado" >
+                  <div class="col-md-4 dropdown"  ng-show="editView && !clienteEmpleado" >
                     <button class="btn btn-info dropdown-toggle" style="
                     background-color: #72797f;
                     color: #fff;
@@ -397,7 +399,7 @@
     
                   </div>
 
-                  <div class="col-md-6"  ng-show="editView && clienteEmpleado" >
+                  <div class="col-md-4"  ng-show="editView && clienteEmpleado" >
 
                     <button class="btn btn-info dropdown-toggle" ng-disabled="pedido.pedido.length > 0" style="
                       background-color: #72797f;
@@ -433,12 +435,16 @@
         
                   </div>
     
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                     <button type="button" style="width: 100%;" class="btn btn-info "  ng-show="ID != null" ng-click="openModalProducts()" >Agregar productos</button>
                   </div>
     
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                     <button type="button" style="width: 100%;" class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
+                  </div>
+
+                  <div class="col-md-3">
+                    <button type="button" style="width: 100%;" class="btn btn-info"  ng-show="ID != null && !clienteEmpleado" data-toggle="modal" data-target="#modalOferta" > <span>Ver ofertas</span> </button>
                   </div>
     
 
@@ -1274,6 +1280,55 @@
       </div>
         <button type="button" class="btn btn-primary" data-dismiss="modal"  >cerrar</button>
       </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="modalOferta">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Oferta</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+        </div>
+        <div class="modal-body">
+
+          <div class="container">
+
+            <!-- <img class="my-modal-content" id="img01" src="http://web.del-oeste.com/app/assets/imagen/{{viewImg}}" > -->
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" ng-repeat="x in listOfertas" data-slide-to="{{$index}}" ng-class="{ active : $index == carouselOfertasIndex }"></li>
+              </ol>
+              <div class="carousel-inner">
+                <!-- <div class="carousel-item active">
+                  <img class="d-block w-100" src="http://web.del-oeste.com/app/assets/nopic.png" alt="First slide">
+                </div> -->
+                <div ng-repeat="x in listOfertas"  class="carousel-item" ng-class="{ active : $index == carouselOfertasIndex }" >
+                  <img class="d-block w-100" src="http://web.del-oeste.com/app/assets/imagen/{{x.nombre_flayer}}" alt="Second slide">
+                </div>
+
+              </div>
+              <a class="carousel-control-prev" ng-click="prevImgOferta()" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" ng-click="nextImgOferta()" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal"  >cerrar</button>
+        </div>
       </div>
     </div>
   </div>
