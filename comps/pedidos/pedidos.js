@@ -170,6 +170,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.modalDynContext = null;
         $scope.modalDynContextId = null;
         $scope.modalDynColor = null;
+        $scope.modalheaderColor = null;
+        $scope.modalCancelColor = null;
 
         $scope.aceptModalDyn = function () {
           //console.log("aceptModalDyn",$scope.modalDynContext);
@@ -263,6 +265,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.modalDynContext = type;
           $scope.modalDynContextId = contextId;
           $scope.modalDynColor = $scope.typeContext[type].color;
+          $scope.modalheaderColor = $scope.typeContext[type].headerColor;
+          $scope.modalCancelColor = $scope.typeContext[type].cancelColor;
           //console.log("entro y seteo");
           $(function(){
             $("#modalConfirmDynamic").modal({
@@ -2119,32 +2123,45 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             "title": "Finalizar pedido",
             "msg" : "¿Está seguro de finalizar su pedido?",
-            "color": "success"
+            "color": "success",
+            "headerColor": "success",
+            "cancelColor": "btn-danger"
+
           },
           {
             "title": "Editar pedido",
             "msg" : "Desea editar este pedido",
-            "color": "info"
+            "color": "info",
+            "headerColor": "info",
+            "cancelColor": "btn-info"
           },
           {
             "title": "Eliminar pedido",
             "msg" : "Desea eliminar este pedido",
-            "color": "danger"
+            "color": "danger",
+            "headerColor": "btn-success",
+            "cancelColor": "btn-success"
           },
           {
             "title": "Eliminar producto",
             "msg" : "¿Desea eliminar este producto?",
-            "color": "danger"
+            "color": "danger",
+            "headerColor": "danger",
+            "cancelColor": "btn-danger"
           },
           {
             "title": "Información",
             "msg" : "Si no alcanza el monto mínimo para pick-up su pedido sera procesado como tipo normal ¿Está seguro de finalizarlo? ",
-            "color": "warning"
+            "color": "warning",
+            "headerColor": "warning",
+            "cancelColor": "btn-info"
           },
           {
             "title": "Confirmación",
             "msg" : "¿Desea conservar este pedido para editarlo posteriormente?",
-            "color": "alert"
+            "color": "alert",
+            "headerColor": "alert",
+            "cancelColor": "btn-info"
           }
         ]
 

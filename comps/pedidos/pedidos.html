@@ -1095,7 +1095,7 @@
   <div class="modal fade" id="modalConfirmDynamic">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header {{modalheaderColor}}" >
           <h4 class="modal-title">{{ modalDynTitle }}</h4>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
@@ -1112,7 +1112,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="cancelModalDyn()" >No</button>
+          <button type="button" class="btn {{modalCancelColor}}" data-dismiss="modal" ng-click="cancelModalDyn()" >No</button>
           <button type="button" class="btn btn-{{modalDynColor}}" ng-click="aceptModalDyn()" data-dismiss="modal">Sí</button>
         </div>
       </div>
@@ -1430,16 +1430,16 @@
                       <div class="alert alert-psico alert-dismissible fade show" ng-show="infoPsico" role="alert">
                         <div>
                           
-                          <p><strong>Los pedidos de Psicotr&oacute;picos se canalizan directamente en DDO, suministrando la informaci&oacute;n solicitada a Regencia.</strong></p>
-                          <p><strong>Enviar la siguiente documentación legible al siguiente correo electrónico : <a href="mailto:regencia@del-oeste.com" target="_blank" rel="noopener" >regencia@del-oeste.com</a> :</strong></p>
+                          <p>Los pedidos de Psicotr&oacute;picos se canalizan directamente en DDO, suministrando la informaci&oacute;n solicitada a Regencia.</p>
+                          <p>Enviar la siguiente documentación legible al siguiente correo electrónico : <a href="mailto:regencia@del-oeste.com" target="_blank" rel="noopener" >regencia@del-oeste.com</a> :</p>
                           <ul>
-                            <li><p><strong>C&eacute;dula de identidad del Regente.</strong></p></li>
-                            <li><p><strong>T&iacute;tulo del Farmac&eacute;utico.</strong></p></li>
-                            <li><p><strong>Permiso de Funcionamientos actualizado.</strong></p></li>
-                            <li><p><strong>Última Relación de Psicotrópicos firmada y sellada, si es enviada por correo electrónico, copia de envió y acuse de hacer sido recibida por parte del Servicio Autónomo de Controlaría Sanitaria.</strong></p></li>
-                            <li><p><strong><a href="../../assets/planilla.doc" target="_self" download="planilla.doc">Planilla de solicitud&nbsp;</a>de productos Psicotrópicos firmada por el Regente y sellada por la Farmacia, con la fecha actual, es exigido por el Servicio Autónomo de Controlaría Sanitaria (ver anexo).</strong></p></li>
+                            <li><p>C&eacute;dula de identidad del Regente.</p></li>
+                            <li><p>T&iacute;tulo del Farmac&eacute;utico.</p></li>
+                            <li><p>Permiso de Funcionamientos actualizado.</p></li>
+                            <li><p>Última Relación de Psicotrópicos firmada y sellada, si es enviada por correo electrónico, copia de envió y acuse de hacer sido recibida por parte del Servicio Autónomo de Controlaría Sanitaria.</p></li>
+                            <li><p><a href="http://web.del-oeste.com/app/assets/planilla.doc" target="_self" download="planilla.doc">Planilla de solicitud&nbsp;</a>de productos Psicotrópicos firmada por el Regente y sellada por la Farmacia, con la fecha actual, es exigido por el Servicio Autónomo de Controlaría Sanitaria (ver anexo).</p></li>
                           </ul>
-                          <p><strong>Todos los documentos exigidos deben ser enviados al mismo correo electrónico del Regente.</strong></p>
+                          <p>Todos los documentos exigidos deben ser enviados al mismo correo electrónico del Regente.</p>
 
                           
                         </div>
