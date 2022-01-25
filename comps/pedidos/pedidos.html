@@ -1137,7 +1137,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal"  >cerrar</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal"  >Cerrar</button>
         </div>
       </div>
     </div>
@@ -1278,7 +1278,7 @@
               <div class="price ml-2"><span class="mr-1">price</span><i class="fa fa-angle-down"></i></div>
           </div> -->
       </div>
-        <button type="button" class="btn btn-primary" data-dismiss="modal"  >cerrar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal"  >Cerrar</button>
       </div>
       </div>
     </div>
@@ -1327,7 +1327,8 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal"  >cerrar</button>
+          <button type="button" class="btn btn-primary" ng-click="validaOferta()" >Comprobar oferta</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal"  >Cerrar</button>
         </div>
       </div>
     </div>
@@ -1456,7 +1457,7 @@
                     <div class="col-md-6 col-sm-12" ng-show="showProductTable || hasUserClient"  >
                       <!-- userLogged.pedido.crear :{{userLogged. }} -->
                       <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="initModal();"  ng-if="userLogged.permisos.pedido.crear"  ng-disabled="!clienteValido" ng-show="!unicOrderID"  > <i class="fa fa-edit"></i> Crear pedido</button>
-                      <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="getPedido(unicOrderID);" ng-disabled="!clienteValido" ng-show="unicOrderID"  > <i class="fa fa-edit"></i>Continuar Pedido </button>
+                      <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="getPedido(unicOrderID, origenPedido);" ng-disabled="!clienteValido" ng-show="unicOrderID"  > <i class="fa fa-edit"></i>Continuar Pedido </button>
 
                     </div>
 
@@ -1546,7 +1547,7 @@
 
                               <i class="fa fa-trash" style="cursor: pointer;"  ng-if="userLogged.permisos.pedido.eliminar" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
 
-                              <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID);" ng-show="x.origen_pedido=='WEB'" data-toggle="modal" data-target="#showPedidoModal"  ></i>
+                              <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID,x.origen_pedido);" ng-show="x.origen_pedido=='WEB'" data-toggle="modal" data-target="#showPedidoModal"  ></i>
 
                               <!-- <i class="fa fa-clock" style="cursor: pointer;"   ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'"  ng-click="tiempoPedido(x.ID);"  ></i> -->
 

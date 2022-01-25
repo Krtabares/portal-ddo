@@ -57,6 +57,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         })
       };
 
+      function siteModalFooterOferta() {
+
+        $(function(){
+          var modal_body_he = $('.modal-body-he');
+  
+          var modalBody = $(window);
+
+          var modalBodyHeight = modalBody.height();
+  
+          modal_body_he.css({
+            "height" : modalBodyHeight - 350 //+'!important' 
+          });
+        })
+      };
+
       $scope.saveCurrentPageProduct = function () {
         console.log("saveCurrentPageProduct")
         var table = angular.element('#tableProd').DataTable()
@@ -137,6 +152,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         }
         $scope.unicOrderID = null
+        $scope.origenPedido = "WEB"
         $scope.oneOrder = function(){
           $scope.unicOrderID = null
           $scope.listaPedidosV2.forEach((item, i) => {
@@ -214,7 +230,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                       $("#showPedidoModal").modal("hide");
                       $('.modal-backdrop').remove();
                     })
-                  }else{
+                  }else{ 
                     notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'center', duration:1500, classes:'   alert-warning'});
                   }
                 break;
@@ -253,7 +269,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
         }
 
-
         $scope.openModalDyn = function(type, contextId) {
 
           if(type == 0 && $scope.tipoPedido == "N"  && $scope.pickUpAvailable == "2" ){
@@ -277,7 +292,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
         }
-
 
         $scope.validaTabs = function(tab) {
             switch (tab) {
@@ -350,8 +364,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.selectCLient = function(){
 
-
-
           if($scope.client != null && $scope.clientes.length > 0){
               var auxCli = $scope.clientes
               var auxCliIndex = $scope.clientIndex
@@ -392,6 +404,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             validaClienteDDO(body)
 
         }
+
         $scope.listaPedidosV2filter = []
         function listarPedidos(){
           $scope.loading = true
@@ -437,9 +450,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           date =dd+'/'+mm+'/'+yyyy;
           return date
        }
-      
-      
-      
+           
       function Last7Days() {
           var result = [];
           for (var i=0; i<7; i++) {
@@ -463,7 +474,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
          var client_obj = JSON.parse(client)
             
-
 
          //  if ( client=='{}' ){
            if(client_obj.COD_CIA == null){
@@ -831,6 +841,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.listOfertas=[]
         $scope.carouselOfertasIndex = 0
         $scope.carouselOfertasLen = 0
+        $scope.oferta = null
+
         function getOfertas() {
           $scope.loading = true
 
@@ -867,6 +879,29 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.carouselOfertasIndex = ($scope.carouselOfertasLen - 1)
           }
 
+        }
+
+        $scope.validaOferta = function () {
+
+          $scope.loading = true
+          var body = {}
+          body.pPedido =parseInt( $scope.ID)
+          body.pOferta = $scope.listOfertas[$scope.carouselOfertasIndex].id_oferta
+          body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+          // body.pNoCia = parseInt( body.pNoCia)
+          request.post(ip+'/valida/ofertas', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+
+              $scope.loading = false;
+              console.log(response.data.obj.mensaje)
+              // $scope.getPedidos_filteringV2();
+              notify({ message:response.data.obj.mensaje, position:'left', duration:3500, classes:'   alert-warning'});
+              // $scope.stopTimeoutOrdCancel();
+
+          }, function errorCallback(response) {
+
+            $scope.loading = false
+          });
         }
 
         $scope.listClasificaciones=[]
@@ -1059,7 +1094,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $interval.cancel(stop);
           stop = undefined;
         }
-      };
+        };
 
         $scope.closeModalProducts = function () {
           $scope.stopFight()
@@ -1165,7 +1200,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         }
 
-
          var mytimeout = null
 
         $scope.stopTimeout = function(){
@@ -1197,7 +1231,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.stop1 = function(){
             $timeout.cancel(stopped);
         }
-
 
         $scope.msToTime =  function(s) {
           var ms = s % 1000;
@@ -1316,8 +1349,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-
-
         $scope.delPedido = function(){
 
           $scope.loading = true
@@ -1342,7 +1373,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.confirmModal = function (ID) {
           $scope.ID = ID
         }
-
 
         $scope.updDetalleProducto = function(articulo, indexArticulo, listAux){
 
@@ -1724,11 +1754,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
 
-        $scope.getPedido = function(ID){
+        $scope.getPedido = function(ID, origenPedido ){
           $scope.loading = true
-          var obj = {'idPedido': ID};
+          var obj = {'idPedido': ID,
+            "origenPedido": origenPedido
+           };
           $scope.ID = ID
-
           request.post(ip+'/get/pedido', obj, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
