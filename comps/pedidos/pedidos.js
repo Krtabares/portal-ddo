@@ -270,8 +270,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.openModalDyn = function(type, contextId) {
-
-          if(type == 0 && $scope.tipoPedido == "N"  && $scope.pickUpAvailable == "2" ){
+          
+          if(type == 0 && $scope.tipoPedido == "NORMAL"  && $scope.pickUpAvailable == "2" ){
+            console.log(type,$scope.tipoPedido,$scope.pickUpAvailable)
             $scope.openModalDyn(4, contextId);
             return
           }
@@ -1763,7 +1764,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/get/pedido', obj, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
-
+            //TODO
             var body = {};
             if(!$scope.hasUserClient){
               body.pCliente = response.data.obj[0].no_cliente
@@ -1773,6 +1774,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               body.pNoGrupo = response.data.obj[0].grupo
               getClientDispService(body)
               validaClienteDDO(body)
+            }else{
+              response.data.obj[0].no_cia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+              response.data.obj[0].grupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+              response.data.obj[0].no_cliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
             }
 
             $scope.showPedido(response.data.obj[0])
@@ -1832,8 +1837,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           $scope.pedido = pedido;
 
-          $scope.pickUpAvailable = (pedido.tipo_pedido == "N")? "1":"2";
-
+          $scope.pickUpAvailable = (pedido.tipo_pedido == "NORMAL")? "1":"2";
+          console.log(pedido)
           if(pedido.estatus_id < 3 || pedido.estatus_id == 6){
             $scope.editPedido()
           }
@@ -1870,7 +1875,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           'empMed':0,
           'totalUnidades':0
         }
-        $scope.tipoPedido = "N"
+        $scope.tipoPedido = "NORMAL"
         function calcularTotales(editIndex = null) {
 
             $scope.totales.bolivares = 0
@@ -1921,9 +1926,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             if(!$scope.clienteEmpleado && $scope.pickUpAvailable == "2"){
               if($scope.totales.bsConIva > $scope.client.monto_min_pick){
-                $scope.tipoPedido = "D"
+                $scope.tipoPedido = "PICKUP"
               }else{
-                $scope.tipoPedido = "N"
+                $scope.tipoPedido = "NORMAL"
               }
 
             }
