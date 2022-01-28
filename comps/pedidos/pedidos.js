@@ -1329,7 +1329,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.getPedidos_filteringV2();
             // TODO
             // let page = $scope.saveCurrentPageProduct()
-            $scope.getProdNew(true, null, true,page)
+            // $scope.getProdNew(true, null, true,page)
             $scope.removeArt(i)
             $scope.loading = false
 
@@ -1854,15 +1854,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.removeArt = function(i){
 
           $scope.pedido.pedido.splice( i, 1 );
-
+          console.log($scope.pedido.pedido)
           calcularTotales()
+
           $scope.counter = $scope.timeLimit;
-          // $scope.stopTimeout()
-          // $scope.countdown()
-          // mytimeout = $timeout(function (){
-          //   $scope.onTimeout()
-          // },$scope.timeLimit * 1000);
-          // $scope.resetTime()
         }
 
         $scope.totales = {

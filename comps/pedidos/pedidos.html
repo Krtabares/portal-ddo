@@ -563,7 +563,9 @@
 
                 <div class="form-group">
 
-
+                          <div ng-show="!editView" >
+                            <span >{{pedido.ofertas.mensaje}}</span>
+                          </div>
                       <!-- <table class="table table-striped table-bordered"  datatable="ng" dt-options="dtOptionsDetalil"> -->
                           <table class="table table-striped table-bordered tablaTotales" datatable="ng" dt-options="dtOrderDetalil"  >
                           <thead>
@@ -1547,7 +1549,7 @@
 
                               <i class="fa fa-trash" style="cursor: pointer;"  ng-if="userLogged.permisos.pedido.eliminar" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
 
-                              <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID,x.origen_pedido);" ng-show="x.origen_pedido=='WEB'" data-toggle="modal" data-target="#showPedidoModal"  ></i>
+                              <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID,x.origen_pedido);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
 
                               <!-- <i class="fa fa-clock" style="cursor: pointer;"   ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'"  ng-click="tiempoPedido(x.ID);"  ></i> -->
 
