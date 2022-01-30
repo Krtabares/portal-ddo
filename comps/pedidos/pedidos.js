@@ -771,7 +771,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           var body = {}
           body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
-          body.pArti = arti
+          body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+          body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
+          body.articulo = arti
+          body.idPedido = $scope.ID
           request.post(ip+'/valida/articulo', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
@@ -806,6 +809,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           var body={}
           body.idPedido = $scope.ID
+          body.origenPedido = $scope.origenPedido 
           $scope.loading = true
           request.post(ip+'/totales_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
@@ -1458,7 +1462,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           calcularTotales(i)
 
-          validaDisponibilidadDDO(articulo.COD_PRODUCTO)
+          validaDisponibilidadDDO(articulo)
 
           $scope.cantidadAux = parseInt(articulo.CANTIDAD)
 
@@ -1470,7 +1474,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
           body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
           body.pArticulo = articulo.COD_PRODUCTO
-
+          body.pbodega = $scope.tipoPedidoSearch
+          //TODO
 
           request.post(ip+'/procedure_productos', body,{})
           .then(function successCallback(response) {
