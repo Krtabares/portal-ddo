@@ -29,7 +29,7 @@ var DATATABLE_LANGUAGE_ES = {
   }
 }
 
-var IP_SERVER_PYTHON = "http://13.90.27.160:3500"
+var IP_SERVER_PYTHON = "http://13.90.27.160:3501"
 var IP_SRC_IMAGE = "http://13.90.27.160"
 
 // var IP_SERVER_PYTHON = "https://13.90.27.160:9500"
