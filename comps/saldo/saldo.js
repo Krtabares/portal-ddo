@@ -10,8 +10,8 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
     });
   }])
 
-  .controller('saldoCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'NgMap','$localStorage',
-    function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, NgMap, $localStorage) {
+  .controller('saldoCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify','notify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'NgMap','$localStorage',
+    function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify,notify, request, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, NgMap, $localStorage) {
 
 
       var ip = IP_SERVER_PYTHON;
@@ -220,7 +220,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
     }
     $scope.busqueda_prod = null
     $scope.mostrarImagenges = true
-    $scope.tipoPedidoSearch =null
+    $scope.tipoPedidoSearch ='01'
     $scope.categoria=null
     $scope.clasificacion=null
     $scope.subCategoria=null
