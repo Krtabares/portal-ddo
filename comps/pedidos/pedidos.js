@@ -30,12 +30,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       });
 
       $(function () {
-        // $('#dateStart').datepicker({ format: 'dd/mm/yyyy' });
-        // $('#dateEnd').datepicker({ format: 'dd/mm/yyyy' });
-        $('#dateStart').datepicker({ format: 'yyyy/mm/dd' });
+
+        $('#dateStart').datepicker({ language: 'es',format: 'yyyy/mm/dd' });
         $('#dateEnd').datepicker({
-           format: 'yyyy/mm/dd', 
-           onRender: function() {
+          language: 'es',
+          format: 'yyyy/mm/dd', 
+          onRender: function() {
             let date=$scope.dateStart
             return date.valueOf() < new Date().valueOf() ? 'disabled' : '';
         }

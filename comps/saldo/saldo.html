@@ -14,7 +14,7 @@
 
         <div class="container">
 
-          <img class="my-modal-content" id="img01" src="{{viewImg}}" >
+          <img class="my-modal-content" id="img01" src="http://web.del-oeste.com/app/assets/imagen/{{viewImg}}" >
 
         </div>
 
@@ -76,132 +76,146 @@
     <div class="card-body">
 
       <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12" ng-if="2==1">
-          <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusqueda" id="exampleRadios1" ng-value="0" >
-            <label class="form-check-label" for="exampleRadios1">
-              Búsqueda por producto
-            </label>
+
+        <div class="col-md-2">
+        <label for="tipoBusqueda">Tipo de búsqueda</label>
+        <div class="input-group mb-3 ">
+          <div class="form-group">
+            <select class="form-control " ng-model="tipoBusqueda" id="tipoBusqueda" data-live-search="true" >
+              <option  value="1" >
+                Por producto
+              </option>
+              <option  value="2">
+                Por principio activo
+              </option>
+            </select>
           </div>
-          <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusqueda" id="exampleRadios2" ng-value="1" >
-            <label class="form-check-label" for="exampleRadios2">
-              Búsqueda por principio activo
-            </label>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <label for="clientes">Búsqueda</label>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" ng-keydown="$event.keyCode === 13 && getProdNew(true)" ng-model="busqueda_prod" placeholder="Búsqueda del producto" aria-label="Búsqueda del Producto" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="proveedor">Filtrar por proveedor</label>
-              <div class="input-group mb-3 ">
-                <div class="form-group">
-                  <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                  <select class="form-control" ng-model="proveedor.cod_proveedor" id="proveedor" >
-                    <option value="null" >Todos</option>
-                    <option ng-repeat="x in listProveedores" value="{{x.cod_proveedor}}">{{x.nombre_proveedor}}</option>
-                    <option value="" disabled selected>Seleccione un proveedor</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="filtro">Filtrar por categoría</label>
-              <div class="input-group mb-3 ">
-                <div class="form-group">
-                  <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                  <select class="form-control" ng-model="categoria.CODIGO" id="proveedor" >
-                    <!-- <option value="null" >Todos</option> -->
-                    <option ng-repeat="x in listCategorias" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
-                    <option value="" disabled selected>Seleccione una categoría</option>
-                  </select>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-12">
+      </div>
+      
+              <div class="col-md-2">
+        <label for="filtro">Filtrar por existencia</label>
+        <div class="input-group mb-3 ">
+          <div class="form-group">
+            <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+            <select class="form-control   " ng-disabled="tipoPedidoSearch=='96'" ng-model="filtroExistencia" id="proveedor" data-live-search="true" >
+              <!-- <option value="null" >Todos</option> -->
+              <option  value="0" selected>
+                Todos
+              </option>
+              <option  value="2">
+                Solo con stock disponible
+              </option>
+            </select>
+          </div>
+        </div>
 
-          <div class="row">
+      </div>
+
+      <div class="col-md-3">
+        <label for="clientes">Búsqueda </label>
+        <div class="input-group mb-3 ">
+          <input type="text" class="form-control"
+          ng-model="busqueda_prod"
+          ng-keydown="$event.keyCode === 13 && getProdNew(true)"
+          placeholder="Búsqueda del producto"
+          aria-label="Búsqueda del producto"
+          id="busquedaProd"
+          aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
+          </div>
+        </div>
+      </div>
+
+      </div>
+      <div class="row">
+          <div class="col-md-2">
+            <div class="form-check" style=" padding-bottom: 25px;">
+              
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" ng-disabled="tipoPedidoSearch=='96'"   ng-model="mostrarImagenges" >
+              <label class="form-check-label" for="exampleCheck1">Mostrar imagenes</label>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+
+            <div class="form-check" style="padding-bottom: 25px;">
+              
+              <input type="checkbox" class="form-check-input" id="exampleCheck2" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch"  >
+              <label class="form-check-label" for="exampleCheck2">Busqueda avanzada</label>
+            </div>
+          </div>
+
+          <div class=" col-md-12">
+
+
+            <div class="collapse row" id="collapseSearch">
+              <div class="col-md-3">
+                <label for="proveedor">Filtrar por proveedor</label>
+                <div class="input-group mb-3 ">
+                  <div class="form-group">
+                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                    <select class="form-control  " ng-model="proveedor.cod_proveedor" id="proveedor" data-live-search="true">
+                      <option value="null" >Todos</option>
+                      <option ng-repeat="x in listProveedores" value="{{x.cod_proveedor}}">{{x.nombre_proveedor}}</option>
+                      <option value="" disabled selected>Seleccione un proveedor</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-md-3">
+                <label for="filtro">Filtrar por tipo</label>
+                <div class="input-group mb-3 ">
+                  <div class="form-group">
+                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                    <select class="form-control   " ng-model="clasificacion.CODIGO" id="proveedor" data-live-search="true" >
+                      <!-- <option value="null" >Todos</option> -->
+                      <option ng-repeat="x in listClasificaciones" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
+                      <option value="" disabled selected>Seleccione un tipo</option>
+                    </select>
+                  </div>
+                </div>
+    
+              </div>
 
               <div class="col-md-3">
-              <label for="tipoBusqueda">Tipo de búsqueda</label>
-              <div class="input-group mb-3 ">
-                <div class="form-group">
-                  <select class="form-control" ng-model="tipoBusqueda" id="tipoBusqueda" >
-                    <option  value="1" >
-                      Por producto
-                    </option>
-                    <option  value="2">
-                      Por principio activo
-                    </option>
-                  </select>
+                <label for="filtro">Filtrar por categoría</label>
+                <div class="input-group mb-3 ">
+                  <div class="form-group">
+                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                    <select class="form-control" ng-model="categoria" id="categoria"
+                    ng-options="option.NOMBRE for option in listCategorias track by option.CODIGO" 
+                    ng-change="getSubCategorias()" >
+                      <!-- <option value="null" >Todos</option> -->
+                      <!-- <option ng-repeat="x in listCategorias"  ng-click="getSubCategorias(x)" value="{{x.CODIGO}}">{{x.NOMBRE}}</option> -->
+                      <option value="" disabled selected>Seleccione una categoría</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="clientes">Búsqueda </label>
-              <div class="input-group mb-3 ">
-                <input type="text" class="form-control"
-                ng-model="busqueda_prod"
-                ng-keydown="$event.keyCode === 13 && getProdNew(true)"
-                placeholder="Búsqueda del producto"
-                aria-label="Búsqueda del producto"
-                aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="proveedor">Filtrar por proveedor</label>
-              <div class="input-group mb-3 ">
-                <div class="form-group">
-                  <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                  <select class="form-control" ng-model="proveedor.cod_proveedor" id="proveedor" >
-                    <option value="null" >Todos</option>
-                    <option ng-repeat="x in listProveedores" value="{{x.cod_proveedor}}">{{x.nombre_proveedor}}</option>
-                    <option value="" disabled selected>Seleccione un proveedor</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="filtro">Filtrar por categoría</label>
-              <div class="input-group mb-3 ">
-                <div class="form-group">
-                  <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                  <select class="form-control" ng-model="categoria.CODIGO" id="proveedor" >
-                    <!-- <option value="null" >Todos</option> -->
-                    <option ng-repeat="x in listCategorias" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
-                    <option value="" disabled selected>Seleccione una categoría</option>
-                  </select>
-                </div>
+    
               </div>
 
-            </div>
+              <div class="col-md-3">
+                <label for="filtro">Filtrar por sub-categoría</label>
+                <div class="input-group mb-3 ">
+                  <div class="form-group">
+                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                    <select class="form-control" ng-model="subCategoria.CODIGO" id="sub_categoria" data-live-search="true" ng-disabled="categoria.CODIGO==null|| categoria.CODIGO=='T'">
+                      <!-- <option value="null" >Todos</option> -->
+                      <option ng-repeat="x in listSubCategorias"  value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
+                      <option value="" disabled selected>Seleccione una sub categoría</option>
+                    </select>
+                  </div>
+                </div>
+    
+              </div>
 
+
+    
+            </div>
           </div>
-
-        </div>
-        <div class="col-md-12">
-        </div>
 
       </div>
       <div >
@@ -212,12 +226,13 @@
             <tr>
 
               <th scope="col"><p class="text-center">#</p></th>
-              <th scope="col"><p class="text-center">Imagen</p></th>
+              <th scope="col" ng-show="mostrarImagenges " ><p class="text-center">Imagen</p></th>
               <th scope="col"><p class="text-center">Nombre producto</p></th>
               <th scope="col"><p class="text-center">Categoría</p></th>
               <th scope="col"><p class="text-center">Existencia</p></th>
-              <th scope="col"><p class="text-center">Precio Bs.S</p></th>
-              <th scope="col"><p class="text-center">IVA Bs.S</p></th>
+              <th scope="col"><p class="text-center">Oferta</p></th>
+              <th scope="col"><p class="text-center">Precio Bs.</p></th>
+              <th scope="col"><p class="text-center">IVA Bs.</p></th>
               <th scope="col"><p class="text-center">Precio USD</p></th>
               <th scope="col"><p class="text-center">IVA USD</p></th>
               <th scope="col"><p class="text-center">Principio activo</p></th>
@@ -229,25 +244,24 @@
 
             <tr ng-repeat="x in productos"   >
 
-              <td><p class="text-left">{{ $index + 1 }}</p></td>
-
-              <td>
-                <div ng-if="x.dir_imagen != ''" style="cursor: pointer;" ng-click="zoomImg('/ddo/app/assets/imagen/'+x.dir_imagen, x.nombre_producto )"   >
-                  <img id="img_{{$index}}" src="/ddo/app/assets/imagen/{{ x.dir_imagen }}" alt="no image"  style="width: 120px;">
+              <td ><p class="text-left">{{ $index + 1 }}</p></td>
+                            
+              <td ng-show="mostrarImagenges " >
+                <div ng-if="x.dir_imagen != ''" style="cursor: pointer;" ng-click="zoomImg('/'+x.dir_imagen, x.nombre_producto )"   >
+                  <img id="img_{{$index}}" ng-src=" http://web.del-oeste.com/app/assets/imagen/{{ x.dir_imagen }}" alt="no image" on-error="http://web.del-oeste.com/app/assets/nopic.png"  style="width: 120px;">
                 </div>
               </td>
-              <td><p class="text-left">{{ x.nombre_producto }}</p></td>
-              <td><p class="text-left">{{ x.categoria }}</p></td>
-              <td><p class="text-left">{{ x.existencia }}</p></td>
-              <td><p class="text-right">{{  formato(2,x.precio_neto_bs) }}</p></td>
-              <td><p class="text-right">{{  formato(2,x.iva_bs) }}</p></td>
-              <!-- <td><p class="text-right">{{  formato(3,x.precio_neto_usd) }}</p></td>
-              <td><p class="text-right">{{  formato(3,x.iva_usd) }}</p></td> -->
-
-              <td><p class="text-right">${{x.precio_neto_usd }}</p></td>
-              <td><p class="text-right">${{x.iva_usd }}</p></td>
-              <td><p class="text-left">{{ x.princ_activo }}</p></td>
-              <td><p class="text-left">{{  x.proveedor }}</p></td>
+              <td style="	white-space: normal !important;"><p class="text-left">{{ x.nombre_producto }}</p></td>
+              <td ><p class="text-left">{{ x.categoria }}</p></td>
+              <td ><p class="text-right">{{ x.existencia }}</p></td>
+              <td ><p class="text-right">{{  x.descuento1 }} %</p></td>
+              <td ><p class="text-right">{{  formato(1,x.precio_neto_bs) }}</p></td>
+              <td ><p class="text-right">{{  formato(1,x.iva_bs) }}</p></td>
+              <td ><p class="text-right">{{x.precio_neto_usd }}</p></td>
+              <td ><p class="text-right">{{x.iva_usd }}</p></td>
+              <td style="	white-space: normal !important;" ><p class="text-left">{{ x.princ_activo }}</p></td>
+              <td style="	white-space: normal !important;" ><p class="text-left">{{  x.proveedor }}</p></td>
+              
 
           </tr>
           </tbody>

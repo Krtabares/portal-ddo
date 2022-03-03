@@ -47,9 +47,29 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           d = d.split("/"); return Number(d[2]+d[1]+d[0]);
         }
 
+    //     def agrupar_facturas(arreglo):
+    // list = {}
+    // for row in arreglo:
+    //     if not row["nro_factura"] in list:
+    //         list[int(row["nro_factura"])] = []
+
+    // for row in arreglo:
+    //     list[int(row["nro_factura"])].append(row)
+ 
+    // return list
+
+      function agruparFacturas(arreglo) {
+        var list = []
+        
+        arreglo.forEach(element => {
+          list[element["nro_factura"]].push(element)
+        });
+         return list
+      }
 
        $scope.facturas = []
        $scope.facturasTotales = {}
+       $scope.ofertas = null
        $scope.facturasList = []
        function facturacion() {
          $scope.loading = true
@@ -60,6 +80,8 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           request.post(ip+'/procedure_facturacion', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
            .then(function successCallback(response) {
              console.log(response.data)
+
+            //  var facturas = agruparFacturas(response.data.obj)
 
              var facAux = Object.keys(response.data.obj)
 
@@ -110,7 +132,19 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           $scope.factura = []
           $scope.selectFactura = function (fact) {
 
+            // console.log(fact);
+            var body = {}
             console.log(fact[0]);
+            body.pPedido = fact[0].id_pedido
+            request.post(ip+'/ofertas/pedido', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+            .then(function successCallback(response) {
+
+              console.log(response);
+
+              $scope.ofertas=response.data.obj.mensaje
+
+           });
+            
 
             fact.sort(function (a, b) {
               if (a.no_linea > b.no_linea) {
@@ -122,9 +156,12 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
               // a must be equal to b
               return 0;
             })
+            // console.log("======================ORDENADO=======================")
+            // console.log(fact);
             $scope.factura = fact
             $scope.totalfactura.bs =  $scope.facturasTotales[fact[0].nro_factura].total_bs
             $scope.totalfactura.usd =  $scope.facturasTotales[fact[0].nro_factura].total_usd
+
               // angular.element('#btnfacturaInfo').trigger('click');
           }
           $scope.clientes = null;
@@ -205,7 +242,8 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
                     .withOption('responsive', true)
                     .withDOM('frtip').withPaginationType('full_numbers')
                     .withLanguage(DATATABLE_LANGUAGE_ES)
-                    .withDisplayLength(15)
+                    .withDisplayLength(20)
+                    .withOption('bFilter', false)
 
 
         $scope.dtOptionsFact = DTOptionsBuilder.newOptions()
@@ -213,7 +251,8 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
                   .withOption('responsive', true)
                   .withDOM('frtip').withPaginationType('full_numbers')
                   .withLanguage(DATATABLE_LANGUAGE_ES)
-                  .withDisplayLength(15)
+                  .withDisplayLength(20)
+                  .withOption('bFilter', false)
 
 
     }

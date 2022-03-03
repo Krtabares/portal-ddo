@@ -800,94 +800,94 @@
           </div>
           </div>
           <div class="row">
-          <div class="col-md-2">
-            <div class="form-check" style=" padding-bottom: 25px;">
-              
-              <input type="checkbox" class="form-check-input" id="exampleCheck1" ng-disabled="tipoPedidoSearch=='96'"   ng-model="mostrarImagenges" >
-              <label class="form-check-label" for="exampleCheck1">Mostrar imagenes</label>
-            </div>
+              <div class="col-md-2">
+                <div class="form-check" style=" padding-bottom: 25px;">
+                  
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1" ng-disabled="tipoPedidoSearch=='96'"   ng-model="mostrarImagenges" >
+                  <label class="form-check-label" for="exampleCheck1">Mostrar imagenes</label>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+
+                <div class="form-check" style="padding-bottom: 25px;">
+                  
+                  <input type="checkbox" class="form-check-input" id="exampleCheck2" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch"  >
+                  <label class="form-check-label" for="exampleCheck2">Busqueda avanzada</label>
+                </div>
+              </div>
+
+              <div class=" col-md-12">
+
+
+                <div class="collapse row" id="collapseSearch">
+                  <div class="col-md-3">
+                    <label for="proveedor">Filtrar por proveedor</label>
+                    <div class="input-group mb-3 ">
+                      <div class="form-group">
+                        <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                        <select class="form-control  " ng-model="proveedor.cod_proveedor" id="proveedor" data-live-search="true">
+                          <option value="null" >Todos</option>
+                          <option ng-repeat="x in listProveedores" value="{{x.cod_proveedor}}">{{x.nombre_proveedor}}</option>
+                          <option value="" disabled selected>Seleccione un proveedor</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <div class="col-md-3">
+                    <label for="filtro">Filtrar por tipo</label>
+                    <div class="input-group mb-3 ">
+                      <div class="form-group">
+                        <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                        <select class="form-control   " ng-model="clasificacion.CODIGO" id="proveedor" data-live-search="true" >
+                          <!-- <option value="null" >Todos</option> -->
+                          <option ng-repeat="x in listClasificaciones" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
+                          <option value="" disabled selected>Seleccione un tipo</option>
+                        </select>
+                      </div>
+                    </div>
+        
+                  </div>
+
+                  <div class="col-md-3">
+                    <label for="filtro">Filtrar por categoría</label>
+                    <div class="input-group mb-3 ">
+                      <div class="form-group">
+                        <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                        <select class="form-control" ng-model="categoria" id="categoria"
+                        ng-options="option.NOMBRE for option in listCategorias track by option.CODIGO" 
+                        ng-change="getSubCategorias()" >
+                          <!-- <option value="null" >Todos</option> -->
+                          <!-- <option ng-repeat="x in listCategorias"  ng-click="getSubCategorias(x)" value="{{x.CODIGO}}">{{x.NOMBRE}}</option> -->
+                          <option value="" disabled selected>Seleccione una categoría</option>
+                        </select>
+                      </div>
+                    </div>
+        
+                  </div>
+
+                  <div class="col-md-3">
+                    <label for="filtro">Filtrar por sub-categoría</label>
+                    <div class="input-group mb-3 ">
+                      <div class="form-group">
+                        <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                        <select class="form-control" ng-model="subCategoria.CODIGO" id="sub_categoria" data-live-search="true" ng-disabled="categoria.CODIGO==null|| categoria.CODIGO=='T'">
+                          <!-- <option value="null" >Todos</option> -->
+                          <option ng-repeat="x in listSubCategorias"  value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
+                          <option value="" disabled selected>Seleccione una sub categoría</option>
+                        </select>
+                      </div>
+                    </div>
+        
+                  </div>
+
+
+        
+                </div>
+              </div>
+
           </div>
-
-          <div class="col-md-3">
-
-            <div class="form-check" style="padding-bottom: 25px;">
-              
-              <input type="checkbox" class="form-check-input" id="exampleCheck2" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch"  >
-              <label class="form-check-label" for="exampleCheck2">Busqueda avanzada</label>
-            </div>
-          </div>
-
-          <div class=" col-md-12">
-
-
-            <div class="collapse row" id="collapseSearch">
-              <div class="col-md-3">
-                <label for="proveedor">Filtrar por proveedor</label>
-                <div class="input-group mb-3 ">
-                  <div class="form-group">
-                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                    <select class="form-control  " ng-model="proveedor.cod_proveedor" id="proveedor" data-live-search="true">
-                      <option value="null" >Todos</option>
-                      <option ng-repeat="x in listProveedores" value="{{x.cod_proveedor}}">{{x.nombre_proveedor}}</option>
-                      <option value="" disabled selected>Seleccione un proveedor</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-md-3">
-                <label for="filtro">Filtrar por tipo</label>
-                <div class="input-group mb-3 ">
-                  <div class="form-group">
-                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                    <select class="form-control   " ng-model="clasificacion.CODIGO" id="proveedor" data-live-search="true" >
-                      <!-- <option value="null" >Todos</option> -->
-                      <option ng-repeat="x in listClasificaciones" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
-                      <option value="" disabled selected>Seleccione un tipo</option>
-                    </select>
-                  </div>
-                </div>
-    
-              </div>
-
-              <div class="col-md-3">
-                <label for="filtro">Filtrar por categoría</label>
-                <div class="input-group mb-3 ">
-                  <div class="form-group">
-                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                    <select class="form-control" ng-model="categoria" id="categoria"
-                    ng-options="option.NOMBRE for option in listCategorias track by option.CODIGO" 
-                    ng-change="getSubCategorias()" >
-                      <!-- <option value="null" >Todos</option> -->
-                      <!-- <option ng-repeat="x in listCategorias"  ng-click="getSubCategorias(x)" value="{{x.CODIGO}}">{{x.NOMBRE}}</option> -->
-                      <option value="" disabled selected>Seleccione una categoría</option>
-                    </select>
-                  </div>
-                </div>
-    
-              </div>
-
-              <div class="col-md-3">
-                <label for="filtro">Filtrar por sub-categoría</label>
-                <div class="input-group mb-3 ">
-                  <div class="form-group">
-                    <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                    <select class="form-control" ng-model="subCategoria.CODIGO" id="sub_categoria" data-live-search="true" ng-disabled="categoria.CODIGO==null|| categoria.CODIGO=='T'">
-                      <!-- <option value="null" >Todos</option> -->
-                      <option ng-repeat="x in listSubCategorias"  value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
-                      <option value="" disabled selected>Seleccione una sub categoría</option>
-                    </select>
-                  </div>
-                </div>
-    
-              </div>
-
-
-    
-            </div>
-          </div>
-
-        </div>
 
 
           <div class="modal-body-he">
@@ -1067,34 +1067,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="modalConfirm">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Confirmación</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
-        </div>
-        <div class="modal-body">
-
-          <div class="container">
-
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <h3><p class="text-center">Desea eliminar el registro?</p></h3>
-            </div>
-
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
-          <button type="button" class="btn btn-danger" ng-click="delPedido()" data-dismiss="modal">Si</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="modalConfirmDynamic">
+  <div class="modal fade" id="modalConfirmDynamic" style="z-index: 10000 !important ;">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header {{modalheaderColor}}" >
@@ -1146,14 +1119,14 @@
   </div>
 
   <div class="modal fade" id="shoppingCart">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog mw-100">
       <div class="modal-content">
         <div class="modal-header">
           <!-- <h4 class="modal-title">Carrito</h4> -->
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
         </div>
-        <div class="animated fadeIn  container  p-3 rounded cart" style="height: 500px;overflow-x: hidden;">
+        <div class="animated fadeIn   p-3 rounded cart" style="height: 500px;overflow-x: hidden;">
           <div class="row no-gutters">
               <div class="col-md-12">
                   <div class="product-details mr-2">
@@ -1165,13 +1138,13 @@
                       </div>
 
                       <div  class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded row">
-                        <div class="d-flex flex-row col-md-6">
+                        <div class="d-flex flex-row col-md-7">
                           <!-- <img class="rounded" src="/assets/nopic.png" width="40"> -->
                             <div class="ml-2"><span class="font-weight-bold d-block">Descripcion</span></div>
                         </div>
-                        <div class="d-flex flex-row align-items-center col-md-6 row">
-                          <div class="col-md-6" > 
-                            <span class="" style=" font-size: 12px; float: right;" >Cantidad</span>
+                        <div class="d-flex flex-row align-items-center col-md-5 row">
+                          <div class="col-md-2" > 
+                            <span class="" style=" font-size: 12px; " >Cantidad</span>
                           </div>
                           <div class="col-md-3" > 
                             <span class="" style=" font-size: 12px;">Precio Bs</span>
@@ -1180,24 +1153,33 @@
                             <span class="" style=" font-size: 12px;" >Precio $</span>
                           </div>
 
+                          <div class="col-md-2" > 
+                            <span class="" style=" font-size: 12px;" >Opcines</span>
+                          </div>
+
                         </div>
                     </div>
 
-
+                    
                       <div ng-repeat="x in pedido.pedido" class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded row">
-                        <div class="d-flex flex-row col-md-8">
+                        <div class="d-flex flex-row col-md-7">
                           <!-- <img class="rounded" src="/assets/nopic.png" width="40"> -->
                             <div class="ml-2"><span class="font-weight-bold d-block">{{ x.nombre_producto }}&nbsp;</span></div>
                         </div>
-                        <div class="d-flex flex-row align-items-center col-md-4 row">
-                          <div class="col-md-1" > 
+                        <div class="d-flex flex-row align-items-center col-md-5 row">
+                          <div class="col-md-2" > 
                             <span class="" style=" font-size: 12px;" >{{ x.CANTIDAD }}</span>
                           </div>
-                          <div class="col-md-5" > 
-                            <span class="" style=" font-size: 12px; float: right;">{{ formato(2,(x.precio_neto_bs * x.CANTIDAD)) }}</span>
+                          <div class="col-md-3" > 
+                            <span class="" style=" font-size: 12px;">{{ formato(2,(x.precio_neto_bs * x.CANTIDAD)) }}</span>
                           </div>
-                          <div class="col-md-5" > 
-                            <span class="" style=" font-size: 12px; float: right;" >{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</span>
+                          <div class="col-md-3" > 
+                            <span class="" style=" font-size: 12px;" >{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</span>
+                          </div>
+                          <div class="col-md-2" > 
+                            <span class="" style=" font-size: 12px;" >
+                              <i class="fa fa-trash" style="cursor: pointer;"  ng-click="openModalDyn(3,$index);" ></i>
+                            </span>
                           </div>
 
                         </div>
@@ -1331,6 +1313,34 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" ng-click="validaOferta()" >Comprobar oferta</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal"  >Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="modalConfirm">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmación</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+        </div>
+        <div class="modal-body">
+
+          <div class="container">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3><p class="text-center">Desea eliminar el registro?</p></h3>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-danger" ng-click="delPedido()" data-dismiss="modal">Si</button>
         </div>
       </div>
     </div>
@@ -1508,7 +1518,7 @@
                 </div> 
 
                 <div class="col-md-6 col-sm-12" ng-show="listMode==2"  >
-                  <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="filterList(dateStart,dateEnd);"  ng-disabled="!clienteValido"   > <i class="fa fa-search"></i> Buscar</button>
+                  <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="filterList(dateStart,dateEnd);"  > <i class="fa fa-search"></i> Buscar</button>
                 </div>
 
                     <div class="col-md-12">
@@ -1532,7 +1542,7 @@
                         <tbody>
 
                           <tr ng-repeat="x in listaPedidosV2filter" ng-show="x.estatus != 'PEDIDO CREADO'">
-                            <th scope="row">{{ $index + 1 }}</th>
+                            <th scope="row"><p class="text-center">{{ $index + 1 }}</p></th>
                             <td><p class="text-left">ORD-{{ x.ID }}{{(x.origen_pedido=='WEB')? '-WEB':''}}</p></td>
                             <td><p class="text-left">{{  x.fecha_creacion }}</p></td>
                             <td ng-show="!hasUserClient" ><p class="text-left">{{ x.nombre_cliente }}</p></td>
