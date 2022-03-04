@@ -132,9 +132,8 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           $scope.factura = []
           $scope.selectFactura = function (fact) {
 
-            // console.log(fact);
+            console.log(fact);
             var body = {}
-            console.log(fact[0]);
             body.pPedido = fact[0].id_pedido
             request.post(ip+'/ofertas/pedido', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
             .then(function successCallback(response) {
@@ -146,18 +145,18 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
            });
             
 
-            fact.sort(function (a, b) {
-              if (a.no_linea > b.no_linea) {
-                return 1;
-              }
-              if (a.no_linea < b.no_linea) {
-                return -1;
-              }
+            // fact.sort(function (a, b) {
+            //   if (a.v_lin > b.v_lin) {
+            //     return 1;
+            //   }
+            //   if (a.v_lin < b.v_lin) {
+            //     return -1;
+            //   }
               // a must be equal to b
-              return 0;
-            })
-            // console.log("======================ORDENADO=======================")
-            // console.log(fact);
+            //   return 0;
+            // })
+            console.log("======================ORDENADO=======================")
+            console.log(fact);
             $scope.factura = fact
             $scope.totalfactura.bs =  $scope.facturasTotales[fact[0].nro_factura].total_bs
             $scope.totalfactura.usd =  $scope.facturasTotales[fact[0].nro_factura].total_usd
