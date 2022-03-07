@@ -194,7 +194,7 @@
       "errorOverlay.js",
       "config.js"
       ] ; // list of js to be refresh
-      var key = "1.0.2"; // change this key every time you want force a refresh
+      var key = "1.0.8"; // change this key every time you want force a refresh
       for(var i=0;i<scripts.length;i++){ 
         for(var j=0;j<torefreshs.length;j++){ 
             if(scripts[i].src && (scripts[i].src.indexOf(torefreshs[j]) > -1)){
@@ -203,30 +203,13 @@
             } 
         }
       }
-    // navigator.serviceWorker.register('service-worker.js', {
-    //     scope: ''
-    //   })
-    //   .then(function(registration) {
-    //     var serviceWorker;
-    //     if (registration.installing) {
-    //       serviceWorker = registration.installing;
-    //     } else if (registration.waiting) {
-    //       serviceWorker = registration.waiting;
-    //     } else if (registration.active) {
-    //       serviceWorker = registration.active;
-    //     }
-    //
-    //     if (serviceWorker) {
-    //       console.log("ServiceWorker phase:", serviceWorker.state);
-    //
-    //       serviceWorker.addEventListener('statechange', function(e) {
-    //         console.log("ServiceWorker phase:", e.target.state);
-    //       });
-    //     }
-    //   }).catch(function(err) {
-    //     console.log('ServiceWorker registration failed: ', err);
-    //   });
 
+      if(location.href.includes("appdev")){
+        alert("Esta entrando al ambiente de desarrollo");
+      }
+
+      
+      // alert(window.location);
 
   </script>
 </body>

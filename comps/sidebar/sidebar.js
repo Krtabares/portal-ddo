@@ -24,7 +24,14 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
         request.post(ip+'/logout', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             localstorage.clear()
-            window.location.href = "/";
+
+            if(location.href.includes("appdev")){
+              // alert(location.href)
+              window.location.href = "/appdev";
+            }else{
+              window.location.href = "/";
+            }
+            
          });
       }
 
