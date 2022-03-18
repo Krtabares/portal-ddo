@@ -1,0 +1,117 @@
+
+<div >
+
+  <div ng-include="'comps/common/topbar.html'">
+
+  </div>
+
+
+  <div id="wrapper" class="toggled">
+
+    <my-sidebar></my-sidebar>
+    <div  id="page-content-wrapper" class="container-fluid">
+
+      <div class="col-md-12 col-sm-12">
+
+        <!-- <br>
+          <h5 class="text-center"> <strong>HOME</strong> </h5>
+          <h2 class="text-center"> <strong>{{client_info.nombre_cliente}}</strong> </h2> -->
+          <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item"><a class="text-success" >Droguería del Oeste</a></li>
+              <!-- <li class="breadcrumb-item"><a class="text-info" href="#!/home">Home</a></li> -->
+              <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+              <li class="breadcrumb-item"><a class="text-info" href="#!/home">{{client_info.nombre_cliente}}</a></li>
+
+            </ol>
+          </nav>
+
+          <div class="container-fluid">
+
+            <div class="row " style="margin-bottom: 15px;" >
+
+
+              <div id="card-rigth" class="col-md-6" style="padding-right: 0px !important;" >
+        
+                <div class="card card-min" >
+                  <div class="card-info-header">
+                    información
+
+                  </div>
+                  <div class="card-body  " id="collapseDetalle" >
+        
+                    <!-- <h6 class="card-title">Detalles del Cliente</h6> -->
+                    <p>Para mayor información y ayuda, ponemos a su disposición los siguientes puntos de contacto:</p>
+
+                    <p>Teléfonos:</p>
+                    <ul>
+                      <li>
+                        <p> 0212-471-71-98</p>
+                      </li>
+                    </ul>  
+                    <p>Correo electrónico:</p>  
+                    <ul>
+                      <li>
+                        <p>atención@drogdeloeste.com</p>
+                      </li>
+                    </ul>
+                    <!-- <p class="mb-1"><span class="text-muted"> Código{{ (client_info.grupo_cliente == "02") ?  " de empleado:":":" }} </span> {{client_info.cod_cliente}}</p>
+                    <p class="mb-1" ng-if="client_info.grupo_cliente =='02'" ><span class="text-muted"> Nombre empleado:</span> {{client_info.nombre_cliente}}</p>
+                    <p class="mb-1"><span class="text-muted">Tipo de venta: </span> {{client_info.tipo_venta}}</p>
+                    <p class="mb-1"><span class="text-muted">Plazo: </span> {{client_info.v_plazo}} días</p>
+                    <p class="mb-1" ng-if="client_info.limite_credito != null && client_info.limite_credito != ''"><span class="text-muted">Límite de Crédito: </span> {{formato(2,client_info.limite_credito)}}</p>
+                    <p class="mb-1" ng-if="creditoClient.disp_bs_format != null && creditoClient.disp_bs_format != '0'"><span class="text-muted">Límite Disponible: </span> {{formato(2,creditoClient.disp_bs_format)}}</p>
+                    <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Disp. en medicinas: </span> {{client_info.unid_disp_med_emp}}</p>
+                    <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Disp. en misceláneos: </span> {{client_info.unid_disp_misc_emp}}</p>
+                    <p class="mb-1"  ng-if="client_info.grupo_cliente != '02'"  ><span class="text-muted">Operador de Televentas: </span> <span style="text-transform: capitalize;">{{client_info.vendedor.toLowerCase()}}</span></p>
+                    <p class="mb-1"  ng-if="client_info.grupo_cliente != '02'"  ><span class="text-muted">Correo electrónico Operador de Televentas: </span> {{client_info.email_vendedor.toLowerCase()}}</p>
+                    <p class="mb-1"  ng-if="client_info.grupo_cliente != '02'" ><span class="text-muted">Analista de Crédito y Cobranza: </span> <span style="text-transform: capitalize;">{{client_info.v_persona_cyc.toLowerCase()}}</span> </p>
+                    <p class="mb-1"  ng-if="client_info.grupo_cliente != '02'" ><span class="text-muted">Correo electrónico Analista de Crédito y Cobranza: </span> {{client_info.email_persona_cyc.toLowerCase()}}</p> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mt-10 mb-10">
+                <div class="card " >
+                    <div class="card-info-header">
+                      Manual de usuario
+                    </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12">
+          
+                        <!-- <button class="btn btn-primary" style="font-weight: bold;margin-bottom: 1rem;" data-toggle="modal" ng-click="createUser()" data-target="#addUserModal"> <i class="fas fa-pencil"></i> CREAR USUARIO <i class="fas fa-1x fa-user"></i></button> -->
+          
+                        <div class="row">
+                          <div class="col-md-12">
+          
+                            <div class="tab-pane active in" id="home">
+
+                                <a class="btn btn-success" href="http://web.del-oeste.com/appdev/assets/manual/manual.pdf" target="_blank"  >Descargar</a>
+                             
+                            </div>
+          
+          
+          
+          
+                          </div>
+          
+                        </div>
+          
+                      </div>
+          
+                    </div>
+                  </div>
+                  </div>
+                </div>
+        
+        
+          </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <my-footer></my-footer>
+</div>

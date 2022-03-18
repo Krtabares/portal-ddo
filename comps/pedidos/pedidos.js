@@ -1608,7 +1608,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if( $scope.client_info.ind_emp_nolim != 'S' ){
 
               if(  articulo.CANTIDAD > 3  ){
-                 notify({ message:'¡Solo puede solicitar un maximo de '+3+'unidades por producto!', position:'center', duration:1500, classes:'   alert-danger'});
+                 notify({ message:'¡Solo puede solicitar un máximo  de '+3+' unidades por producto!', position:'center', duration:1500, classes:'   alert-danger'});
                 return  true;
               }
 

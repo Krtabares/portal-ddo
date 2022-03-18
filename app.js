@@ -12,6 +12,7 @@ angular.module('app', [
                'ngIdle',
                'app.login',
                'app.home',
+               'app.help',
                'app.perfil',
                'app.deuda',
                'app.saldo',
