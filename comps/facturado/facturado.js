@@ -131,6 +131,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           }
           $scope.factura = []
           $scope.selectFactura = function (fact) {
+            $scope.factura = []
 
             console.log(fact);
             var body = {}
@@ -138,9 +139,15 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
             request.post(ip+'/ofertas/pedido', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
             .then(function successCallback(response) {
 
-              console.log(response);
+              // console.log(response);
 
               $scope.ofertas=response.data.obj.mensaje
+
+              // console.log("======================ORDENADO=======================")
+              // console.log(fact);
+              $scope.factura = fact
+              $scope.totalfactura.bs =  $scope.facturasTotales[fact[0].nro_factura].total_bs
+              $scope.totalfactura.usd =  $scope.facturasTotales[fact[0].nro_factura].total_usd
 
            });
             
@@ -155,11 +162,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
               // a must be equal to b
             //   return 0;
             // })
-            console.log("======================ORDENADO=======================")
-            console.log(fact);
-            $scope.factura = fact
-            $scope.totalfactura.bs =  $scope.facturasTotales[fact[0].nro_factura].total_bs
-            $scope.totalfactura.usd =  $scope.facturasTotales[fact[0].nro_factura].total_usd
+
 
               // angular.element('#btnfacturaInfo').trigger('click');
           }
