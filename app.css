@@ -1254,3 +1254,7 @@ label.radio input:checked+span {
 .my-new-theme.ngn-grimace{
     background-color: #660099
 }
+
+.tachado {
+  text-decoration:line-through;
+}

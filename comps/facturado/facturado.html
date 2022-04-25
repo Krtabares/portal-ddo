@@ -20,6 +20,9 @@
 
 
                 <div >
+                  <div ng-show="totalesDdo.anulada != 'N'"  class="alert alert-gris alert-dismissible fade show" ng-show="msgOrdCancel" role="alert">
+                    <strong>¡Advertencia!</strong> Factura Anulada.
+                  </div>
 
                   <div ng-show="ofertas" >
                     <span >{{ofertas}}</span>
@@ -65,7 +68,7 @@
                     </table>
 
 
-                      <div class="row">
+                      <!-- <div class="row">
                         <div class="col-lg-2 col-sm-5">
                           </div>
                             <div class="col-lg-6 col-sm-6 ml-auto">
@@ -87,7 +90,87 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div> -->
+
+                      
+                        <div>
+                          <div class="col-lg-2 col-sm-5">
+                            </div>
+                              <div class="col-lg-6 col-sm-6 ml-auto">
+                                  <table class="table table-clear tablaTotales">
+                                      <tbody>
+                                            <tr>
+                                              <td class="right">
+                                                  <strong class="text-dark" >TOT. UNID. PEDIDO :</strong> </td>
+      
+                                                  <td class="right" ng-class="{ tachado : totalesDdo.anulada != 'N' }" >{{totalesDdo.unidades}} </td>
+                                          </tr>
+                                              <tr ng-if=" totalesDdo.descVol > 0">
+                                                <td class="right">
+                                                    <strong class="text-dark">TOT. DESC. PP1. {{totalesDdo.porcVol}} %:</strong> </td>
+      
+                                                    <td class="right" ng-class="{ tachado : totalesDdo.anulada != 'N' }" >{{formato(2,totalesDdo.descVol)}} </td>
+                                            </tr>
+                                            <tr ng-if=" totalesDdo.descDpp > 0">
+                                              <td class="right">
+                                                  <strong class="text-dark">TOT. DESC. PP2. {{totalesDdo.porcDpp}} %:</strong> </td>
+      
+                                                  <td class="right"  ng-class="{ tachado : totalesDdo.anulada != 'N' }" >{{formato(2,totalesDdo.descDpp)}} </td>
+                                          </tr>
+                                          <tr ng-if=" totalesDdo.desPreEmp > 0">
+                                            <td class="right">
+                                                <strong class="text-dark">TOT. DESC. PREEMP. :</strong> </td>
+      
+                                                <td class="right" ng-class="{ tachado : totalesDdo.anulada != 'N' }" >{{formato(2,totalesDdo.desPreEmp)}} </td>
+                                        </tr>
+                                        <tr ng-if=" totalesDdo.desCom > 0">
+                                          <td class="right">
+                                              <strong class="text-dark">TOT. DESC. COM. {{totalesDdo.porcCom}} % :</strong> </td>
+    
+                                              <td class="right"  ng-class="{ tachado : totalesDdo.anulada != 'N' }" >{{formato(2,totalesDdo.desCom)}} </td>
+                                      </tr>
+                                      <tr ng-if=" totalesDdo.descInternet > 0">
+                                        <td class="right">
+                                            <strong class="text-dark">TOT. DESC. WEB. {{totalesDdo.porcInternet}} % :</strong> </td>
+  
+                                            <td class="right"  ng-class="{ tachado : totalesDdo.anulada != 'N' }" >{{formato(2,totalesDdo.descInternet)}} </td>
+                                    </tr>
+                                          <tr>
+                                              <td class="right">
+                                                  <strong class="text-dark">SUB.T. (E):</strong> </td>
+      
+                                                  <td class="right"  ng-class="{ tachado : totalesDdo.anulada != 'N' }" >{{formato(2,totalesDdo.subTotExe)}} </td>
+                                          </tr>
+                                          <tr>
+                                            <td class="right">
+                                                <strong class="text-dark">SUB.T. (G):</strong> </td>
+      
+                                                <td class="right"  ng-class="{ tachado : totalesDdo.anulada != 'N' }" >{{formato(2,totalesDdo.subTotGrav)}} </td>
+                                          </tr>
+                                          <tr ng-if="totalesDdo.porcImp != null || totalesDdo.iva > 0">
+                                              <td class="right">
+                                                
+                                                  <strong class="text-dark">I.V.A {{totalesDdo.porcImp }} %</strong> </td>
+      
+                                                  <!-- <td class="right">% {{totalesDdo.impuesto }} {{formato(2,totalesDdo.descImpuesto)}} </td> -->
+                                                  <td class="right"  ng-class="{ tachado : totalesDdo.anulada != 'N' }" > {{formato(2,totalesDdo.iva) }} </td>
+                                          </tr>
+                                          <tr>
+                                              <td class="right">
+                                                  <strong class="text-dark">TOTAL Bs.:</strong> </td>
+      
+                                                  <td class="right"  ng-class="{ tachado : totalesDdo.anulada != 'N' }" > {{formato(2,totalesDdo.totalBs)}} </td>
+                                          </tr>
+                                          <tr>
+                                            <td class="right">
+                                                <strong class="text-dark">TOTAL USD:</strong> </td>
+      
+                                                <td class="right"  ng-class="{ tachado : totalesDdo.anulada != 'N' }" > {{ formato(3,totalesDdo.totalUsd) }}  </td>
+                                        </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
                 </div>
 
 

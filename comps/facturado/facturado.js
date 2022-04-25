@@ -18,6 +18,25 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
         $scope.client = {};
         $scope.client_info = {}
         $scope.isEmpleado = false;
+        $scope.totalesDdo = {                
+        'descVol': 0, 
+        'descDpp': 0,
+        'desPreEmp': 0,
+        'desCom': 0,
+        'subTotExe': 0,
+        'subTotGrav': 0,
+        'iva': 0,
+        'totalBs': 0,
+        'totalUsd': 0,
+        'anulada': "N",
+        'tipoCambio': 0,
+        'unidades': 0,
+        'porcCom': 0,
+        'porcVol': 0,
+        'porcDpp': 0,
+        'porcImp': 0,
+        'porcInternet': 0,
+        'descInternet': 0}
 
         verificClient()
 
@@ -132,10 +151,43 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           $scope.factura = []
           $scope.selectFactura = function (fact) {
             $scope.factura = []
-
+            $scope.totalesDdo = {                
+              'descVol': 0, 
+              'descDpp': 0,
+              'desPreEmp': 0,
+              'desCom': 0,
+              'subTotExe': 0,
+              'subTotGrav': 0,
+              'iva': 0,
+              'totalBs': 0,
+              'totalUsd': 0,
+              'anulada': "N",
+              'tipoCambio': 0,
+              'unidades': 0,
+              'porcCom': 0,
+              'porcVol': 0,
+              'porcDpp': 0,
+              'porcImp': 0,
+              'porcInternet': 0,
+              'descInternet': 0}
             console.log(fact);
             var body = {}
             body.pPedido = fact[0].id_pedido
+            body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+            body.pNoFisico = fact[0].nro_factura
+
+
+            // nro_factura
+
+            request.post(ip+'/totales_factura', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+            .then(function successCallback(response) {
+
+              console.log(response);
+              $scope.totalesDdo = response.data.totales
+              // $scope.totalesDdo.anulada="S"
+
+           });
+
             request.post(ip+'/ofertas/pedido', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
             .then(function successCallback(response) {
 
