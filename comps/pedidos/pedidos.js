@@ -111,7 +111,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.product = {};
         $scope.productIndex = -1;
         $scope.infoPsico = false;
-        $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0","totalExento":"0","totalGravado":"0", "descImpuesto":null, "totalNetoUSD":"0", "procVol":0, "procPP":0 }
+        $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0","totalExento":"0","totalGravado":"0", "descImpuesto":null, "totalNetoUSD":"0", "procVol":0, "procPP":0, "porcInternet": 0,"descInternet":0 }
         $scope.tipoBusqueda = '1'
         $scope.tipoPedidoSearch = '01'
         $scope.pickUpAvailable = '1';
@@ -1513,6 +1513,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.errorValidaArticulo = false
         $scope.addArtPedido = function(gotosearch=false){
+            console.log("entro")
             if(Object.keys($scope.articulo).length === 0)
               return
 
@@ -1575,7 +1576,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         function validacionesArticulo(articulo , existenciaAux = null) {
 
-
+          console.log(articulo)
           if(isEmpty( articulo.COD_PRODUCTO ) && isEmpty( articulo.cod_producto )){
 
             return  true;
@@ -1723,7 +1724,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // $scope.resetTime()
           $scope.$broadcast('timer-start');
           $scope.stop1()
-          $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0","totalExento":"0","totalGravado":"0", "descImpuesto":null, "totalNetoUSD":"0", "procVol":0, "procPP":0}
+          $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0","totalExento":"0","totalGravado":"0", "descImpuesto":null, "totalNetoUSD":"0", "procVol":0, "procPP":0, "porcInternet": 0,"descInternet":0}
           $scope.counter = $scope.timeLimit;
           $scope.tabsIndex = 0
           $scope.totales.bolivares = 0

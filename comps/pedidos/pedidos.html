@@ -291,6 +291,12 @@
     
                                               <td class="right">{{formato(2,totalesDdo.descPreEmpaque)}} </td>
                                       </tr>
+                                      <tr ng-if=" totalesDdo.descInternet > 0"> 
+                                        <td class="right">
+                                            <strong class="text-dark">TOT. DESC. WEB. {{totalesDdo.porcInternet}} %:</strong> </td>
+  
+                                            <td class="right">{{formato(2,totalesDdo.descPreEmpaque)}} </td>
+                                      </tr>
                                         <tr>
                                             <td class="right">
                                                 <strong class="text-dark">SUB.T. (E):</strong> </td>
@@ -637,6 +643,12 @@
                                                 <strong class="text-dark">TOT. DESC. PREEMP. :</strong> </td>
         
                                                 <td class="right">{{formato(2,totalesDdo.descPreEmpaque)}} </td>
+                                        </tr>
+                                        <tr ng-if=" totalesDdo.descInternet > 0"> 
+                                          <td class="right">
+                                              <strong class="text-dark">TOT. DESC. WEB. {{totalesDdo.porcInternet}} %:</strong> </td>
+    
+                                              <td class="right">{{formato(2,totalesDdo.descPreEmpaque)}} </td>
                                         </tr>
                                             <tr>
                                               <td class="right">
