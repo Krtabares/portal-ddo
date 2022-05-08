@@ -1513,7 +1513,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.errorValidaArticulo = false
         $scope.addArtPedido = function(gotosearch=false){
-            console.log("entro")
             if(Object.keys($scope.articulo).length === 0)
               return
 
@@ -1546,7 +1545,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
 
             }else{
-
               var listAux = $scope.pedido.pedido
 
               var existenciaAux = $scope.articulo.existencia
@@ -1554,11 +1552,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               calcularTotales(indexArticulo)
 
               error = validacionesArticulo($scope.articulo, existenciaAux)
-
               if(!error){
-                if($scope.auxCantidadBlur == $scope.articulo.CANTIDAD){
-                  return
-                }
+                // if($scope.auxCantidadBlur == $scope.articulo.CANTIDAD){
+                //   return
+                // }
                 $scope.updDetalleProducto($scope.articulo, indexArticulo, listAux);
 
               }else{
