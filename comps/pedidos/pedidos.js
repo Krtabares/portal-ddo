@@ -1371,7 +1371,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               notify({ message:'¡Pedido eliminado con éxito!', position:'center', duration:1500, classes:'   alert-danger'});
               $scope.reset();
               $scope.oneOrder()
-
+              $scope.refreshHeaderClient()
               $scope.loading = false
           }, function errorCallback(response) {
 
@@ -1611,8 +1611,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                  notify({ message:'¡Solo puede solicitar un máximo  de '+3+' unidades por producto!', position:'center', duration:1500, classes:'   alert-danger'});
                 return  true;
               }
-
-              if(articulo.disp_prod_emp == "N"){
+              if( articulo.disp_prod_emp == "N"){
                 notify({ message:'¡Este producto ya fue solicitado en un pediodo el dia de hoy!', position:'center', duration:1500, classes:'   alert-danger'});
                return  true;
               }
