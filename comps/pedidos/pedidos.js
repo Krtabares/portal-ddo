@@ -701,6 +701,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.getPedidos_filteringV2();
 
               notify({ message:response.data.estatus, position:'center', duration:1500, classes:'   alert-success'});
+              // llamada metoodo
+              $scope.refreshHeaderClient()
 
           }, function errorCallback(response) {
 
@@ -2099,7 +2101,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.tipoPedidoSearch = '01'
           }
         }
+        // comunicacion componentes
 
+        $scope.refreshHeaderClient = function() {
+          $scope.$broadcast('refreshHeaderClient', true);
+        };
 
         $scope.dtOptions = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')

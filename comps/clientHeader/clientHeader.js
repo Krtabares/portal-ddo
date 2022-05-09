@@ -45,6 +45,14 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
           verificClient()
         }
 
+        $scope.$on('refreshHeaderClient', function(evt, msg){
+          var body = {}
+          body.pCliente = $scope.client_info.cod_cliente
+          body.pNoCia = $scope.client_info.cod_cia
+          body.pNoGrupo =  $scope.client_info.grupo_cliente
+          getClientDispService(body)
+        });
+
         $ctrl.onChanges = function (changes) {
 
 
@@ -60,8 +68,10 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
               $scope.creditoClient = response.data.obj
 
 
-              $scope.creditoClient.disp_bs_format = (isNaN(parseFloat(response.data.obj.disp_bs)))? 0:parseFloat(response.data.obj.disp_bs)
+              $scope.creditoClient.disp_bs_format = (isNaN(parseFloat(response.data.obj.disp_bs)))? 0:parseFloat(response.data.obj.disp_bs) - parseFloat(response.data.obj.pedido_act[0] )
               $scope.creditoClient.disp_usd_format = (isNaN(parseFloat(response.data.obj.disp_usd)))? 0 : parseFloat(response.data.obj.disp_usd)
+
+
               localstorage.set('creditoClient',  JSON.stringify($scope.creditoClient));
               $scope.loading = false
 
