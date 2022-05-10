@@ -198,7 +198,7 @@
                     </div>
                     <div class="col-md-4 col-sm-12">
                       <label>Crédito disponible</label><br>
-                      <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</span>
+                      <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totalesDdo.total):0)}}</span>
                       <br>
                       <span >{{formato(3,(creditoClient.disp_usd_format)? (creditoClient.disp_usd_format - totales.UsdConIva):0)}}</span>
 
@@ -549,7 +549,7 @@
                         </div>
                         <div class="col-md-4 col-sm-12">
                           <label>Crédito disponible</label><br>
-                          <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</span>
+                          <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format -totalesDdo.total):0)}}</span>
                           <br>
                           <span >{{formato(3,(creditoClient.disp_usd_format)? (creditoClient.disp_usd_format - totales.UsdConIva):0)}}</span>
     

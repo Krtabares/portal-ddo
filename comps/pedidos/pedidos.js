@@ -73,14 +73,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       };
 
       $scope.saveCurrentPageProduct = function () {
-        console.log("saveCurrentPageProduct")
+        //console.log("saveCurrentPageProduct")
         var table = angular.element('#tableProd').DataTable()
-        console.log(table.page.info().page)
+        //console.log(table.page.info().page)
         return table.page.info().page;
       }
 
       function setPageTableProd(page) {
-        console.log("setPageTableProd: "+page)
+        //console.log("setPageTableProd: "+page)
         var table = angular.element('#tableProd').DataTable()
         table.page( page ).draw( 'page' );
       }
@@ -190,10 +190,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.modalCancelColor = null;
 
         $scope.aceptModalDyn = function () {
-          //console.log("aceptModalDyn",$scope.modalDynContext);
+          ////console.log("aceptModalDyn",$scope.modalDynContext);
           switch ($scope.modalDynContext) {
             case 0:
-                //console.log($scope.totales);
+                ////console.log($scope.totales);
                 if($scope.totales.bsConIva > $scope.client.monto_minimo){
                   $scope.finalizar_pedido()
                   $(function(){
@@ -272,7 +272,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.openModalDyn = function(type, contextId) {
           
           if(type == 0 && $scope.tipoPedido == "NORMAL"  && $scope.pickUpAvailable == "2" ){
-            console.log(type,$scope.tipoPedido,$scope.pickUpAvailable)
+            //console.log(type,$scope.tipoPedido,$scope.pickUpAvailable)
             $scope.openModalDyn(4, contextId);
             return
           }
@@ -283,7 +283,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.modalDynColor = $scope.typeContext[type].color;
           $scope.modalheaderColor = $scope.typeContext[type].headerColor;
           $scope.modalCancelColor = $scope.typeContext[type].cancelColor;
-          //console.log("entro y seteo");
+          ////console.log("entro y seteo");
           $(function(){
             $("#modalConfirmDynamic").modal({
                 backdrop: 'static',
@@ -492,7 +492,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.client.unid_fact_misc_emp =  $scope.client_info.unid_fact_misc_emp
            $scope.client.unid_disp_med_emp =  $scope.client_info.unid_disp_med_emp
            $scope.client.unid_disp_misc_emp =  $scope.client_info.unid_disp_misc_emp
-            // console.log($scope.client_info);
+            // //console.log($scope.client_info);
            if($scope.client_info.grupo_cliente == "02" ){
 
              $scope.clienteEmpleado = true
@@ -503,7 +503,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $scope.naturalLimits = true
               }
               
-              // console.log($scope.naturalLimits);
+              // //console.log($scope.naturalLimits);
            }else{
               $scope.clienteEmpleado = false
            }
@@ -901,7 +901,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
 
               $scope.loading = false;
-              console.log(response.data.obj.mensaje)
+              //console.log(response.data.obj.mensaje)
               // $scope.getPedidos_filteringV2();
               notify({ message:response.data.obj.mensaje, position:'left', duration:3500, classes:'   alert-warning'});
               // $scope.stopTimeoutOrdCancel();
@@ -955,10 +955,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.listSubCategorias=[]
         $scope.subCategoria = {"CODIGO":null}
         $scope.getSubCategorias = function () {
-          console.log("entro");
+          //console.log("entro");
           $scope.loading = true
           let body = {}
-          console.log($scope.categoria);
+          //console.log($scope.categoria);
           body.codCategoria = $scope.categoria.CODIGO
           request.post(ip+'/get/sub_categorias', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
@@ -1021,7 +1021,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 body.pCategoria = $scope.categoria.CODIGO
 
               }
-              console.log($scope.subCategoria)
+              //console.log($scope.subCategoria)
               if($scope.subCategoria.CODIGO != null && $scope.subCategoria.CODIGO != "null" ){
                 body.pSubCategoria = $scope.subCategoria.CODIGO
 
@@ -1211,7 +1211,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
          var mytimeout = null
 
         $scope.stopTimeout = function(){
-          //console.log(mytimeout)
+          ////console.log(mytimeout)
           // alert("cancelo timeout")
             $timeout.cancel(mytimeout);
             $scope.counter = $scope.timeLimit;
@@ -1220,10 +1220,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
         var stopped;
         // $scope.countdown = function() {
-        //   //console.log($scope.counter);
+        //   ////console.log($scope.counter);
 
         //   stopped = $timeout(function() {
-        //      //console.log($scope.counter);
+        //      ////console.log($scope.counter);
         //     if($scope.counter < 1){
         //       $scope.stop1()
         //       return
@@ -1252,7 +1252,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.addDetalleProducto = function(articulo){
-          //console.log("addDetalleProducto");
+          ////console.log("addDetalleProducto");
           $scope.loading = true
           var body = {};
           body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
@@ -1419,7 +1419,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $(function(){
               $("#modalInfoProduct").modal('hide');
             })
-            notify({ message:'¡Linea actulizada con éxito!', position:'center', duration:1500, classes:'   alert-success'});
+            notify({ message:'¡Linea actualizada con éxito!', position:'center', duration:1500, classes:'   alert-success'});
 
           }, function errorCallback(response) {
 
@@ -1575,7 +1575,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         function validacionesArticulo(articulo , existenciaAux = null) {
 
-          console.log(articulo)
+          //console.log(articulo)
           if(isEmpty( articulo.COD_PRODUCTO ) && isEmpty( articulo.cod_producto )){
 
             return  true;
@@ -1593,7 +1593,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
              return  true;
           }
 
-          // console.log(articulo)
+          // //console.log(articulo)
           if( !validaCreditoContraProducto(parseFloat(articulo.precio_neto_bs + articulo.iva_bs) * articulo.CANTIDAD)  ){
 
             notify({ message:'¡El precio excede el crédito disponible!', position:'center', duration:1500, classes:'   alert-danger'});
@@ -1601,9 +1601,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             return  true;
           }
 
-          //console.log("$scope.clienteEmpleado", $scope.clienteEmpleado);
+          ////console.log("$scope.clienteEmpleado", $scope.clienteEmpleado);
           if( $scope.clienteEmpleado == true){
-            //console.log("entro en validacion de empleado");
+            ////console.log("entro en validacion de empleado");
 
             if( $scope.client_info.ind_emp_nolim != 'S' ){
 
@@ -1612,25 +1612,25 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 return  true;
               }
               if( articulo.disp_prod_emp == "N"){
-                notify({ message:'¡Este producto ya fue solicitado en un pediodo el dia de hoy!', position:'center', duration:1500, classes:'   alert-danger'});
+                notify({ message:'¡Este producto ya fue solicitado en un pedido el dia de hoy!', position:'center', duration:1500, classes:'   alert-danger'});
                return  true;
               }
 
             }
 
 
-            // console.log("articulo.tipo_prod_emp", articulo.tipo_prod_emp);
+            // //console.log("articulo.tipo_prod_emp", articulo.tipo_prod_emp);
             if(articulo.tipo_prod_emp == "MEDICINAS"){
-              // console.log("$scope.totales.empMed + articulo.CANTIDAD ", $scope.totales.empMed + articulo.CANTIDAD);
-              // console.log("$scope.client.unid_disp_med_emp", $scope.client.unid_disp_med_emp);
+              // //console.log("$scope.totales.empMed + articulo.CANTIDAD ", $scope.totales.empMed + articulo.CANTIDAD);
+              // //console.log("$scope.client.unid_disp_med_emp", $scope.client.unid_disp_med_emp);
               if( ($scope.totales.empMed + articulo.CANTIDAD) > $scope.client.unid_disp_med_emp){
                 notify({ message:'¡Excede cantidad disponible en medicinas!', position:'center', duration:1500, classes:'   alert-danger'});
                 // notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+(  $scope.client.unid_disp_med_emp - $scope.totales.empMed)+') para medicinas!', position:'center', duration:1500, classes:'   alert-danger'});
                return  true;
               }
             }else if(articulo.tipo_prod_emp == "MISCELANEOS"){
-              // console.log("$scope.totales.empMisc + articulo.CANTIDAD", $scope.totales.empMisc + articulo.CANTIDAD);
-              // console.log("$scope.client.unid_disp_misc_emp", $scope.client.unid_disp_misc_emp);
+              // //console.log("$scope.totales.empMisc + articulo.CANTIDAD", $scope.totales.empMisc + articulo.CANTIDAD);
+              // //console.log("$scope.client.unid_disp_misc_emp", $scope.client.unid_disp_misc_emp);
               if( ($scope.totales.empMisc + articulo.CANTIDAD) > $scope.client.unid_disp_misc_emp){
 
                 notify({ message:'¡Excede cantidad disponible en misceláneos!', position:'center', duration:1500, classes:'   alert-danger'});
@@ -1682,7 +1682,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.closeModalOrder =  function (borrar=false) {
-          //console.log($scope.pedido);
+          ////console.log($scope.pedido);
 
           if(borrar){
             $scope.openModalDyn(2, null);
@@ -1701,7 +1701,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   $('#myHtml').css('overflow','')
                 })
             }else{
-              //console.log("openModalDyn");
+              ////console.log("openModalDyn");
               $scope.openModalDyn(5, null);
             }
           }else{
@@ -1843,7 +1843,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.pedido = pedido;
 
           $scope.pickUpAvailable = (pedido.tipo_pedido == "NORMAL")? "1":"2";
-          console.log(pedido)
+          //console.log(pedido)
           if(pedido.estatus_id < 3 || pedido.estatus_id == 6){
             $scope.editPedido()
           }
@@ -1858,7 +1858,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.removeArt = function(i){
 
           $scope.pedido.pedido.splice( i, 1 );
-          console.log($scope.pedido.pedido)
+          //console.log($scope.pedido.pedido)
           calcularTotales()
 
           $scope.counter = $scope.timeLimit;
@@ -1933,10 +1933,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             }
 
-            $scope.creditoClient = JSON.parse(localstorage.get('creditoClient'))
+            // $scope.creditoClient = JSON.parse(localstorage.get('creditoClient'))
 
-          // console.log(  $scope.totales);
-          // console.log( localstorage.get('creditoClient') );
+          //console.log(  $scope.totales);
+          // //console.log( localstorage.get('creditoClient') );
         }
 
         function validaCreditoContraProducto(valor) {
@@ -1989,7 +1989,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             // $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel(),$scope.liveTimeOrd);
 
-            //console.log("tiempo de servidor " , $scope.msToTime(tiempo*1000))
+            ////console.log("tiempo de servidor " , $scope.msToTime(tiempo*1000))
             if (tiempo < 600 ) {
 
               $scope.msgOrdCancel = true;
@@ -2037,14 +2037,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.filterArray = function(list = [], key, value, filterlistkey ){
           var aux = []
 
-          // console.log($scope[filterlistkey]);
+          // //console.log($scope[filterlistkey]);
           const filterItems = query => {
             return list.filter((el) =>
               el[key].toLowerCase().indexOf(query.toLowerCase()) > -1
             );
           }
           $scope.listProveedoresFiltrada = filterItems(value)
-          // console.log(filterItems(event.target.value));
+          // //console.log(filterItems(event.target.value));
           // list.forEach(element => {
           //   if( element[key].includes(event.target.value) ){
           //     aux.push(element)
@@ -2146,7 +2146,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         ];
 
         function formatoTotales(totales) {
-          //console.log(totales)
+          ////console.log(totales)
           // totales.total_bruto = totales.total_bruto.replace(",",".")
           // totales.desc_volumen = totales.desc_volumen.replace(",",".")
           // totales.otros_descuentos = totales.otros_descuentos.replace(",",".")
@@ -2213,17 +2213,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.timerRunning = false;
 
         $scope.$on('timer-tick', function (event, args) {
-          // $scope.timer//console += $scope.timerType  + ' - event.name = '+ event.name + ', timeoutId = ' + args.timeoutId + ', millis = ' + args.millis +'\n';
-          // //console.log(args.millis)
+          // $scope.timer////console += $scope.timerType  + ' - event.name = '+ event.name + ', timeoutId = ' + args.timeoutId + ', millis = ' + args.millis +'\n';
+          // ////console.log(args.millis)
           var s = args.millis
           var ms = s % 1000;
           s = (s - ms) / 1000;
-          // //console.log($scope.msToTime(args.millis));
+          // ////console.log($scope.msToTime(args.millis));
           if(s <= 900){
             $scope.msgOrdCancel =  true
           }
           if(s == 1 ){
-            //console.log("cancelo");
+            ////console.log("cancelo");
             $scope.cancel_pedido()
           }
 
@@ -2232,7 +2232,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.viewImg = null;
         $scope.zoomImg = function ( src, nombreProd) {
 
-          //console.log("zoom")
+          ////console.log("zoom")
           $scope.imgTitle = nombreProd;
           $scope.viewImg = src;
           // Get the image and insert it inside the modal - use its "alt" text as a caption
