@@ -997,6 +997,7 @@ td p {
 }
 .btn-success{
   background: #d74d00 !important;
+  border-color: #d74d00 !important;
 }
 .btn-info{
   background: #2a9de0 !important;
